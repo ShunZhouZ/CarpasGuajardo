@@ -1,12 +1,11 @@
-import React, { useEffect, useState} from "react";
+import React, { useEffect, useState, Component} from "react";
 import { NextPage } from "next";
-import { Calendar, momentLocalizer } from "react-big-calendar";
+import { Calendar, momentLocalizer} from "react-big-calendar";
 import "react-big-calendar/lib/css/react-big-calendar.css";
-
-import moment from 'moment';
-
-moment.locale("es");
-//momentLocalizer(moment);
+import 'react-big-calendar/lib/css/react-big-calendar.css'
+import moment from "moment";'moment/locale/nb';
+require('moment/locale/es.js');
+  
 const localizer = momentLocalizer(moment);
 
 const events = [{
@@ -29,11 +28,19 @@ const CalendarPage: NextPage = () => {
     <div className="container mx-auto px-10">
       <h1 className="text-4xl my-8">Visualización de eventos</h1>
       <Calendar
-        selectable
         localizer={localizer}
         events={events}
-        resourceIdAccessor="resourceId"
-        resourceTitleAccessor="resourceTitle"
+        startAccessor="start"
+        endAccessor="end"
+        style={{ height: 650 }}
+        messages={{
+          next: ">>",
+          today: "Hoy",
+          previous: "<<",
+          month: "Mes",
+          week: "Semana",
+          day: "Día"
+        }}
       />
     </div>
   );
