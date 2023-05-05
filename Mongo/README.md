@@ -7,4 +7,4 @@ para windows agregar la carpeta en la que se instalo mongoDB en las variables de
 
 2. Descargar MongoDB compass (En windows el instalador de MongoDB lo trae incluido, para linux se instala aparte)
 3. Crear una base de dato
-4. Importar las Collection de la carpeta:
+4. Importar las Collection de la carpeta: [Collection](https://github.com/ShunZhouZ/CarpasGuajardo/blob/86e40956c07d3ddbd9eca57ddfaf2ab69120d456/Mongo/Collections/)
