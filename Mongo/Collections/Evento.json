@@ -1,0 +1,28 @@
+[{
+  "_id": {
+    "$oid": "64549cfc9ebbe9b624b7c29f"
+  },
+  "id": 1,
+  "estado": "Visita terreno",
+  "id_cliente": 1,
+  "id_contacto_externo": [
+    {
+      "id_contacto_externo": "Platos"
+    },
+    {
+      "id_contacto_externo": "Tenedor"
+    }
+  ],
+  "id_inventario": [
+    {
+      "id_inventario": 1
+    },
+    {
+      "id_inventario": 1
+    }
+  ],
+  "Fecha_visita": ISODate("2020-05-18T14:10:30.000Z"),
+  "Fecha_Instalacion": ISODate("2020-05-18T14:10:30.000Z"),
+  "Fecha_Inicio": ISODate("2020-05-18T14:10:30.000Z"),
+  "Fecha_Fin": ISODate("2020-05-18T14:10:30.000Z")"
+}]
