@@ -32,7 +32,6 @@ const CalendarPage: NextPage = () => {
         selectable
         localizer={localizer}
         events={events}
-        defaultDate={new Date(2018, 0, 29)}
         resourceIdAccessor="resourceId"
         resourceTitleAccessor="resourceTitle"
       />
