@@ -30,6 +30,11 @@
       "static/chunks/main.js",
       "static/chunks/pages/_error.js"
     ],
+    "/eliminarevento": [
+      "static/chunks/webpack.js",
+      "static/chunks/main.js",
+      "static/chunks/pages/eliminarevento.js"
+    ],
     "/eventos/visualizar-admin": [
       "static/chunks/webpack.js",
       "static/chunks/main.js",

@@ -1,7 +1,8 @@
 {
   "/_app": "pages/_app.js",
-  "/_document": "pages/_document.js",
   "/_error": "pages/_error.js",
+  "/_document": "pages/_document.js",
+  "/eliminarevento": "pages/eliminarevento.js",
   "/": "pages/index.js",
   "/eventos/visualizar-admin": "pages/eventos/visualizar-admin.js"
 }
