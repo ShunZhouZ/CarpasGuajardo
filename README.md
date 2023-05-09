@@ -25,10 +25,11 @@ Para actualizar rama:
 `git pull origin <nombre de rama>`
 
 Para subir modificaciones:
-`git add .`
 
-`git commit -m "<comentario>"`
+1. `git add .`
 
-`git push origin <nombre de rama>`
+2. `git commit -m "<comentario>"`
+
+3. `git push origin <nombre de rama>`
 
 \*\*comentario puede ser: actualizacion de login-mati
