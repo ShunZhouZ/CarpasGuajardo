@@ -7,38 +7,27 @@ require("moment/locale/es.js");
 
 const localizer = momentLocalizer(moment);
 
-const events = [
-	{
-		title: "Evento 1",
-		allDay: false,
-		start: new Date("2023-5-4 11:00:00"), //año, mes, dia
-		end: new Date("2023-5-4 17:00:00")
-	},
-	{
-		title: "Evento 2",
-		allDay: false,
-		start: new Date("2023-5-5 10:00:00"),
-		end: new Date("2023-5-5 12:00:00")
-	}
-];
-
-const CalendarPage = () => {
-	const [allEvents, setAllEvents] = useState(events);
+const CalendarWorkerPage = ({ allPosts }) => {
+	const [allEvents, setAllEvents] = useState(allPosts);
 
 	return (
 		<div className="container mx-auto px-10">
 			<h1 className="text-4xl my-8">Calendario de eventos</h1>
 			<Calendar
 				localizer={localizer}
-				events={events}
-				startAccessor="start"
-				endAccessor="end"
-				style={{ height: 650 }}
+				events={allEvents}
+				startAccessor={(event) => {
+					return new Date(event.start);
+				}}
+				endAccessor={(event) => {
+					return new Date(event.start);
+				}}
 				defaultView={Views.WEEK}
 				views={{
 					week: true,
 					day: true
 				}}
+				style={{ height: 650 }}
 				messages={{
 					next: ">>",
 					today: "Hoy",
@@ -53,4 +42,18 @@ const CalendarPage = () => {
 	);
 };
 
-export default CalendarPage;
+export default CalendarWorkerPage;
+
+export async function getServerSideProps(context) {
+	let res = await fetch("http://localhost:3000/api/eventos", {
+		method: "GET",
+		headers: {
+			"Content-Type": "application/json"
+		}
+	});
+	let allPosts = await res.json();
+
+	return {
+		props: { allPosts: allPosts.data }
+	};
+}
