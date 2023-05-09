@@ -1,9 +1,0 @@
-[{
-  "_id": {
-    "$oid": "6454900c9ebbe9b624b7c276"
-  },
-  "Id_Administrador": 1,
-  "Nombre": "Nombre",
-  "Email": "Email",
-  "Password": "Password"
-}]
