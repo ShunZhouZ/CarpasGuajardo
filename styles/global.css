@@ -32,3 +32,9 @@
 .rbc-today {
   background-color:#daf0e9;
 }
+
+.button-group {
+  display: flex;
+  flex-direction: row;
+  gap: 10px; /* opcional - ajusta el espaciado entre botones */
+}

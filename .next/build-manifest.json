@@ -30,10 +30,10 @@
       "static/chunks/main.js",
       "static/chunks/pages/eventos/eliminar-evento.js"
     ],
-    "/eventos/eliminar-visita": [
+    "/eventos/modificar-evento": [
       "static/chunks/webpack.js",
       "static/chunks/main.js",
-      "static/chunks/pages/eventos/eliminar-visita.js"
+      "static/chunks/pages/eventos/modificar-evento.js"
     ]
   },
   "ampFirstPages": []

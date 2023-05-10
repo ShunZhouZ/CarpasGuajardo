@@ -82,7 +82,7 @@ const Eventos = (props) => {
 				  <td>{moment(event.end).format('DD/MM/YYYY hh:mm:ss')}</td>
 				  <td>{getClientName(event.id_Cliente)}</td>
 				  <td>
-					<div>
+					<div className="button-group">
 					  <Button className="btn btn-danger" onClick={() => deleteElement(event._id)}>Eliminar</Button>
 					  <Button className="btn btn-primary" onClick={() => modifyElement(event._id)}>Modificar</Button>
 					</div>
