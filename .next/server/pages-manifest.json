@@ -2,5 +2,8 @@
   "/_app": "pages/_app.js",
   "/_error": "pages/_error.js",
   "/_document": "pages/_document.js",
-  "/": "pages/index.js"
+  "/eventos/eliminar-evento": "pages/eventos/eliminar-evento.js",
+  "/eventos/eliminar-visita": "pages/eventos/eliminar-visita.js",
+  "/api/visitas": "pages/api/visitas.js",
+  "/api/eventos": "pages/api/eventos.js"
 }

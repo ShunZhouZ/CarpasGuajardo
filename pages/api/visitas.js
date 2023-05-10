@@ -16,5 +16,21 @@ export default async function handler(req, res) {
 			break;
 		case "PUT":
 			let bodyObject2 = req.body;
+		case "DELETE":
+            const { id } = req.query
+
+            if(!id){
+                return res.status(200).send({
+                    message: 'El id del objeto es obligatorio',
+                })
+            }
+
+            const deleteVisits = await db.collection("visitas").deleteOne({_id: new ObjectId(id.toString())})
+
+            return res.status(200).send({
+                message: 'Elemento eliminado exitosamente',
+                query: id,
+                response: deleteVisits
+            })
 	}
 }
