@@ -4,12 +4,15 @@ import "bootswatch/dist/minty/bootstrap.min.css";
 import "react-big-calendar/lib/css/react-big-calendar.css";
 import "../styles/global.css";
 import Layout from "../components/layout";
+import { SSRProvider } from "react-bootstrap";
 
 function MyApp({ Component, pageProps }) {
 	return (
-		<Layout>
-			<Component {...pageProps} />;
-		</Layout>
+		<SSRProvider>
+			<Layout>
+				<Component {...pageProps} />;
+			</Layout>
+		</SSRProvider>
 	);
 }
 export default MyApp;
