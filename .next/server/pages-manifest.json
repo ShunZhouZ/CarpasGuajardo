@@ -1,0 +1,7 @@
+{
+  "/_app": "pages/_app.js",
+  "/_error": "pages/_error.js",
+  "/_document": "pages/_document.js",
+  "/eventos/eliminar-evento": "pages/eventos/eliminar-evento.js",
+  "/api/eventos": "pages/api/eventos.js"
+}

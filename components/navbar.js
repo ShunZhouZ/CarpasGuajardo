@@ -14,7 +14,7 @@ const NavBar = () => {
 						<NavDropdown title="Eventos" id="basic-nav-dropdown" bg="primary" variant="dark">
 							<NavDropdown.Item href="#action/3.1">Agendar</NavDropdown.Item>
 							<NavDropdown.Item href="#action/3.2">Modificar</NavDropdown.Item>
-							<NavDropdown.Item href="#action/3.3">Eliminar</NavDropdown.Item>
+							<NavDropdown.Item href="/eventos/eliminar-evento">Eliminar</NavDropdown.Item>
 							<NavDropdown.Divider />
 							<NavDropdown.Item href="/eventos/visualizar-admin">Visualizar todos</NavDropdown.Item>
 						</NavDropdown>
