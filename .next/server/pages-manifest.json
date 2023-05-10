@@ -1,0 +1,8 @@
+{
+  "/_app": "pages/_app.js",
+  "/_error": "pages/_error.js",
+  "/_document": "pages/_document.js",
+  "/eventos/visualizar-worker": "pages/eventos/visualizar-worker.js",
+  "/eventos/visualizar-admin": "pages/eventos/visualizar-admin.js",
+  "/api/eventos": "pages/api/eventos.js"
+}
