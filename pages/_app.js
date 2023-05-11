@@ -3,6 +3,7 @@
 import "bootswatch/dist/minty/bootstrap.min.css";
 import "react-big-calendar/lib/css/react-big-calendar.css";
 import "../styles/global.css";
+import "../styles/form.css";
 import Layout from "../components/layout";
 import { SSRProvider } from "react-bootstrap";
 

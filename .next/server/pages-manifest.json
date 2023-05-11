@@ -2,5 +2,8 @@
   "/_app": "pages/_app.js",
   "/_error": "pages/_error.js",
   "/_document": "pages/_document.js",
-  "/eventos/modificar-evento": "pages/eventos/modificar-evento.js"
+  "/api/agregar_ev": "pages/api/agregar_ev.js",
+  "/api/eventos": "pages/api/eventos.js",
+  "/eventos/visualizar-admin": "pages/eventos/visualizar-admin.js",
+  "/eventos/crear_evento": "pages/eventos/crear_evento.js"
 }
