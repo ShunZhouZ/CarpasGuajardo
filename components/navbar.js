@@ -20,8 +20,7 @@ const NavBar = () => {
 						</NavDropdown>
 						<NavDropdown title="Visitas técnicas" id="basic-nav-dropdown" bg="primary" variant="dark">
 							<NavDropdown.Item href="#action/3.1">Agendar</NavDropdown.Item>
-							<NavDropdown.Item href="#action/3.2">Modificar</NavDropdown.Item>
-							<NavDropdown.Item href="#action/3.3">Eliminar</NavDropdown.Item>
+							<NavDropdown.Item href="/eventos/eliminar-visita">Modificar</NavDropdown.Item>
 							<NavDropdown.Divider />
 							<NavDropdown.Item href="#action/3.4">Visualizar todas</NavDropdown.Item>
 						</NavDropdown>

@@ -7,11 +7,11 @@ export default async function handler(req, res) {
     switch (req.method) {
         case "POST":
             let bodyObject = req.body;
-            let miEvento = await db.collection("eventos").insertOne(bodyObject);
+            let miEvento = await db.collection("evento").insertOne(bodyObject);
             res.json(miEvento);
             break;
         case "GET":
-            const allEventos = await db.collection("eventos").find({}).toArray();
+            const allEventos = await db.collection("evento").find({}).toArray();
             res.json({ status: 200, data: allEventos });
             break;
         case "DELETE":
@@ -23,7 +23,7 @@ export default async function handler(req, res) {
                 })
             }
 
-            const deleteEvento = await db.collection("eventos").deleteOne({_id: new ObjectId(id.toString())})
+            const deleteEvento = await db.collection("evento").deleteOne({_id: new ObjectId(id.toString())})
 
             return res.status(200).send({
                 message: 'Elemento eliminado exitosamente',

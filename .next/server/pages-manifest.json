@@ -1,9 +1,10 @@
 {
   "/_app": "pages/_app.js",
-  "/_error": "pages/_error.js",
   "/_document": "pages/_document.js",
-  "/api/agregar_ev": "pages/api/agregar_ev.js",
+  "/_error": "pages/_error.js",
+  "/eventos/eliminar-visita": "pages/eventos/eliminar-visita.js",
+  "/api/clientes": "pages/api/clientes.js",
+  "/api/visitas": "pages/api/visitas.js",
   "/api/eventos": "pages/api/eventos.js",
-  "/eventos/visualizar-admin": "pages/eventos/visualizar-admin.js",
-  "/eventos/crear_evento": "pages/eventos/crear_evento.js"
+  "/eventos/eliminar-evento": "pages/eventos/eliminar-evento.js"
 }
