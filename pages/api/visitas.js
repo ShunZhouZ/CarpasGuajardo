@@ -15,8 +15,6 @@ export default async function handler(req, res) {
 			const allVisitas = await db.collection("visita_terreno").find({}).toArray();
 			res.json({ status: 200, data: allVisitas });
 			break;
-		case "PUT":
-			let bodyObject2 = req.body;
 		case "DELETE":
 			const { id } = req.query
 
@@ -33,5 +31,21 @@ export default async function handler(req, res) {
 				query: id,
 				response: deleteVisits
 			})
+
+			case "PUT":
+                const { body } = req
+                const {_id, ...data} = body
+                const responseUpdate = await db.collection("visita_terreno").updateOne(
+                    {
+                        _id: new ObjectId(_id)
+                    },
+                    {
+                        $set: data
+                    }
+                )
+                return res.status(200).send({
+                    message: 'Modificado',
+                    response: responseUpdate
+                })
 	}
 }

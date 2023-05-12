@@ -21,6 +21,10 @@ const Visitas = (props) => {
         setVisits(_visits.data)
     }, [])
 
+    const modifyElement = (id) => {
+		window.location.href = `/eventos/modificar-visita?id=${id}`;
+	};
+
     const deleteElement = async (id) => {
         const deleteResponse = await fetch(`http://localhost:3000/api/visitas?id=${id}`, {
             method: "DELETE",
@@ -61,7 +65,7 @@ const Visitas = (props) => {
                                 <td>
                                     <div className="button-group">
 									<Button className="btn btn-danger" onClick={() => deleteElement(visit._id)}>Eliminar</Button>
-									<Button className="btn btn-primary" /*</div>onClick={() => modifyElement(visit._id)}*/>Modificar</Button>
+									<Button className="btn btn-primary" onClick={() => modifyElement(visit._id)}>Modificar</Button>
 								</div>
                                 </td>
                             </tr>
