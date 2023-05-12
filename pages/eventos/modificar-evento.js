@@ -152,7 +152,7 @@ const Eventos = ({ eventos, clientes, inventario, contactos }) => {
               required 
               onChange={handleControl}
               defaultValue={moment(data.fecha_termino).format('yyyy-MM-DD')}
-              type="date" 
+              type="datetime-local" 
               placeholder='Modificar Fecha de termino'
               name='fecha_termino'
             />
