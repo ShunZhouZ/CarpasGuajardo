@@ -106,7 +106,7 @@ const ModificarVisitas = (props) => {
                         required 
                         onChange={handleControl}
                         defaultValue={moment(data.fecha_hora_visita_terreno).format('yyyy-MM-DD')}
-                        type="date" 
+                        type="datetime-local" 
                         placeholder='Fecha y hora de visita'
                         name='fecha_hora_visita_terreno'
             />
