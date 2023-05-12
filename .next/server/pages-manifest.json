@@ -2,10 +2,6 @@
   "/_app": "pages/_app.js",
   "/_error": "pages/_error.js",
   "/_document": "pages/_document.js",
-  "/eventos/agendar-evento": "pages/eventos/agendar-evento.js",
-  "/api/eventos": "pages/api/eventos.js",
   "/eventos/modificar-evento": "pages/eventos/modificar-evento.js",
-  "/api/clientes": "pages/api/clientes.js",
-  "/api/contacts": "pages/api/contacts.js",
-  "/api/Inventario": "pages/api/Inventario.js"
+  "/api/eventos": "pages/api/eventos.js"
 }

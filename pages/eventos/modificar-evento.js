@@ -4,7 +4,7 @@ const http = require('http');
 const { useRouter } = require('next/router');
 import moment from 'moment/moment';
 import React, { useState } from 'react';
-import { Button, Col, Form, Row } from 'react-bootstrap';
+import { Button, Col, Form, Row, Modal } from 'react-bootstrap';
 
 const Eventos = ({ eventos, clientes, inventario, contactos }) => {
   const router = useRouter();
@@ -12,7 +12,6 @@ const Eventos = ({ eventos, clientes, inventario, contactos }) => {
 
   // Filtrar eventos por ID
   const evento = eventos.find((evento) => evento._id === id);
-  const cliente = evento ? clientes.find((c) => c._id === evento.id_Cliente) : null;
 
     const [data, setData] = useState({
       _id: id,
@@ -39,8 +38,9 @@ const Eventos = ({ eventos, clientes, inventario, contactos }) => {
         },
         body: JSON.stringify(data)
       })
+      handleShow();
+
       console.log(await response.json());
-      // Aquí puedes implementar la lógica para modificar el campo correspondiente
       console.log('Modificar campo');
     };
 
@@ -52,6 +52,12 @@ const Eventos = ({ eventos, clientes, inventario, contactos }) => {
         [name]: value
       })
     }
+    const [show, setShow] = useState(false);
+    const handleShow = () => setShow(true);
+    const handleClose = () => {
+      setShow(false);
+      window.location.reload(); // Reinicia la página web
+    };
 
     const handleCheck = (e) => {
       const {checked, name} = e.target
@@ -191,6 +197,19 @@ const Eventos = ({ eventos, clientes, inventario, contactos }) => {
             <button onClick={submitModificar} type="submit" className="btn btn-primary w-25 ">Guardar</button>
             </div>
              </Form> 
+
+             <Modal show={show} onHide={handleClose}>
+				<Modal.Header closeButton>
+					<Modal.Title>Evento modificado</Modal.Title>
+				</Modal.Header>
+				<Modal.Body>El evento ha sido modificado correctamente.</Modal.Body>
+				<Modal.Footer>
+					<Button onClick={handleClose}>
+						Aceptar
+					</Button>
+				</Modal.Footer>
+			</Modal>
+
           </div>
     );
 };
@@ -223,26 +242,12 @@ export async function getServerSideProps() {
       req.end();
     });
     
-    const clientesPromise = fetch('http://localhost:3000/api/clientes')
-      .then((response) => response.json())
-      .then((data) => data.data);
-    const inventarioPromise = fetch('http://localhost:3000/api/Inventario')
-      .then((response) => response.json())
-      .then((data) => data.data);
-    
-    const contactosPromise = fetch('http://localhost:3000/api/contacts')
-      .then((response) => response.json())
-      .then((data) => data.data);
-    
     try {
-      const [eventos, clientes, inventario, contactos] = await Promise.all([
+      const [eventos] = await Promise.all([
         eventosPromise,
-        clientesPromise,
-        inventarioPromise,
-        contactosPromise,
       ]);
     
-      resolve({ props: { eventos, clientes, inventario, contactos } });
+      resolve({ props: { eventos } });
     } catch (error) {
       reject(error);
     }
