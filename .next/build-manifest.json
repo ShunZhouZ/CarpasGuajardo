@@ -30,11 +30,6 @@
       "static/chunks/main.js",
       "static/chunks/pages/eventos/agendar-evento.js"
     ],
-    "/eventos/eliminar-evento": [
-      "static/chunks/webpack.js",
-      "static/chunks/main.js",
-      "static/chunks/pages/eventos/eliminar-evento.js"
-    ],
     "/eventos/modificar-evento": [
       "static/chunks/webpack.js",
       "static/chunks/main.js",
