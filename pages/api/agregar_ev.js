@@ -5,7 +5,6 @@ export default async function handler(req, res) {
 
 	switch (req.method) {
 		case "POST":
-			console.log("entre a post");
 			const {
 				tipo_evento,
 				nombre_cliente,
@@ -17,8 +16,11 @@ export default async function handler(req, res) {
 				monto_total,
 				anticipo,
 				carpa_toldo,
-				cubre_piso} = req.body; //Ejemplo de campos del objeto enviado
+				cubre_piso,
+				metros_cuadrados,
+				descripcion			} = req.body; //Ejemplo de campos del objeto enviado
 				if(tipo_evento === "Evento"){
+					console.log("entre a evento");
 					const miEvento = await db.collection("evento").insertOne({
 						nombre_cliente: nombre_cliente,
 						numero_contacto_cliente: numero_contacto_cliente,
@@ -28,7 +30,9 @@ export default async function handler(req, res) {
 						monto_total: monto_total,
 						anticipo: anticipo,
 						carpa_toldo: carpa_toldo,
-						cubre_piso: cubre_piso
+						cubre_piso: cubre_piso,
+						metros_cuadrados: metros_cuadrados,
+						descripcion: descripcion,
 					  });
 					  res.json({ status: 200, data: miEvento });
 				}else{
@@ -37,6 +41,7 @@ export default async function handler(req, res) {
 						numero_contacto_cliente: numero_contacto_cliente,
 						direccion_cliente: direccion_cliente,
 						fecha_hora_visita_terreno: new Date (fecha_hora_visita_terreno),
+						descripcion: descripcion,
 					  });
 					  res.json({ status: 200, data: miEvento });
 				}

@@ -13,13 +13,13 @@ const NavBar = () => {
 					<Nav className="me-auto">
 						<Nav.Link href="#home">Inicio</Nav.Link>
 						<NavDropdown title="Eventos" id="basic-nav-dropdown" bg="primary" variant="dark">
-							<NavDropdown.Item href="#action/3.1">Agendar</NavDropdown.Item>
+							<NavDropdown.Item href="/eventos/agendar-evento">Agendar</NavDropdown.Item>
 							<NavDropdown.Item href="/eventos/eliminar-evento">Modificar</NavDropdown.Item>
 							<NavDropdown.Divider />
 							<NavDropdown.Item href="/eventos/visualizar-admin">Visualizar todos</NavDropdown.Item>
 						</NavDropdown>
 						<NavDropdown title="Visitas técnicas" id="basic-nav-dropdown" bg="primary" variant="dark">
-							<NavDropdown.Item href="#action/3.1">Agendar</NavDropdown.Item>
+							<NavDropdown.Item href="/eventos/agendar-visita">Agendar</NavDropdown.Item>
 							<NavDropdown.Item href="/eventos/eliminar-visita">Modificar</NavDropdown.Item>
 							<NavDropdown.Divider />
 							<NavDropdown.Item href="#action/3.4">Visualizar todas</NavDropdown.Item>

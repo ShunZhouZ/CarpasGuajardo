@@ -4,7 +4,7 @@ const http = require('http');
 const { useRouter } = require('next/router');
 import moment from 'moment/moment';
 import React, { useState } from 'react';
-import { Button, Form } from 'react-bootstrap';
+import { Button, Col, Form, Row, Modal } from 'react-bootstrap';
 
 const Eventos = ({ eventos, clientes, inventario, contactos }) => {
   const router = useRouter();
@@ -12,7 +12,6 @@ const Eventos = ({ eventos, clientes, inventario, contactos }) => {
 
   // Filtrar eventos por ID
   const evento = eventos.find((evento) => evento._id === id);
-  const cliente = evento ? clientes.find((c) => c._id === evento.id_Cliente) : null;
 
     const [data, setData] = useState({
       _id: id,
@@ -39,8 +38,9 @@ const Eventos = ({ eventos, clientes, inventario, contactos }) => {
         },
         body: JSON.stringify(data)
       })
+      handleShow();
+
       console.log(await response.json());
-      // Aquí puedes implementar la lógica para modificar el campo correspondiente
       console.log('Modificar campo');
     };
 
@@ -52,6 +52,12 @@ const Eventos = ({ eventos, clientes, inventario, contactos }) => {
         [name]: value
       })
     }
+    const [show, setShow] = useState(false);
+    const handleShow = () => setShow(true);
+    const handleClose = () => {
+      setShow(false);
+      window.location.reload(); // Reinicia la página web
+    };
 
     const handleCheck = (e) => {
       const {checked, name} = e.target
@@ -61,73 +67,122 @@ const Eventos = ({ eventos, clientes, inventario, contactos }) => {
       })
     }
     return (
-      <div className='mx-5'>
-        <Form onSubmit={submitModificar}>
-          <Form.Group>
-            <Form.Label>Nombre del Evento </Form.Label>
+      <div className='d-flex justify-content-center' >
+          <Form className='mx-5 w-75' onSubmit={submitModificar}>
+            <h1 className=' text-center my-4 '>Modificar evento</h1>
+            <Row xs={2} md={2} >
+              <Col>
+            <Form.Group >
+            <Form.Label >Nombre Cliente </Form.Label>
             <Form.Control
-              onChange={handleControl}
-              required
-              defaultValue={data.nombre_cliente}
-              type="text" 
-              placeholder='Nombre del evento'
-              name='nombre_cliente'
+            onChange={handleControl}
+            required
+            defaultValue={data.nombre_cliente}
+            type="text" 
+            placeholder='Nombre del evento'
+            name='nombre_cliente'
             />
           </Form.Group>
           
-          
-            <Form.Label>Numero de contacto del cliente </Form.Label>
+          <Form.Group>
+            <Form.Label className='mt-3'>Numero cliente </Form.Label>
             <Form.Control
-              onChange={handleControl}
-              required
-              defaultValue={data.numero_contacto_cliente}
-              type="text" 
-              placeholder='Numero del cliente'
-              name='numero_contacto_cliente'
+                onChange={handleControl}
+                required
+                defaultValue={data.numero_contacto_cliente}
+                type="text" 
+                placeholder='Numero del cliente'
+                name='numero_contacto_cliente'
             />
-
-            <Form.Label>Direccion del cliente </Form.Label>
+          </Form.Group>
+            <Form.Group>
+            <Form.Label className='mt-3'>Direccion </Form.Label>
             <Form.Control
-              onChange={handleControl}
-              required
-              defaultValue={data.direccion_cliente}
-              type="text" 
-              placeholder='Direccion del cliente'
-              name='direccion_cliente'
+                onChange={handleControl}
+                required
+                defaultValue={data.direccion_cliente}
+                type="text" 
+                placeholder='Direccion del cliente'
+                name='direccion_cliente'
             />
-
-            <Form.Label>Monto total </Form.Label>
+          </Form.Group>
+          <Form.Group>
+            <Form.Label className='mt-3'>Metros cuadrados </Form.Label>
             <Form.Control
-              onChange={handleControl}
-              required
-              defaultValue={data.monto_total}
-              type="text" 
-              placeholder='Monto total'
-              name='monto_total'
+                      onChange={handleControl}
+                      required
+                      defaultValue={data.metros_cuadrados}
+                      type="text" 
+                      placeholder='metros_cuadrados'
+                      name='metros_cuadrados'
             />
-
-            <Form.Label>Anticipo</Form.Label>
-            <Form.Control
-              onChange={handleControl}
-              required
-              defaultValue={data.anticipo}
-              type="text" 
-              placeholder='Anticipo'
-              name='anticipo'
+          </Form.Group>
+          <Form.Group>
+            <Form.Label className='mt-3'>Cubre piso</Form.Label>
+            <Form.Check
+                        onChange={handleCheck}
+                        type="switch"
+                        name="Cubre piso"
+                        defaultChecked={data.cubre_piso}
             />
-
-            <Form.Label>Metros cuadrados</Form.Label>
-            <Form.Control
-              onChange={handleControl}
-              required
-              defaultValue={data.metros_cuadrados}
-              type="text" 
-              placeholder='metros_cuadrados'
-              name='metros_cuadrados'
+            <Form.Label>Carpa o Toldo</Form.Label>
+            <Form.Check
+                        onChange={handleCheck}
+                        type="switch"
+                        name="Carpa toldo"
+                        defaultChecked={data.carpa_toldo}
             />
-
-            <Form.Label>Descripcion</Form.Label>
+          </Form.Group>
+          </Col>
+          <Col>
+          <Form.Group>
+            <Form.Label>Fecha de inicio </Form.Label>
             <Form.Control
+                        required 
+                        onChange={handleControl}
+                        defaultValue={moment(data.fecha_inicio).format('yyyy-MM-DD')}
+                        type="datetime-local" 
+                        placeholder='Modificar Fecha de inicio'
+                        name='fecha_inicio'
+            />
+          </Form.Group>
+          <Form.Group>
+            <Form.Label className='mt-3' >Fecha de Termino </Form.Label>
+            <Form.Control
+                        required 
+                        onChange={handleControl}
+                        defaultValue={moment(data.fecha_termino).format('yyyy-MM-DD')}
+                        type="datetime-local" 
+                        placeholder='Modificar Fecha de termino'
+                        name='fecha_termino'
+            />
+          </Form.Group>
+          <Form.Group>
+            <Form.Label className='mt-3'>Monto total</Form.Label>
+            <Form.Control
+                        onChange={handleControl}
+                        required
+                        defaultValue={data.monto_total}
+                        type="text" 
+                        placeholder='Monto total'
+                        name='monto_total'
+            />
+          </Form.Group>
+          <Form.Group>
+            <Form.Label className='mt-3'>Anticipo</Form.Label>
+            <Form.Control
+                       onChange={handleControl}
+                       required
+                       defaultValue={data.anticipo}
+                       type="text" 
+                       placeholder='Anticipo'
+                       name='anticipo'
+            />
+          </Form.Group>
+          <Form.Group>
+            <Form.Label className='mt-3'>Descripcion</Form.Label>
+            <Form.Control
+              as="textarea"
               onChange={handleControl}
               required
               defaultValue={data.descripcion}
@@ -135,48 +190,27 @@ const Eventos = ({ eventos, clientes, inventario, contactos }) => {
               placeholder='descripcion'
               name='descripcion'
             />
-          
-          
-          <Form.Group>
-            <Form.Label>Fecha de inicio del evento</Form.Label>
-            <Form.Control 
-              required 
-              onChange={handleControl}
-              defaultValue={moment(data.fecha_inicio).format('yyyy-MM-DD')}
-              type="date" 
-              placeholder='Modificar Fecha de inicio'
-              name='fecha_inicio'
-            />
-            <Form.Label>Fecha de termino del evento</Form.Label>
-            <Form.Control 
-              required 
-              onChange={handleControl}
-              defaultValue={moment(data.fecha_termino).format('yyyy-MM-DD')}
-              type="date" 
-              placeholder='Modificar Fecha de termino'
-              name='fecha_termino'
-            />
-          </Form.Group>
+          </Form.Group> 
+            </Col>   
+            </Row>
+            <div className='mt-3 text-center '>
+            <button onClick={submitModificar} type="submit" className="btn btn-primary w-25 ">Guardar</button>
+            </div>
+             </Form> 
 
-          <Form.Group>
-            <Form.Label>Carpa toldo</Form.Label>
-            <Form.Check
-              onChange={handleCheck}
-              type="switch"
-              name="Carpa toldo"
-              defaultChecked={data.carpa_toldo}
-            />
-            <Form.Label>Cubre piso</Form.Label>
-            <Form.Check
-              onChange={handleCheck}
-              type="switch"
-              name="Cubre piso"
-              defaultChecked={data.cubre_piso}
-            />
-          </Form.Group>
-          <Button type="submit">Modificar</Button>
-        </Form>
-      </div>
+             <Modal show={show} onHide={handleClose}>
+				<Modal.Header closeButton>
+					<Modal.Title>Evento modificado</Modal.Title>
+				</Modal.Header>
+				<Modal.Body>El evento ha sido modificado correctamente.</Modal.Body>
+				<Modal.Footer>
+					<Button onClick={handleClose}>
+						Aceptar
+					</Button>
+				</Modal.Footer>
+			</Modal>
+
+          </div>
     );
 };
 
@@ -208,26 +242,12 @@ export async function getServerSideProps() {
       req.end();
     });
     
-    const clientesPromise = fetch('http://localhost:3000/api/clientes')
-      .then((response) => response.json())
-      .then((data) => data.data);
-    const inventarioPromise = fetch('http://localhost:3000/api/Inventario')
-      .then((response) => response.json())
-      .then((data) => data.data);
-    
-    const contactosPromise = fetch('http://localhost:3000/api/contacts')
-      .then((response) => response.json())
-      .then((data) => data.data);
-    
     try {
-      const [eventos, clientes, inventario, contactos] = await Promise.all([
+      const [eventos] = await Promise.all([
         eventosPromise,
-        clientesPromise,
-        inventarioPromise,
-        contactosPromise,
       ]);
     
-      resolve({ props: { eventos, clientes, inventario, contactos } });
+      resolve({ props: { eventos } });
     } catch (error) {
       reject(error);
     }

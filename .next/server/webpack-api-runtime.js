@@ -147,7 +147,11 @@
 /******/ 		__webpack_require__.f.require = (chunkId, promises) => {
 /******/ 			// "1" is the signal for "already loaded"
 /******/ 			if(!installedChunks[chunkId]) {
+<<<<<<< HEAD
 /******/ 				if("webpack-api-runtime" != chunkId) {
+=======
+/******/ 				if("pages/api/eventos" == chunkId) {
+>>>>>>> e30e7dc482651cec29b7714240d15b42aa0aab1c
 /******/ 					installChunk(require("./" + __webpack_require__.u(chunkId)));
 /******/ 				} else installedChunks[chunkId] = 1;
 /******/ 			}

@@ -4,7 +4,7 @@ const http = require('http');
 const { useRouter } = require('next/router');
 import moment from 'moment/moment';
 import React, { useState } from 'react';
-import { Button, Form } from 'react-bootstrap';
+import { Button, Col, Form, Row, Modal } from 'react-bootstrap';
 
 const ModificarVisitas = (props) => {
   const { visitas } = props
@@ -22,6 +22,7 @@ const ModificarVisitas = (props) => {
       nombre_cliente:visita.nombre_cliente,
       numero_contacto_cliente: visita.numero_contacto_cliente,
       direccion_cliente: visita.direccion_cliente,
+      descripcion: visita.descripcion,
       fecha_hora_visita_terreno: visita.fecha_hora_visita_terreno
     })
 
@@ -35,9 +36,16 @@ const ModificarVisitas = (props) => {
         },
         body: JSON.stringify(data)
       })
+      handleShow();
       console.log(await response.json());
-      // Aquí puedes implementar la lógica para modificar el campo correspondiente
       console.log('Modificar campo');
+    };
+
+    const [show, setShow] = useState(false);
+    const handleShow = () => setShow(true);
+    const handleClose = () => {
+      setShow(false);
+      window.location.reload(); // Reinicia la página web
     };
 
     const handleControl = (e) => {
@@ -56,57 +64,83 @@ const ModificarVisitas = (props) => {
       })
     }
     return (
-      <div className='mx-5'>
-        <Form onSubmit={submitModificar}>
-          <Form.Group>
-            <Form.Label>Nombre del cliente </Form.Label>
+      <div className='d-flex justify-content-center'>
+        <Form className='mx-5 w-25' onSubmit={submitModificar}>
+            <h4>Agendar visita a terreno</h4>
+            <Form.Group>
+            <Form.Label>Nombre Cliente </Form.Label>
             <Form.Control
-              onChange={handleControl}
-              required
-              defaultValue={data.nombre_cliente}
-              type="text" 
-              placeholder='Nombre del evento'
-              name='nombre_cliente'
+                onChange={handleControl}
+                required
+                defaultValue={data.nombre_cliente}
+                type="text" 
+                placeholder='Nombre del evento'
+                name='nombre_cliente'
             />
           </Form.Group>
-          
-          
-            <Form.Label>Numero de contacto del cliente </Form.Label>
-            <Form.Control
-              onChange={handleControl}
-              required
-              defaultValue={data.numero_contacto_cliente}
-              type="text" 
-              placeholder='Numero del cliente'
-              name='numero_contacto_cliente'
-            />
-
-            <Form.Label>Direccion del cliente </Form.Label>
-            <Form.Control
-              onChange={handleControl}
-              required
-              defaultValue={data.direccion_cliente}
-              type="text" 
-              placeholder='Direccion del cliente'
-              name='direccion_cliente'
-            />
-
-          
-          
           <Form.Group>
-            <Form.Label>Fecha y hora de visita</Form.Label>
-            <Form.Control 
-              required 
-              onChange={handleControl}
-              defaultValue={moment(data.fecha_hora_visita_terreno).format('yyyy-MM-DD')}
-              type="date" 
-              placeholder='Fecha y hora de visita'
-              name='fecha_hora_visita_terreno'
+            <Form.Label>Numero de contacto </Form.Label>
+            <Form.Control
+                onChange={handleControl}
+                required
+                defaultValue={data.numero_contacto_cliente}
+                type="text" 
+                placeholder='Numero del cliente'
+                name='numero_contacto_cliente'
             />
           </Form.Group>
-          <Button type="submit">Modificar</Button>
+          <Form.Group>
+            <Form.Label>Direccion </Form.Label>
+            <Form.Control
+                onChange={handleControl}
+                required
+                defaultValue={data.direccion_cliente}
+                type="text" 
+                placeholder='Direccion del cliente'
+                name='direccion_cliente'
+            />
+          </Form.Group>
+          <Form.Group>
+            <Form.Label>Hora de la visita </Form.Label>
+            <Form.Control
+                        required 
+                        onChange={handleControl}
+                        defaultValue={moment(data.fecha_hora_visita_terreno).format('yyyy-MM-DD')}
+                        type="datetime-local" 
+                        placeholder='Fecha y hora de visita'
+                        name='fecha_hora_visita_terreno'
+            />
+          </Form.Group>
+          <Form.Group>
+            <Form.Label>Descripcion </Form.Label>
+            <Form.Control
+                    as="textarea"
+                    onChange={handleControl}
+                    required
+                    defaultValue={data.descripcion}
+                    type="text" 
+                    placeholder='Descripcion'
+                    name='descripcion'
+            />
+          </Form.Group>
+            <div className='mt-3'>
+            <Button type="submit" className="btn btn-primary">Modificar</Button>
+            </div>
         </Form>
-      </div>
+            
+        <Modal show={show} onHide={handleClose}>
+				<Modal.Header closeButton>
+					<Modal.Title>Visita modificado</Modal.Title>
+				</Modal.Header>
+				<Modal.Body>La visita ha sido modificada correctamente.</Modal.Body>
+				<Modal.Footer>
+					<Button onClick={handleClose}>
+						Aceptar
+					</Button>
+				</Modal.Footer>
+			</Modal>
+
+        </div>
     );
 };
 
