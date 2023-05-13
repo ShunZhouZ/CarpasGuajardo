@@ -1,6 +1,7 @@
 import { Button, Modal } from "react-bootstrap";
 import { useCallback, useState, useEffect } from "react";
-import moment from 'moment';
+import moment from "moment";
+import Table from "react-bootstrap/Table";
 
 const Eventos = (props) => {
 	const [show, setShow] = useState(false);
@@ -14,7 +15,6 @@ const Eventos = (props) => {
 	const modifyElement = (id) => {
 		window.location.href = `/eventos/modificar-evento?id=${id}`;
 	};
-
 
 	const reloadEvents = useCallback(async () => {
 		let res = await fetch("http://localhost:3000/api/eventos", {
@@ -40,7 +40,7 @@ const Eventos = (props) => {
 
 	const getClientName = (id) => {
 		const cliente = clientes.find((c) => c._id === id);
-		return cliente ? `${cliente.nombre} ${cliente.apellido}` : '-';
+		return cliente ? `${cliente.nombre} ${cliente.apellido}` : "-";
 	};
 
 	const deleteElement = async (id) => {
@@ -64,7 +64,7 @@ const Eventos = (props) => {
 	return (
 		<div>
 			<h1>Eliminar eventos</h1>
-			<table className="table table-striped">
+			<Table responsive>
 				<thead>
 					<tr key={0}>
 						<th style={{ width: "10%" }}>Nº</th>
@@ -85,22 +85,26 @@ const Eventos = (props) => {
 							<td>{event.nombre_cliente}</td>
 							<td>{event.numero_contacto_cliente}</td>
 							<td>{event.direccion_cliente}</td>
-							<td>{moment(event.fecha_inicio).format('DD/MM/YYYY hh:mm:ss')}</td>
-							<td>{moment(event.fecha_termino).format('DD/MM/YYYY hh:mm:ss')}</td>
+							<td>{moment(event.fecha_inicio).format("DD/MM/YYYY hh:mm:ss")}</td>
+							<td>{moment(event.fecha_termino).format("DD/MM/YYYY hh:mm:ss")}</td>
 							<td>{event.monto_total}</td>
 							<td>{event.anticipo}</td>
 							<td>{event.metros_cuadrados}</td>
-							
+
 							<td>
 								<div className="button-group">
-									<Button className="btn btn-danger" onClick={() => deleteElement(event._id)}>Eliminar</Button>
-									<Button className="btn btn-primary" onClick={() => modifyElement(event._id)}>Modificar</Button>
+									<Button className="btn btn-danger" onClick={() => deleteElement(event._id)}>
+										Eliminar
+									</Button>
+									<Button className="btn btn-primary" onClick={() => modifyElement(event._id)}>
+										Modificar
+									</Button>
 								</div>
 							</td>
 						</tr>
 					))}
 				</tbody>
-			</table>
+			</Table>
 			<Modal show={show} onHide={handleClose}>
 				<Modal.Header closeButton>
 					<Modal.Title>Evento eliminado</Modal.Title>
@@ -114,8 +118,7 @@ const Eventos = (props) => {
 			</Modal>
 		</div>
 	);
-
-}
+};
 export async function getServerSideProps(context) {
 	let res = await fetch("http://localhost:3000/api/eventos", {
 		method: "GET",

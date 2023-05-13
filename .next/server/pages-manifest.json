@@ -2,6 +2,7 @@
   "/_app": "pages/_app.js",
   "/_error": "pages/_error.js",
   "/_document": "pages/_document.js",
-  "/eventos/agendar-evento": "pages/eventos/agendar-evento.js",
-  "/eventos/agendar-visita": "pages/eventos/agendar-visita.js"
+  "/eventos/visualizar-admin": "pages/eventos/visualizar-admin.js",
+  "/api/eventos": "pages/api/eventos.js",
+  "/eventos/eliminar-evento": "pages/eventos/eliminar-evento.js"
 }
