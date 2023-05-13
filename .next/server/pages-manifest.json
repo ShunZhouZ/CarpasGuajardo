@@ -2,10 +2,5 @@
   "/_app": "pages/_app.js",
   "/_error": "pages/_error.js",
   "/_document": "pages/_document.js",
-<<<<<<< HEAD
-  "/eventos/visualizar-admin": "pages/eventos/visualizar-admin.js",
-  "/api/eventos": "pages/api/eventos.js"
-=======
-  "/": "pages/index.js"
->>>>>>> 885efeb4ab862ca76f2da1c305d6911b3f64c3ad
+  "/visitas-tecnicas/visualizar-visitas-admin": "pages/visitas-tecnicas/visualizar-visitas-admin.js"
 }

@@ -1,5 +1,4 @@
-import React, { useEffect, useState, Component } from "react";
-import { NextPage } from "next";
+import React, { useState } from "react";
 import { Calendar, momentLocalizer } from "react-big-calendar";
 import moment from "moment";
 import Button from "react-bootstrap/Button";
@@ -12,12 +11,66 @@ require("moment/locale/es.js");
 const localizer = momentLocalizer(moment);
 
 const CalendarPage = ({ allPosts }) => {
-	const [allEvents, setAllEvents] = useState(allPosts);
+	const events = [];
+	for (let i = 0; i < allPosts.length; i++) {
+		const fecha_inicio = moment(allPosts[i].fecha_inicio).format("YYYY-MM-DD HH:mm:ss");
+		const fecha_termino = moment(allPosts[i].fecha_termino).format("YYYY-MM-DD HH:mm:ss");
+		events.push({
+			id: allPosts[i]._id,
+			title: allPosts[i].nombre_cliente,
+			start: fecha_inicio,
+			end: fecha_termino,
+			allDay: false,
+			//otras cosas
+			contacto: allPosts[i].numero_contacto_cliente,
+			direccion: allPosts[i].direccion_cliente,
+			monto_total: allPosts[i].monto_total,
+			anticipo: allPosts[i].anticipo,
+			carpa_toldo: allPosts[i].carpa_toldo,
+			cubre_piso: allPosts[i].cubre_piso,
+			metros_cuadrados: allPosts[i].metros_cuadrados,
+			descripcion: allPosts[i].descripcion
+		});
+		console.log(events[i].start);
+		console.log(events[i].end);
+	}
+
+	const [allEvents, setAllEvents] = useState(events);
 	const [show, setShow] = useState(false);
+
 	const handleClose = () => setShow(false);
 
+	const goToModificacion = (id) => {
+		//redirigiendo a la pagina de modificacion
+		window.location.href = `/eventos/modificar-evento?id=${id}`;
+	};
+
+	const [modalData, setModalData] = useState([]);
+
 	const handleEventClick = (event) => {
-		console.log("click en evento");
+		const f_inicio = moment(event.start).format("DD/MM/YYYY");
+		const h_inicio = moment(event.start).format("HH:mm");
+		const f_termino = moment(event.end).format("DD/MM/YYYY");
+		const h_termino = moment(event.end).format("HH:mm");
+		const cubre_piso = event.cubre_piso ? "Sí" : "No";
+		const carpa_toldo = event.carpa_toldo ? "Carpa" : "Toldo";
+		const data = {
+			id: event.id,
+			nombre_cliente: event.title,
+			numero_contacto_cliente: event.contacto,
+			direccion_cliente: event.direccion,
+			f_inicio: f_inicio,
+			h_inicio: h_inicio,
+			f_termino: f_termino,
+			h_termino: h_termino,
+			monto_total: event.monto_total,
+			anticipo: event.anticipo,
+			carpa_toldo: carpa_toldo,
+			cubre_piso: cubre_piso,
+			metros_cuadrados: event.metros_cuadrados,
+			descripcion: event.descripcion
+		};
+		setModalData(data);
 		setShow(true);
 	};
 
@@ -33,7 +86,7 @@ const CalendarPage = ({ allPosts }) => {
 						return new Date(event.start);
 					}}
 					endAccessor={(event) => {
-						return new Date(event.start);
+						return new Date(event.end);
 					}}
 					style={{ height: 650 }}
 					messages={{
@@ -52,45 +105,82 @@ const CalendarPage = ({ allPosts }) => {
 					<Modal.Title id="contained-modal-title-vcenter">Detalles de evento</Modal.Title>
 				</Modal.Header>
 				<Modal.Body>
-					<h6>Nombre: </h6>
-					<h6>Contacto: </h6>
-					<h6>Dirección: </h6>
+					<p>
+						<strong>Nombre: </strong> {modalData.nombre_cliente}{" "}
+					</p>
+					<p>
+						<strong>Número de contacto: </strong>
+						{modalData.numero_contacto_cliente}{" "}
+					</p>
+					<p>
+						<strong>Dirección: </strong>
+						{modalData.direccion_cliente}{" "}
+					</p>
 					<Row>
 						<Col xs={10} md={6}>
-							<h6>Fecha de inicio: </h6>
+							<p>
+								<strong>Fecha de inicio: </strong>
+								{modalData.f_inicio}{" "}
+							</p>
 						</Col>
 						<Col xs={6} md={4}>
-							<h6>Hora de inicio: </h6>
+							<p>
+								<strong>Hora de inicio: </strong>
+								{modalData.h_inicio}{" "}
+							</p>
 						</Col>
 					</Row>
 					<Row>
 						<Col xs={10} md={6}>
-							<h6>Fecha de fin: </h6>
+							<p>
+								<strong>Fecha de fin: </strong>
+								{modalData.f_termino}{" "}
+							</p>
 						</Col>
 						<Col xs={6} md={4}>
-							<h6>Hora de fin: </h6>
+							<p>
+								<strong>Hora de fin: </strong>
+								{modalData.h_termino}{" "}
+							</p>
 						</Col>
 					</Row>
 					<Row>
 						<Col xs={10} md={6}>
-							<h6>Total: </h6>
+							<p>
+								<strong>Total: </strong>
+								{modalData.monto_total}
+							</p>
 						</Col>
 						<Col xs={6} md={4}>
-							<h6>Abono: </h6>
+							<p>
+								<strong>Abono: </strong>
+								{modalData.anticipo}
+							</p>
 						</Col>
 					</Row>
 					<Row>
 						<Col xs={10} md={6}>
-							<h6>Tipo de encarpado: </h6>
+							<p>
+								<strong>Tipo de encarpado: </strong>
+								{modalData.carpa_toldo}{" "}
+							</p>
 						</Col>
 						<Col xs={6} md={4}>
-							<h6>Cubrepiso: </h6>
+							<p>
+								<strong>Cubrepiso: </strong>
+								{modalData.cubre_piso}{" "}
+							</p>
 						</Col>
 					</Row>
-					<h6>Descripción: </h6>
+					<p>
+						<strong>Descripción: </strong>
+						{modalData.descripcion}{" "}
+					</p>
 				</Modal.Body>
 				<Modal.Footer>
-					<Button variant="primary">Modificar detalles</Button>
+					<Button variant="primary" onClick={() => goToModificacion(modalData.id)}>
+						Modificar detalles
+					</Button>
 					<Button variant="secondary" onClick={handleClose}>
 						Cerrar
 					</Button>

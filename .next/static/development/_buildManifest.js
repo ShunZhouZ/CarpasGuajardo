@@ -1,5 +1,1 @@
-<<<<<<< HEAD
-self.__BUILD_MANIFEST = {__rewrites:{beforeFiles:[],afterFiles:[],fallback:[]},"/_error":["static\u002Fchunks\u002Fpages\u002F_error.js"],"/eventos/visualizar-admin":["static\u002Fchunks\u002Fpages\u002Feventos\u002Fvisualizar-admin.js"],sortedPages:["\u002F_app","\u002F_error","\u002Feventos\u002Fvisualizar-admin"]};self.__BUILD_MANIFEST_CB && self.__BUILD_MANIFEST_CB()
-=======
-self.__BUILD_MANIFEST = {__rewrites:{beforeFiles:[],afterFiles:[],fallback:[]},"/":["static\u002Fchunks\u002Fpages\u002Findex.js"],"/_error":["static\u002Fchunks\u002Fpages\u002F_error.js"],sortedPages:["\u002F","\u002F_app","\u002F_error"]};self.__BUILD_MANIFEST_CB && self.__BUILD_MANIFEST_CB()
->>>>>>> 885efeb4ab862ca76f2da1c305d6911b3f64c3ad
+self.__BUILD_MANIFEST = {__rewrites:{beforeFiles:[],afterFiles:[],fallback:[]},"/_error":["static\u002Fchunks\u002Fpages\u002F_error.js"],"/visitas-tecnicas/visualizar-visitas-admin":["static\u002Fchunks\u002Fpages\u002Fvisitas-tecnicas\u002Fvisualizar-visitas-admin.js"],sortedPages:["\u002F_app","\u002F_error","\u002Fvisitas-tecnicas\u002Fvisualizar-visitas-admin"]};self.__BUILD_MANIFEST_CB && self.__BUILD_MANIFEST_CB()

@@ -15,11 +15,6 @@
   ],
   "rootMainFiles": [],
   "pages": {
-    "/": [
-      "static/chunks/webpack.js",
-      "static/chunks/main.js",
-      "static/chunks/pages/index.js"
-    ],
     "/_app": [
       "static/chunks/webpack.js",
       "static/chunks/main.js",
@@ -29,14 +24,11 @@
       "static/chunks/webpack.js",
       "static/chunks/main.js",
       "static/chunks/pages/_error.js"
-<<<<<<< HEAD
     ],
-    "/eventos/visualizar-admin": [
+    "/visitas-tecnicas/visualizar-visitas-admin": [
       "static/chunks/webpack.js",
       "static/chunks/main.js",
-      "static/chunks/pages/eventos/visualizar-admin.js"
-=======
->>>>>>> 885efeb4ab862ca76f2da1c305d6911b3f64c3ad
+      "static/chunks/pages/visitas-tecnicas/visualizar-visitas-admin.js"
     ]
   },
   "ampFirstPages": []

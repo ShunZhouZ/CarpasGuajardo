@@ -21,10 +21,6 @@ const CalendarWorkerPage = ({ allPosts }) => {
 		setShow(true);
 	};
 
-	// useEffect(() => {
-	// 	setShow(true);
-	// }, []);
-
 	return (
 		<>
 			<div className="container mx-auto px-10">
