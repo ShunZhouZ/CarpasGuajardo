@@ -2,14 +2,5 @@
   "/_app": "pages/_app.js",
   "/_error": "pages/_error.js",
   "/_document": "pages/_document.js",
-<<<<<<< HEAD
-  "/": "pages/index.js",
-  "/api/clientes": "pages/api/clientes.js",
-  "/eventos/eliminar-evento": "pages/eventos/eliminar-evento.js",
-  "/api/eventos": "pages/api/eventos.js"
-=======
-  "/eventos/visualizar-admin": "pages/eventos/visualizar-admin.js",
-  "/api/eventos": "pages/api/eventos.js",
-  "/eventos/eliminar-evento": "pages/eventos/eliminar-evento.js"
->>>>>>> e30e7dc482651cec29b7714240d15b42aa0aab1c
+  "/": "pages/index.js"
 }

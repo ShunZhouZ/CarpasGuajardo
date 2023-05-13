@@ -24,68 +24,78 @@ const Visitas = (props) => {
 	};
 
 	const deleteElement = async (id) => {
-		const deleteResponse = await fetch(`http://localhost:3000/api/visitas?id=${id}`, {
+		const confirmDelete = window.confirm("¿Estás seguro de que deseas eliminar esta visita?");
+	  
+		if (confirmDelete) {
+		  const deleteResponse = await fetch(`http://localhost:3000/api/visitas?id=${id}`, {
 			method: "DELETE",
 			headers: {
-				"Content-Type": "application/json"
+			  "Content-Type": "application/json"
 			}
-		});
-		// mostramos el modal cuando se ha eliminado correctamente la visita
-		setShowModal(true);
-		console.log(await deleteResponse.json());
-		await reloadVisits();
-	};
-	const handleCloseModal = () => {
+		  });
+		  // mostramos el modal cuando se ha eliminado correctamente la visita
+		  setShowModal(true);
+		  console.log(await deleteResponse.json());
+		  await reloadVisits();
+		}
+	  };
+	  
+	  const handleCloseModal = () => {
 		setShowModal(false);
-	};
+	  };
+	  
+
+	
 	return (
-		<div>
-			<h1>Eliminar Visita tecnica</h1>
-			<Table responsive>
-				<thead>
-					<tr key={0}>
-						<th style={{ width: "20%" }}>Nº</th>
-						<th style={{ width: "20%" }}>Nombre cliente</th>
-						<th style={{ width: "20%" }}>Contacto de cliente</th>
-						<th style={{ width: "20%" }}>Direccion de cliente</th>
-						<th style={{ width: "20%" }}>Fecha visita</th>
-					</tr>
-				</thead>
-				<tbody>
-					{visits?.map((visit, index) => (
-						<tr key={visit._id}>
-							<td>{index + 1}</td>
-							<td>{visit.nombre_cliente}</td>
-							<td>{visit.numero_contacto_cliente}</td>
-							<td>{visit.direccion_cliente}</td>
-							<td>{moment(visit.fecha_hora_visita_terreno).format("DD/MM/YYYY hh:mm:ss")}</td>
-							<td>
-								<div className="button-group">
-									<Button className="btn btn-danger" onClick={() => deleteElement(visit._id)}>
-										Eliminar
-									</Button>
-									<Button className="btn btn-primary" onClick={() => modifyElement(visit._id)}>
-										Modificar
-									</Button>
-								</div>
-							</td>
-						</tr>
-					))}
-				</tbody>
-			</Table>
-			{/* modal para mostrar mensaje de eliminación exitosa */}
-			<Modal show={showModal} onHide={handleCloseModal}>
-				<Modal.Header closeButton>
-					<Modal.Title>Visita eliminada</Modal.Title>
-				</Modal.Header>
-				<Modal.Body>La visita ha sido eliminada correctamente.</Modal.Body>
-				<Modal.Footer>
-					<Button variant="secondary" onClick={handleCloseModal}>
-						Cerrar
-					</Button>
-				</Modal.Footer>
-			</Modal>
-		</div>
+<div style={{ marginLeft: "40px", marginRight: "40px" }}>
+  <h1>Lista de visitas</h1>
+  <Table responsive striped bordered hover>
+    <thead>
+      <tr key={0}>
+        <th style={{ width: "22%" }}>Nº</th>
+        <th style={{ width: "22%" }}>Nombre cliente</th>
+        <th style={{ width: "22%" }}>Contacto de cliente</th>
+        <th style={{ width: "22%" }}>Direccion de cliente</th>
+        <th style={{ width: "22%" }}>Fecha visita</th>
+      </tr>
+    </thead>
+    <tbody>
+      {visits?.map((visit, index) => (
+        <tr key={visit._id}>
+          <td>{index + 1}</td>
+          <td>{visit.nombre_cliente}</td>
+          <td>{visit.numero_contacto_cliente}</td>
+          <td>{visit.direccion_cliente}</td>
+          <td>{moment(visit.fecha_hora_visita_terreno).format("DD/MM/YYYY hh:mm:ss")}</td>
+          <td>
+            <div className="button-group">
+              <Button className="btn btn-danger" onClick={() => deleteElement(visit._id)}>
+                Eliminar
+              </Button>
+              <Button className="btn btn-primary" onClick={() => modifyElement(visit._id)}>
+                Modificar
+              </Button>
+            </div>
+          </td>
+        </tr>
+      ))}
+    </tbody>
+  </Table>
+  {/* modal para mostrar mensaje de eliminación exitosa */}
+  <Modal show={showModal} onHide={handleCloseModal}>
+    <Modal.Header closeButton>
+      <Modal.Title>Visita eliminada</Modal.Title>
+    </Modal.Header>
+    <Modal.Body>La visita ha sido eliminada correctamente.</Modal.Body>
+    <Modal.Footer>
+      <Button variant="secondary" onClick={handleCloseModal}>
+        Cerrar
+      </Button>
+    </Modal.Footer>
+  </Modal>
+</div>
+
+
 	);
 };
 
