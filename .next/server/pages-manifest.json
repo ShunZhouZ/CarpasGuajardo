@@ -3,6 +3,5 @@
   "/_error": "pages/_error.js",
   "/_document": "pages/_document.js",
   "/eventos/visualizar-admin": "pages/eventos/visualizar-admin.js",
-  "/api/eventos": "pages/api/eventos.js",
-  "/eventos/eliminar-evento": "pages/eventos/eliminar-evento.js"
+  "/api/eventos": "pages/api/eventos.js"
 }
