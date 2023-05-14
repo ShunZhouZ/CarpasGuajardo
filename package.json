@@ -19,10 +19,16 @@
     "moment": "^2.29.4",
     "mongodb": "^5.4.0",
     "next": "^13.4.1",
+    "next-iron-session": "^4.2.0",
     "react": "^18.2.0",
     "react-big-calendar": "^1.6.9",
     "react-bootstrap": "^2.7.4",
     "react-dom": "^18.2.0",
-    "reactstrap": "^9.1.9"
+    "reactstrap": "^9.1.9",
+    "swr": "^2.1.5"
+  },
+  "devDependencies": {
+    "eslint": "8.18.0",
+    "eslint-config-next": "12.1.6"
   }
 }

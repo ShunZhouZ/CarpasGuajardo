@@ -2,5 +2,8 @@
   "/_app": "pages/_app.js",
   "/_error": "pages/_error.js",
   "/_document": "pages/_document.js",
-  "/visitas-tecnicas/visualizar-visitas-admin": "pages/visitas-tecnicas/visualizar-visitas-admin.js"
+  "/login": "pages/login.js",
+  "/": "pages/index.js",
+  "/api/auth": "pages/api/auth.js",
+  "/api/user": "pages/api/user.js"
 }
