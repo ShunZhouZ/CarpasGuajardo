@@ -40,4 +40,7 @@
   gap: 10px; /* opcional - ajusta el espaciado entre botones */
 }
 
+.text-danger {
+  color: red;
+}
 

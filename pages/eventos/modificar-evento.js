@@ -56,7 +56,7 @@ const Eventos = ({ eventos, clientes, inventario, contactos }) => {
     const handleShow = () => setShow(true);
     const handleClose = () => {
       setShow(false);
-      window.location.reload(); // Reinicia la página web
+      window.location.href = "/eventos/eliminar-evento";// Reinicia la página web
     };
 
     const handleCheck = (e) => {

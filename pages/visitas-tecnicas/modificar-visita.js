@@ -44,8 +44,8 @@ const ModificarVisitas = (props) => {
 	const handleShow = () => setShow(true);
 	const handleClose = () => {
 		setShow(false);
-		window.location.reload(); // Reinicia la página web
-	};
+		window.location.href = "/visitas-tecnicas/eliminar-visita";
+		};
 
 	const handleControl = (e) => {
 		e.preventDefault();

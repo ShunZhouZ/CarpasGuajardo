@@ -2,8 +2,9 @@
   "/_app": "pages/_app.js",
   "/_error": "pages/_error.js",
   "/_document": "pages/_document.js",
-  "/login": "pages/login.js",
-  "/": "pages/index.js",
-  "/api/auth": "pages/api/auth.js",
-  "/api/user": "pages/api/user.js"
+  "/eventos/eliminar-evento": "pages/eventos/eliminar-evento.js",
+  "/api/visitas": "pages/api/visitas.js",
+  "/api/eventos": "pages/api/eventos.js",
+  "/eventos/agendar-evento": "pages/eventos/agendar-evento.js",
+  "/visitas-tecnicas/eliminar-visita": "pages/visitas-tecnicas/eliminar-visita.js"
 }

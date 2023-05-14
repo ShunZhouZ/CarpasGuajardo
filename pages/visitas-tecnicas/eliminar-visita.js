@@ -1,7 +1,8 @@
 import { Button, Modal, Table } from "react-bootstrap";
 import { useCallback, useState, useEffect } from "react";
 import moment from "moment";
-
+import 'moment/locale/es';
+moment.locale('es');
 const Visitas = (props) => {
 	const { defaultVisits } = props;
 	const [visits, setVisits] = useState(defaultVisits);
@@ -20,7 +21,7 @@ const Visitas = (props) => {
 	}, []);
 
 	const modifyElement = (id) => {
-		window.location.href = `/eventos/modificar-visita?id=${id}`;
+		window.location.href = `/visitas-tecnicas/modificar-visita?id=${id}`;
 	};
 
 	const deleteElement = async (id) => {
@@ -50,11 +51,12 @@ const Visitas = (props) => {
 			<Table responsive striped bordered hover>
 				<thead>
 					<tr key={0}>
-						<th style={{ width: "22%" }}>Nº</th>
-						<th style={{ width: "22%" }}>Nombre cliente</th>
-						<th style={{ width: "22%" }}>Contacto de cliente</th>
-						<th style={{ width: "22%" }}>Direccion de cliente</th>
-						<th style={{ width: "22%" }}>Fecha visita</th>
+						<th style={{ width: "5%" }}>Nº</th>
+						<th style={{ width: "15%" }}>Nombre cliente</th>
+						<th style={{ width: "15%" }}>Contacto</th>
+						<th style={{ width: "15%" }}>Direccion</th>
+						<th style={{ width: "15%" }}>Fecha visita</th>
+						<th style={{ width: "20%", textAlign: "center" }}>Realizacion</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -64,14 +66,20 @@ const Visitas = (props) => {
 							<td>{visit.nombre_cliente}</td>
 							<td>{visit.numero_contacto_cliente}</td>
 							<td>{visit.direccion_cliente}</td>
-							<td>{moment(visit.fecha_hora_visita_terreno).format("DD/MM/YYYY HH:mm")}</td>
+							<td className={moment(visit.fecha_hora_visita_terreno, "YYYY-MM-DD HH:mm:ss").isBefore(moment(), "minute") ? "text-danger" : ""}>
+								{moment(visit.fecha_hora_visita_terreno, "YYYY-MM-DD HH:mm:ss").format("dddd DD-MM-YYYY, HH:mm")}
+							</td>
+							<td className={`text-center ${moment(visit.fecha_hora_visita_terreno, "YYYY-MM-DD HH:mm:ss").isBefore(moment(), "minute") ? "text-danger" : ""}`}>
+								{moment(visit.fecha_hora_visita_terreno, "YYYY-MM-DD HH:mm:ss").startOf("minute").fromNow()}
+							</td>
+
 							<td>
 								<div className="button-group">
+									<Button className="btn btn-info" onClick={() => modifyElement(visit._id)}>
+										Modificar
+									</Button>
 									<Button className="btn btn-danger" onClick={() => deleteElement(visit._id)}>
 										Eliminar
-									</Button>
-									<Button className="btn btn-primary" onClick={() => modifyElement(visit._id)}>
-										Modificar
 									</Button>
 								</div>
 							</td>

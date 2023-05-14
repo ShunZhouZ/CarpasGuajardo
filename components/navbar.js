@@ -2,25 +2,35 @@ import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
+import Image from "react-bootstrap/Image";
 
+//eliminar si no os gusta el image, linea 13 al 19 y agregar Carpas Guajardo
 const NavBar = () => {
 	return (
 		<Navbar className="mb-4" bg="primary" variant="dark" expand="lg">
 			<Container>
-				<Navbar.Brand href="#home">Carpas Guajardo</Navbar.Brand>
+			<Navbar.Brand href="#home"> 
+			<Image
+				src="/images/logo.png"
+				alt="Carpas Guajardo"
+				width={150}
+				height={80}
+				className="d-inline-block align-top"
+			/>{" "}
+			</Navbar.Brand> 
 				<Navbar.Toggle aria-controls="basic-navbar-nav" />
 				<Navbar.Collapse id="basic-navbar-nav">
 					<Nav className="me-auto">
 						<Nav.Link href="#home">Inicio</Nav.Link>
 						<NavDropdown title="Eventos" id="basic-nav-dropdown" bg="primary" variant="dark">
 							<NavDropdown.Item href="/eventos/agendar-evento">Agendar</NavDropdown.Item>
-							<NavDropdown.Item href="/eventos/eliminar-evento">Modificar</NavDropdown.Item>
+							<NavDropdown.Item href="/eventos/eliminar-evento">Lista de eventos</NavDropdown.Item>
 							<NavDropdown.Divider />
 							<NavDropdown.Item href="/eventos/visualizar-admin">Visualizar todos</NavDropdown.Item>
 						</NavDropdown>
 						<NavDropdown title="Visitas técnicas" id="basic-nav-dropdown" bg="primary" variant="dark">
 							<NavDropdown.Item href="/visitas-tecnicas/agendar-visita">Agendar</NavDropdown.Item>
-							<NavDropdown.Item href="/visitas-tecnicas/eliminar-visita">Modificar</NavDropdown.Item>
+							<NavDropdown.Item href="/visitas-tecnicas/eliminar-visita">Lista de visitas</NavDropdown.Item>
 							<NavDropdown.Divider />
 							<NavDropdown.Item href="/visitas-tecnicas/visualizar-visitas-admin">Visualizar todas</NavDropdown.Item>
 						</NavDropdown>
