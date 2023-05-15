@@ -2,9 +2,8 @@
   "/_app": "pages/_app.js",
   "/_error": "pages/_error.js",
   "/_document": "pages/_document.js",
-  "/eventos/eliminar-evento": "pages/eventos/eliminar-evento.js",
-  "/api/visitas": "pages/api/visitas.js",
-  "/api/eventos": "pages/api/eventos.js",
+  "/eventos/visualizar-admin": "pages/eventos/visualizar-admin.js",
+  "/api/agregar_ev": "pages/api/agregar_ev.js",
   "/eventos/agendar-evento": "pages/eventos/agendar-evento.js",
-  "/visitas-tecnicas/eliminar-visita": "pages/visitas-tecnicas/eliminar-visita.js"
+  "/api/eventos": "pages/api/eventos.js"
 }

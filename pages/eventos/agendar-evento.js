@@ -15,16 +15,20 @@ export function Form_(props) {
 	const [fecha_termino, setfecha_termino] = useState("");
 	const [monto_total, setmonto_total] = useState("");
 	const [anticipo, setanticipo] = useState("");
-	const [carpa_toldo, setcarpa_toldo] = useState("");
+	const [carpa, setCarpa] = useState("");
+	const [toldo, setToldo] = useState("");
 	const [cubre_piso, setcubre_piso] = useState("");
 	const [metros_cuadrados, setmetros_cuadrados] = useState("");
 	const [descripcion, setdescripcion] = useState("");
+	const [Iluminacion,setIluminacion ] = useState("");
+	const [calefaccion, setCalefacion] = useState("");
 	function irAContacto() {
 		router.push("./visualizar-admin");
 	}
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 		try {
+			
 			const res = await axios.post("../api/agregar_ev", {
 				tipo_evento,
 				nombre_cliente,
@@ -34,7 +38,10 @@ export function Form_(props) {
 				fecha_termino,
 				monto_total,
 				anticipo,
-				carpa_toldo,
+				carpa,
+				toldo,
+				calefaccion,
+				Iluminacion,
 				cubre_piso,
 				metros_cuadrados,
 				descripcion
@@ -44,6 +51,11 @@ export function Form_(props) {
 			console.error(err);
 		}
 	};
+	const handleSelectChange = (event) => {
+		const seleccion = event.target.value === 'carpa';
+		setCarpa(seleccion);
+		setToldo(!seleccion);
+	  };
 	//className='d-flex justify-content-center'
 	return (
 		<div className="d-flex justify-content-center">
@@ -90,10 +102,26 @@ export function Form_(props) {
 							<Form.Control name="metros_cuadrados" value={metros_cuadrados} onChange={(ev) => setmetros_cuadrados(ev.target.value)} type="number" placeholder="Metros cuadrados" />
 						</Form.Group>
 						<Form.Group>
-							<Form.Label className="mt-3">Cubre piso</Form.Label>
-							<Form.Check type="switch" checked={cubre_piso} onChange={(ev) => setcubre_piso(ev.target.checked)} />
-							<Form.Label>Carpa o Toldo</Form.Label>
-							<Form.Check type="switch" checked={carpa_toldo} onChange={(ev) => setcarpa_toldo(ev.target.checked)} />
+							<Form.Label>Selecione si desea carpa o toldo</Form.Label>
+								<Form.Control as="select" onChange={handleSelectChange}>
+									<option  >Seleccion</option>
+									<option value="carpa" >Carpa</option>
+									<option value="toldo">Toldo</option>
+								</Form.Control>
+							<Row xs = "auto">
+								<Col>
+								<Form.Label className="mt-3">Cubrepiso</Form.Label>
+									<Form.Check type="switch" checked={cubre_piso} onChange={(ev) => setcubre_piso(ev.target.checked)} />
+								</Col>
+								<Col>
+								<Form.Label className="mt-3">Calefacción</Form.Label>
+									<Form.Check type="switch" checked={calefaccion} onChange={(ev) => setCalefacion(ev.target.checked)} />
+								</Col>
+								<Col>
+								<Form.Label className="mt-3">Iluminacion</Form.Label>
+									<Form.Check type="switch" checked={Iluminacion} onChange={(ev) => setIluminacion(ev.target.checked)} />
+								</Col>
+							</Row>
 						</Form.Group>
 					</Col>
 					<Col>
