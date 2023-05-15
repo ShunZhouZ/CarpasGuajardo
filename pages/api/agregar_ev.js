@@ -15,8 +15,11 @@ export default async function handler(req, res) {
 				fecha_termino,
 				monto_total,
 				anticipo,
-				carpa_toldo,
+				carpa,
+				toldo,
 				cubre_piso,
+				Iluminacion,
+				calefaccion,
 				metros_cuadrados,
 				descripcion			} = req.body; //Ejemplo de campos del objeto enviado
 				if(tipo_evento === "Evento"){
@@ -29,8 +32,11 @@ export default async function handler(req, res) {
 						fecha_termino: new Date (fecha_termino),
 						monto_total: monto_total,
 						anticipo: anticipo,
-						carpa_toldo: carpa_toldo,
 						cubre_piso: cubre_piso,
+						carpa: carpa,
+						toldo: toldo,
+						Iluminacion: Iluminacion,
+						calefaccion: calefaccion,
 						metros_cuadrados: metros_cuadrados,
 						descripcion: descripcion,
 					  });

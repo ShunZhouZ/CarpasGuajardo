@@ -2,7 +2,14 @@
   "/_app": "pages/_app.js",
   "/_error": "pages/_error.js",
   "/_document": "pages/_document.js",
+<<<<<<< HEAD
   "/": "pages/index.js",
   "/api/user": "pages/api/user.js",
   "/login": "pages/login.js"
+=======
+  "/eventos/visualizar-admin": "pages/eventos/visualizar-admin.js",
+  "/api/agregar_ev": "pages/api/agregar_ev.js",
+  "/eventos/agendar-evento": "pages/eventos/agendar-evento.js",
+  "/api/eventos": "pages/api/eventos.js"
+>>>>>>> dfb6d7e98e04aa2250754a53c2e26a6d81cb323c
 }
