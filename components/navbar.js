@@ -9,15 +9,7 @@ const NavBar = () => {
 	return (
 		<Navbar className="mb-4" bg="primary" variant="dark" expand="lg">
 			<Container>
-			<Navbar.Brand href="#home"> 
-			<Image
-				src="/images/logo.png"
-				alt="Carpas Guajardo"
-				width={150}
-				height={80}
-				className="d-inline-block align-top"
-			/>{" "}
-			</Navbar.Brand> 
+			<Navbar.Brand href="#home"> Carpas Guajardo</Navbar.Brand> 
 				<Navbar.Toggle aria-controls="basic-navbar-nav" />
 				<Navbar.Collapse id="basic-navbar-nav">
 					<Nav className="me-auto">

@@ -71,7 +71,10 @@ const Eventos = (props) => {
 						<th style={{ width: "10%" }}>Fin evento</th>
 						<th style={{ width: "5%" }}>m<sup>2</sup></th>
 						<th style={{ width: "7%" }}>Cubre piso</th>
-						<th style={{ width: "7%" }}>Carpa/Toldo</th>
+						<th style={{ width: "7%" }}>Carpa</th>
+						<th style={{ width: "7%" }}>Toldo</th>
+						<th style={{ width: "7%" }}>Iluminacion</th>
+						<th style={{ width: "7%" }}>Calefaccion</th>
 						<th style={{ width: "7%" }}>Monto total</th>
 						<th style={{ width: "5%" }}>Abono</th>
 						<th style={{ width: "5%" }}>Descripcion</th>
@@ -88,7 +91,10 @@ const Eventos = (props) => {
 							<td>{moment(event.fecha_termino).format("dddd DD-MM-YYYY  HH:mm")}</td>
 							<td>{event.metros_cuadrados} m2</td>
 							<td>{event.cubre_piso ? 'Si lleva' : 'No lleva'}</td>
-							<td>{event.carpa_toldo ? 'carpa' : 'toldo'}</td>
+							<td>{event.carpa? 'Si' : 'No'}</td>
+							<td>{event.toldo? 'Si' : 'No'}</td>
+							<td>{event.Iluminacion? 'Si' : 'No'}</td>
+							<td>{event.calefaccion? 'Si' : 'No'}</td>
 							<td>{event.monto_total}</td>
 							<td>{event.anticipo}</td>
 							<td>

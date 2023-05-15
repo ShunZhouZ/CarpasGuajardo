@@ -120,14 +120,14 @@ const Eventos = ({ eventos, clientes, inventario, contactos }) => {
           <Form.Group>
             <Form.Label className='mt-3'>Cubre piso</Form.Label>
             <Form.Check
-                        onChange={handleCheck}
+                        onChange={handleControl}
                         type="switch"
                         name="Cubre piso"
                         defaultChecked={data.cubre_piso}
             />
             <Form.Label>Carpa o Toldo</Form.Label>
             <Form.Check
-                        onChange={handleCheck}
+                        onChange={handleControl}
                         type="switch"
                         name="Carpa toldo"
                         defaultChecked={data.carpa_toldo}
