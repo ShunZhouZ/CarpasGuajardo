@@ -24,11 +24,8 @@ const Eventos = ({ eventos, clientes, inventario, contactos }) => {
       descripcion: evento.descripcion,
       fecha_inicio: evento.fecha_inicio,
       termino_inicio: evento.termino_inicio,
-      toldo: evento.toldo,
-      carpa: evento.carpa,
-      cubre_piso: evento.cubre_piso,
-      Iluminacion: evento.Iluminacion,
-      calefaccion: evento.calefaccion
+      carpa_toldo: evento.carpa_toldo,
+      cubre_piso: evento.cubre_piso
     })
 
     const submitModificar = async (e) => {
@@ -45,16 +42,6 @@ const Eventos = ({ eventos, clientes, inventario, contactos }) => {
 
       console.log(await response.json());
       console.log('Modificar campo');
-    };
-
-    const handleCheck2 = (event) => {
-      const selectedOption = event.target.value;
-    
-      if (selectedOption === "carpa") {
-        setData({ carpa: true, toldo: false });
-      } else if (selectedOption === "toldo") {
-        setData({ carpa: false, toldo: true });
-      }
     };
 
     const handleControl = (e) => {
@@ -80,151 +67,138 @@ const Eventos = ({ eventos, clientes, inventario, contactos }) => {
       })
     }
     return (
-      <div className="d-flex justify-content-center">
-			<Form className="mx-5 w-75" onSubmit={submitModificar}>
-				<h1 className=" text-center my-4 ">Modificar evento</h1>
-				<Row xs={2} md={2}>
-					<Col>
-						<Form.Group>
-							<Form.Label>Nombre Cliente </Form.Label>
-							<Form.Control
-								onChange={handleControl}
-                required
-                defaultValue={data.nombre_cliente}
-                type="text" 
-                placeholder='Nombre del evento'
-                name='nombre_cliente'
-							/>
-						</Form.Group>
-
-						<Form.Group>
-							<Form.Label className="mt-3">Numero cliente </Form.Label>
-							<Form.Control
-								onChange={handleControl}
+      <div className='d-flex justify-content-center' >
+          <Form className='mx-5 w-75' onSubmit={submitModificar}>
+            <h1 className=' text-center my-4 '>Modificar evento</h1>
+            <Row xs={2} md={2} >
+              <Col>
+            <Form.Group >
+            <Form.Label >Nombre Cliente </Form.Label>
+            <Form.Control
+            onChange={handleControl}
+            required
+            defaultValue={data.nombre_cliente}
+            type="text" 
+            placeholder='Nombre del evento'
+            name='nombre_cliente'
+            />
+          </Form.Group>
+          
+          <Form.Group>
+            <Form.Label className='mt-3'>Numero cliente </Form.Label>
+            <Form.Control
+                onChange={handleControl}
                 required
                 defaultValue={data.numero_contacto_cliente}
                 type="text" 
                 placeholder='Numero del cliente'
                 name='numero_contacto_cliente'
-							/>
-						</Form.Group>
-						<Form.Group>
-							<Form.Label className="mt-3">Direccion </Form.Label>
-							<Form.Control
-								onChange={handleControl}
+            />
+          </Form.Group>
+            <Form.Group>
+            <Form.Label className='mt-3'>Direccion </Form.Label>
+            <Form.Control
+                onChange={handleControl}
                 required
                 defaultValue={data.direccion_cliente}
                 type="text" 
                 placeholder='Direccion del cliente'
                 name='direccion_cliente'
-							/>
-						</Form.Group>
-						<Form.Group>
-							<Form.Label className="mt-3">Metros cuadrados </Form.Label>
-							<Form.Control 
+            />
+          </Form.Group>
+          <Form.Group>
+            <Form.Label className='mt-3'>Metros cuadrados </Form.Label>
+            <Form.Control
                       onChange={handleControl}
                       required
                       defaultValue={data.metros_cuadrados}
                       type="text" 
                       placeholder='metros_cuadrados'
-                      name='metros_cuadrados'/>
-						</Form.Group>
-						<Form.Group>
-							<Form.Label>Selecione si desea carpa o toldo</Form.Label>
-              <Form.Control
-                as="select"
-                onChange={handleCheck}
-                value={data.carpa ? "carpa" : (data.toldo ? "toldo" : "")}
-              >
-                <option value="carpa" abled={!data.carpa}>Carpa</option>
-                <option value="toldo" abled={!data.toldo}>Toldo</option>
-              </Form.Control>
-
-							<Row xs = "auto">
-								<Col>
-								<Form.Label className="mt-3">Cubrepiso</Form.Label>
-									<Form.Check 
-                    onChange={handleCheck}
-                    type="switch"
-                    name="cubre_piso"
-                    defaultChecked={data.cubre_piso} />
-								</Col>
-								<Col>
-								<Form.Label className="mt-3">Calefacción</Form.Label>
-									<Form.Check 
-                    onChange={handleCheck}
-                    type="switch"
-                    name="calefaccion"
-                    defaultChecked={data.calefaccion} />
-								</Col>
-								<Col>
-								<Form.Label className="mt-3">Iluminacion</Form.Label>
-									<Form.Check 
-                    onChange={handleCheck}
-                    type="switch"
-                    name="Iluminacion"
-                    defaultChecked={data.Iluminacion} />
-								</Col>
-							</Row>
-						</Form.Group>
-					</Col>
-					<Col>
-						<Form.Group>
-							<Form.Label>Fecha de inicio </Form.Label>
-							<Form.Control required 
+                      name='metros_cuadrados'
+            />
+          </Form.Group>
+          <Form.Group>
+            <Form.Label className='mt-3'>Cubre piso</Form.Label>
+            <Form.Check
+              onChange={handleCheck}
+              type="switch"
+              name="cubre_piso"
+              defaultChecked={data.cubre_piso}
+            />
+            <Form.Label>Carpa o Toldo</Form.Label>
+            <Form.Check
+              onChange={handleCheck}
+              type="switch"
+              name="carpa_toldo"
+              defaultChecked={data.carpa_toldo}
+            />
+          </Form.Group>
+          </Col>
+          <Col>
+          <Form.Group>
+            <Form.Label>Fecha de inicio </Form.Label>
+            <Form.Control
+                        required 
                         onChange={handleControl}
                         defaultValue={moment(data.fecha_inicio).format('yyyy-MM-DD')}
                         type="datetime-local" 
                         placeholder='fecha_inicio'
-                        name='fecha_inicio' />
-						</Form.Group>
-						<Form.Group>
-							<Form.Label className="mt-3">Fecha de Termino </Form.Label>
-							<Form.Control required 
+                        name='fecha_inicio'
+            />
+          </Form.Group>
+          <Form.Group>
+            <Form.Label className='mt-3' >Fecha de Termino </Form.Label>
+            <Form.Control
+                        required 
                         onChange={handleControl}
                         defaultValue={moment(data.fecha_termino).format('yyyy-MM-DD')}
                         type="datetime-local" 
                         placeholder='fecha_termino'
-                        name='fecha_termino' />
-						</Form.Group>
-						<Form.Group>
-							<Form.Label className="mt-3">Monto total</Form.Label>
-							<Form.Control 
+                        name='fecha_termino'
+            />
+          </Form.Group>
+          <Form.Group>
+            <Form.Label className='mt-3'>Monto total</Form.Label>
+            <Form.Control
                         onChange={handleControl}
                         required
                         defaultValue={data.monto_total}
                         type="text" 
                         placeholder='monto_total'
-                        name='monto_total' />
-						</Form.Group>
-						<Form.Group>
-							<Form.Label className="mt-3">Anticipo</Form.Label>
-							<Form.Control 
-                      onChange={handleControl}
-                      required
-                      defaultValue={data.anticipo}
-                      type="text" 
-                      placeholder='anticipo'
-                      name='anticipo' />
-						</Form.Group>
-						<Form.Group>
-							<Form.Label className="mt-3">Descripcion</Form.Label>
-							<Form.Control as="textarea"
+                        name='monto_total'
+            />
+          </Form.Group>
+          <Form.Group>
+            <Form.Label className='mt-3'>Anticipo</Form.Label>
+            <Form.Control
+                       onChange={handleControl}
+                       required
+                       defaultValue={data.anticipo}
+                       type="text" 
+                       placeholder='anticipo'
+                       name='anticipo'
+            />
+          </Form.Group>
+          <Form.Group>
+            <Form.Label className='mt-3'>Descripcion</Form.Label>
+            <Form.Control
+              as="textarea"
               onChange={handleControl}
               required
               defaultValue={data.descripcion}
               type="text" 
               placeholder='descripcion'
-              name='descripcion' />
-						</Form.Group>
-					</Col>
-				</Row>
-				<div className="mt-3 text-center ">
-        <button onClick={submitModificar} type="submit" className="btn btn-primary w-25 ">Guardar</button>
-				</div>
-			</Form>
+              name='descripcion'
+            />
+          </Form.Group> 
+            </Col>   
+            </Row>
+            <div className='mt-3 text-center '>
+            <button onClick={submitModificar} type="submit" className="btn btn-primary w-25 ">Guardar</button>
+            </div>
+             </Form> 
 
-      <Modal show={show} onHide={handleClose}>
+             <Modal show={show} onHide={handleClose}>
 				<Modal.Header closeButton>
 					<Modal.Title>Evento modificado</Modal.Title>
 				</Modal.Header>
@@ -236,7 +210,7 @@ const Eventos = ({ eventos, clientes, inventario, contactos }) => {
 				</Modal.Footer>
 			</Modal>
 
-		</div>
+          </div>
     );
 };
 
