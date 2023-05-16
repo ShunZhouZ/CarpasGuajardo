@@ -34,6 +34,7 @@
       "static/chunks/webpack.js",
       "static/chunks/main.js",
       "static/chunks/pages/eventos/modificar-evento.js"
+<<<<<<< HEAD
     ],
     "/visitas-tecnicas/eliminar-visita": [
       "static/chunks/webpack.js",
@@ -44,6 +45,8 @@
       "static/chunks/webpack.js",
       "static/chunks/main.js",
       "static/chunks/pages/visitas-tecnicas/modificar-visita.js"
+=======
+>>>>>>> 7dbe924a87f1c8e0ebc175eeb950100c7fa89a3e
     ]
   },
   "ampFirstPages": []
