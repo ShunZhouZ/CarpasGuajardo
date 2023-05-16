@@ -120,17 +120,17 @@ const Eventos = ({ eventos, clientes, inventario, contactos }) => {
           <Form.Group>
             <Form.Label className='mt-3'>Cubre piso</Form.Label>
             <Form.Check
-                        onChange={handleControl}
-                        type="switch"
-                        name="Cubre piso"
-                        defaultChecked={data.cubre_piso}
+              onChange={handleCheck}
+              type="switch"
+              name="cubre_piso"
+              defaultChecked={data.cubre_piso}
             />
             <Form.Label>Carpa o Toldo</Form.Label>
             <Form.Check
-                        onChange={handleControl}
-                        type="switch"
-                        name="Carpa toldo"
-                        defaultChecked={data.carpa_toldo}
+              onChange={handleCheck}
+              type="switch"
+              name="carpa_toldo"
+              defaultChecked={data.carpa_toldo}
             />
           </Form.Group>
           </Col>
@@ -142,7 +142,7 @@ const Eventos = ({ eventos, clientes, inventario, contactos }) => {
                         onChange={handleControl}
                         defaultValue={moment(data.fecha_inicio).format('yyyy-MM-DD')}
                         type="datetime-local" 
-                        placeholder='Modificar Fecha de inicio'
+                        placeholder='fecha_inicio'
                         name='fecha_inicio'
             />
           </Form.Group>
@@ -153,7 +153,7 @@ const Eventos = ({ eventos, clientes, inventario, contactos }) => {
                         onChange={handleControl}
                         defaultValue={moment(data.fecha_termino).format('yyyy-MM-DD')}
                         type="datetime-local" 
-                        placeholder='Modificar Fecha de termino'
+                        placeholder='fecha_termino'
                         name='fecha_termino'
             />
           </Form.Group>
@@ -164,7 +164,7 @@ const Eventos = ({ eventos, clientes, inventario, contactos }) => {
                         required
                         defaultValue={data.monto_total}
                         type="text" 
-                        placeholder='Monto total'
+                        placeholder='monto_total'
                         name='monto_total'
             />
           </Form.Group>
@@ -175,7 +175,7 @@ const Eventos = ({ eventos, clientes, inventario, contactos }) => {
                        required
                        defaultValue={data.anticipo}
                        type="text" 
-                       placeholder='Anticipo'
+                       placeholder='anticipo'
                        name='anticipo'
             />
           </Form.Group>

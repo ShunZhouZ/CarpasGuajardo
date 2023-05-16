@@ -147,7 +147,11 @@
 /******/ 		__webpack_require__.f.require = (chunkId, promises) => {
 /******/ 			// "1" is the signal for "already loaded"
 /******/ 			if(!installedChunks[chunkId]) {
+<<<<<<< HEAD
 /******/ 				if("pages/api/visitas" == chunkId) {
+=======
+/******/ 				if("webpack-api-runtime" != chunkId) {
+>>>>>>> 1bae7a6b34f0f1ac5abe8f6d323bc2c1210f5401
 /******/ 					installChunk(require("./" + __webpack_require__.u(chunkId)));
 /******/ 				} else installedChunks[chunkId] = 1;
 /******/ 			}
