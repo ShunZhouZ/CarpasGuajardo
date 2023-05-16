@@ -5,7 +5,10 @@ const userServiceFactory = () => {
         return axios.post('/api/auth', { username, password });
     }
 
-    return {login};
+    function createUser(username, password, nombre, correo, contacto) {
+        return axios.post('/api/signup', { username, password, nombre, correo, contacto });
+    }
+    return {login, createUser};
 };
 
 module.exports = {

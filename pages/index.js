@@ -1,9 +1,3 @@
-// const Index = () => <h1>Index</h1>;
-
-// export default Index;
-
-
-
 import Head from 'next/head'
 import withSession from "../lib/session";
 

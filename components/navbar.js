@@ -27,7 +27,7 @@ const NavBar = () => {
 							<NavDropdown.Item href="/visitas-tecnicas/visualizar-visitas-admin">Visualizar todas</NavDropdown.Item>
 						</NavDropdown>
 						<NavDropdown title="Trabajadores" id="basic-nav-dropdown" bg="primary" variant="dark">
-							<NavDropdown.Item href="#action/3.1">Agregar</NavDropdown.Item>
+							<NavDropdown.Item href="/trabajadores/add-worker">Agregar</NavDropdown.Item>
 							<NavDropdown.Item href="#action/3.2">Modificar</NavDropdown.Item>
 							<NavDropdown.Item href="#action/3.3">Eliminar</NavDropdown.Item>
 							<NavDropdown.Divider />

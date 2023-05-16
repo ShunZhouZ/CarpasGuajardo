@@ -7,7 +7,7 @@ export default async function handler(req, res) {
   const db = client.db("carpas-guajardo-db");
 
   if (req.method === "POST") {
-    let { username, password, rol} = req.body;
+    let { username, password, nombre, correo, contacto} = req.body;
 
     try {
       // const client = new MongoClient(uri);   
@@ -25,7 +25,10 @@ export default async function handler(req, res) {
       const newUser = {
         username,
         password: hashedPassword,
-        rol
+        nombre,
+        correo,
+        contacto,
+        rol : "user"
       };
 
       // Insertar el nuevo usuario en la base de datos

@@ -32,11 +32,11 @@ function MyApp({ Component, pageProps }) {
       },
     }}
   >
-  {/* <SSRProvider> */}
+  <SSRProvider>
     <Layout>
       <Component {...pageProps} />
     </Layout>
-  {/* </SSRProvider> */}
+  </SSRProvider>
   </SWRConfig>;
 }
 
