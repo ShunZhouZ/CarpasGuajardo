@@ -5,6 +5,7 @@ import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
+import { all } from "axios";
 ("moment/locale/nb");
 require("moment/locale/es.js");
 
@@ -26,13 +27,14 @@ const CalendarPage = ({ allPosts }) => {
 			direccion: allPosts[i].direccion_cliente,
 			monto_total: allPosts[i].monto_total,
 			anticipo: allPosts[i].anticipo,
-			carpa_toldo: allPosts[i].carpa_toldo,
+			carpa: allPosts[i].carpa, //nueva
+			toldo: allPosts[i].toldo, //nueva
+			calefaccion: allPosts[i].calefaccion, //nueva
+			iluminacion: allPosts[i].Iluminacion, //nueva
 			cubre_piso: allPosts[i].cubre_piso,
 			metros_cuadrados: allPosts[i].metros_cuadrados,
 			descripcion: allPosts[i].descripcion
 		});
-		console.log(events[i].start);
-		console.log(events[i].end);
 	}
 
 	const [allEvents, setAllEvents] = useState(events);
@@ -53,7 +55,19 @@ const CalendarPage = ({ allPosts }) => {
 		const f_termino = moment(event.end).format("DD/MM/YYYY");
 		const h_termino = moment(event.end).format("HH:mm");
 		const cubre_piso = event.cubre_piso ? "Sí" : "No";
-		const carpa_toldo = event.carpa_toldo ? "Carpa" : "Toldo";
+		const carpa = event.carpa ? "Sí" : "No";
+		const toldo = event.toldo ? "Sí" : "No";
+		const calefaccion = event.calefaccion ? "Sí" : "No";
+		const iluminacion = event.iluminacion ? "Sí" : "No";
+		let carpa_toldo;
+		if (carpa === "Sí") {
+			carpa_toldo = "Carpa";
+		}
+		if (toldo === "Sí") {
+			carpa_toldo = "Toldo";
+		}
+		console.log(carpa_toldo);
+
 		const data = {
 			id: event.id,
 			nombre_cliente: event.title,
@@ -66,10 +80,14 @@ const CalendarPage = ({ allPosts }) => {
 			monto_total: event.monto_total,
 			anticipo: event.anticipo,
 			carpa_toldo: carpa_toldo,
+			calefaccion: calefaccion,
+			iluminacion: iluminacion,
 			cubre_piso: cubre_piso,
 			metros_cuadrados: event.metros_cuadrados,
 			descripcion: event.descripcion
 		};
+		console.log("evento solo");
+		console.log(data);
 		setModalData(data);
 		setShow(true);
 	};
@@ -123,7 +141,7 @@ const CalendarPage = ({ allPosts }) => {
 								{modalData.f_inicio}{" "}
 							</p>
 						</Col>
-						<Col xs={6} md={4}>
+						<Col xs={10} md={6}>
 							<p>
 								<strong>Hora de inicio: </strong>
 								{modalData.h_inicio}{" "}
@@ -137,24 +155,10 @@ const CalendarPage = ({ allPosts }) => {
 								{modalData.f_termino}{" "}
 							</p>
 						</Col>
-						<Col xs={6} md={4}>
+						<Col xs={10} md={6}>
 							<p>
 								<strong>Hora de fin: </strong>
 								{modalData.h_termino}{" "}
-							</p>
-						</Col>
-					</Row>
-					<Row>
-						<Col xs={10} md={6}>
-							<p>
-								<strong>Total: </strong>
-								{modalData.monto_total}
-							</p>
-						</Col>
-						<Col xs={6} md={4}>
-							<p>
-								<strong>Abono: </strong>
-								{modalData.anticipo}
 							</p>
 						</Col>
 					</Row>
@@ -165,13 +169,43 @@ const CalendarPage = ({ allPosts }) => {
 								{modalData.carpa_toldo}{" "}
 							</p>
 						</Col>
-						<Col xs={6} md={4}>
+						<Col xs={10} md={6}>
 							<p>
 								<strong>Cubrepiso: </strong>
 								{modalData.cubre_piso}{" "}
 							</p>
 						</Col>
 					</Row>
+					<Row>
+						<Col xs={10} md={6}>
+							<p>
+								<strong>Calefacción: </strong>
+								{modalData.calefaccion}{" "}
+							</p>
+						</Col>
+
+						<Col xs={10} md={6}>
+							<p>
+								<strong>iluminación: </strong>
+								{modalData.iluminacion}{" "}
+							</p>
+						</Col>
+					</Row>
+					<Row>
+						<Col xs={10} md={6}>
+							<p>
+								<strong>Total: </strong>
+								{modalData.monto_total}
+							</p>
+						</Col>
+						<Col xs={10} md={6}>
+							<p>
+								<strong>Abono: </strong>
+								{modalData.anticipo}
+							</p>
+						</Col>
+					</Row>
+
 					<p>
 						<strong>Descripción: </strong>
 						{modalData.descripcion}{" "}
