@@ -5,6 +5,7 @@ import 'moment/locale/es';
 moment.locale('es');
 import Table from "react-bootstrap/Table";
 
+
 const Eventos = (props) => {
 	const [show, setShow] = useState(false);
 	const { defaultEvents } = props;
