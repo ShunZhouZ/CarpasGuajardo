@@ -25,37 +25,20 @@
       "static/chunks/main.js",
       "static/chunks/pages/_error.js"
     ],
-    "/eventos/visualizar-admin": [
+    "/eventos/agendar-evento": [
       "static/chunks/webpack.js",
       "static/chunks/main.js",
-<<<<<<< HEAD
-      "static/chunks/pages/eventos/visualizar-admin.js"
+      "static/chunks/pages/eventos/agendar-evento.js"
+    ],
+    "/visitas-tecnicas/agendar-visita": [
+      "static/chunks/webpack.js",
+      "static/chunks/main.js",
+      "static/chunks/pages/visitas-tecnicas/agendar-visita.js"
     ],
     "/visitas-tecnicas/visualizar-visitas-admin": [
       "static/chunks/webpack.js",
       "static/chunks/main.js",
       "static/chunks/pages/visitas-tecnicas/visualizar-visitas-admin.js"
-=======
-      "static/chunks/pages/eventos/eliminar-evento.js"
-    ],
-    "/eventos/modificar-evento": [
-      "static/chunks/webpack.js",
-      "static/chunks/main.js",
-      "static/chunks/pages/eventos/modificar-evento.js"
-<<<<<<< HEAD
-    ],
-    "/visitas-tecnicas/eliminar-visita": [
-      "static/chunks/webpack.js",
-      "static/chunks/main.js",
-      "static/chunks/pages/visitas-tecnicas/eliminar-visita.js"
-    ],
-    "/visitas-tecnicas/modificar-visita": [
-      "static/chunks/webpack.js",
-      "static/chunks/main.js",
-      "static/chunks/pages/visitas-tecnicas/modificar-visita.js"
-=======
->>>>>>> 7dbe924a87f1c8e0ebc175eeb950100c7fa89a3e
->>>>>>> 1bae7a6b34f0f1ac5abe8f6d323bc2c1210f5401
     ]
   },
   "ampFirstPages": []

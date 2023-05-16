@@ -1,21 +1,8 @@
 {
   "/_app": "pages/_app.js",
-  "/_error": "pages/_error.js",
   "/_document": "pages/_document.js",
-<<<<<<< HEAD
+  "/_error": "pages/_error.js",
+  "/visitas-tecnicas/agendar-visita": "pages/visitas-tecnicas/agendar-visita.js",
   "/visitas-tecnicas/visualizar-visitas-admin": "pages/visitas-tecnicas/visualizar-visitas-admin.js",
-  "/eventos/visualizar-admin": "pages/eventos/visualizar-admin.js",
-  "/api/visitas": "pages/api/visitas.js"
-=======
-<<<<<<< HEAD
-  "/eventos/eliminar-evento": "pages/eventos/eliminar-evento.js",
-=======
-  "/eventos/modificar-evento": "pages/eventos/modificar-evento.js",
->>>>>>> 7dbe924a87f1c8e0ebc175eeb950100c7fa89a3e
-  "/api/eventos": "pages/api/eventos.js",
-  "/api/visitas": "pages/api/visitas.js",
-  "/visitas-tecnicas/eliminar-visita": "pages/visitas-tecnicas/eliminar-visita.js",
-  "/visitas-tecnicas/modificar-visita": "pages/visitas-tecnicas/modificar-visita.js",
-  "/eventos/modificar-evento": "pages/eventos/modificar-evento.js"
->>>>>>> 1bae7a6b34f0f1ac5abe8f6d323bc2c1210f5401
+  "/eventos/agendar-evento": "pages/eventos/agendar-evento.js"
 }

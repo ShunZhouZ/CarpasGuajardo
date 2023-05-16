@@ -47,14 +47,24 @@ const Eventos = ({ eventos, clientes, inventario, contactos }) => {
       console.log('Modificar campo');
     };
 
-    const handleCheck2 = (event) => {
-      const selectedOption = event.target.value;
-    
-      if (selectedOption === "carpa") {
-        setData({ carpa: true, toldo: false });
-      } else if (selectedOption === "toldo") {
-        setData({ carpa: false, toldo: true });
+    const TipoElemento = {
+      carpa:{
+        carpa: true,
+        toldo: false
+      },
+      toldo:{
+        toldo: true,
+        carpa: false
       }
+    }
+
+    const handleCheckTipo = (event) => {
+      const selectedOption = event.target.value;
+      const value = TipoElemento[selectedOption] 
+      setData({
+        ...data,
+        ...value
+      })
     };
 
     const handleControl = (e) => {
@@ -79,6 +89,9 @@ const Eventos = ({ eventos, clientes, inventario, contactos }) => {
         [name]: checked
       })
     }
+
+console.log(data)
+
     return (
       <div className="d-flex justify-content-center">
 			<Form className="mx-5 w-75" onSubmit={submitModificar}>
@@ -133,8 +146,8 @@ const Eventos = ({ eventos, clientes, inventario, contactos }) => {
 							<Form.Label>Selecione si desea carpa o toldo</Form.Label>
               <Form.Control
                 as="select"
-                onChange={handleCheck}
-                value={data.carpa ? "carpa" : (data.toldo ? "toldo" : "")}
+                onChange={handleCheckTipo}
+                defaultValue={data.carpa ? "carpa" : (data.toldo ? "toldo" : "")}
               >
                 <option value="carpa" abled={!data.carpa}>Carpa</option>
                 <option value="toldo" abled={!data.toldo}>Toldo</option>
