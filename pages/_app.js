@@ -1,6 +1,6 @@
 //configuraciones de todas las paginas
 import "bootstrap/dist/css/bootstrap.min.css";
-import "bootswatch/dist/yeti/bootstrap.min.css";
+import "bootswatch/dist/pulse/bootstrap.min.css";
 import "react-big-calendar/lib/css/react-big-calendar.css";
 import "../styles/global.css";
 import "../styles/form.css";

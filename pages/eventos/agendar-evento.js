@@ -87,7 +87,7 @@ export function Form_(props) {
 							/>
 						</Form.Group>
 						<Form.Group>
-							<Form.Label className="mt-3">Direccion </Form.Label>
+							<Form.Label className="mt-3">Dirección </Form.Label>
 							<Form.Control
 								type="text"
 								value={direccion_cliente}
@@ -102,9 +102,9 @@ export function Form_(props) {
 							<Form.Control name="metros_cuadrados" value={metros_cuadrados} onChange={(ev) => setmetros_cuadrados(ev.target.value)} type="number" placeholder="Metros cuadrados" />
 						</Form.Group>
 						<Form.Group>
-							<Form.Label>Selecione si desea carpa o toldo</Form.Label>
+							<Form.Label className="mt-3" >Seleccione si desea carpa o toldo</Form.Label>
 								<Form.Control as="select" onChange={handleSelectChange}>
-									<option  >Seleccion</option>
+									<option  >Selección</option>
 									<option value="carpa" >Carpa</option>
 									<option value="toldo">Toldo</option>
 								</Form.Control>
@@ -118,7 +118,7 @@ export function Form_(props) {
 									<Form.Check type="switch" checked={calefaccion} onChange={(ev) => setCalefacion(ev.target.checked)} />
 								</Col>
 								<Col>
-								<Form.Label className="mt-3">Iluminacion</Form.Label>
+								<Form.Label className="mt-3">Iluminación</Form.Label>
 									<Form.Check type="switch" checked={Iluminacion} onChange={(ev) => setIluminacion(ev.target.checked)} />
 								</Col>
 							</Row>
@@ -142,7 +142,7 @@ export function Form_(props) {
 							<Form.Control name="anticipo" value={anticipo} onChange={(ev) => setanticipo(ev.target.value)} type="number" placeholder="Anticipo" />
 						</Form.Group>
 						<Form.Group>
-							<Form.Label className="mt-3">Descripcion</Form.Label>
+							<Form.Label className="mt-3">Descripción</Form.Label>
 							<Form.Control as="textarea" name="descripcion" value={descripcion} onChange={(ev) => setdescripcion(ev.target.value)} type="text" placeholder="Descripcion" />
 						</Form.Group>
 					</Col>

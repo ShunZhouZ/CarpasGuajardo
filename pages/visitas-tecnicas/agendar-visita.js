@@ -34,13 +34,13 @@ export function Form_(props) {
 	return (
 		<div className="d-flex justify-content-center">
 			<Form className="mx-5 w-25" onSubmit={handleSubmit}>
-				<h4>Agendar visita a terreno</h4>
+				<h1>Agendar visita a terreno</h1>
 				<Form.Group>
-					<Form.Label>Nombre Cliente </Form.Label>
+					<Form.Label className="mt-3">Nombre Cliente </Form.Label>
 					<Form.Control type="text" value={nombre_cliente} onChange={(ev) => setnombre_cliente(ev.target.value)} name="nombre_cliente" id="nombres" placeholder="Nombre del cliente" />
 				</Form.Group>
 				<Form.Group>
-					<Form.Label>Numero de contacto </Form.Label>
+					<Form.Label className="mt-3">Numero de contacto </Form.Label>
 					<Form.Control
 						type="text"
 						value={numero_contacto_cliente}
@@ -51,7 +51,7 @@ export function Form_(props) {
 					/>
 				</Form.Group>
 				<Form.Group>
-					<Form.Label>Direccion </Form.Label>
+					<Form.Label className="mt-3">Direccion </Form.Label>
 					<Form.Control
 						type="text"
 						value={direccion_cliente}
@@ -62,11 +62,11 @@ export function Form_(props) {
 					/>
 				</Form.Group>
 				<Form.Group>
-					<Form.Label>Fecha y hora de la visita </Form.Label>
+					<Form.Label className="mt-3">Fecha y hora de la visita </Form.Label>
 					<Form.Control name="fecha_hora_visita_terreno" value={fecha_hora_visita_terreno} onChange={(ev) => setfecha_hora_visita_terreno(ev.target.value)} type="datetime-local" />
 				</Form.Group>
 				<Form.Group>
-					<Form.Label>Descripcion </Form.Label>
+					<Form.Label className="mt-3">Descripción </Form.Label>
 					<Form.Control
 						as="textarea"
 						type="text"
@@ -74,7 +74,7 @@ export function Form_(props) {
 						onChange={(ev) => setdescripcion(ev.target.value)}
 						name="descripcion"
 						id="descripcion"
-						placeholder="Descripcion del evento"
+						placeholder="Descripción del evento"
 					/>
 				</Form.Group>
 				<div className="mt-3">

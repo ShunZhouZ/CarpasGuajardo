@@ -1,8 +1,0 @@
-{
-  "/_app": "pages/_app.js",
-  "/_document": "pages/_document.js",
-  "/_error": "pages/_error.js",
-  "/visitas-tecnicas/agendar-visita": "pages/visitas-tecnicas/agendar-visita.js",
-  "/visitas-tecnicas/visualizar-visitas-admin": "pages/visitas-tecnicas/visualizar-visitas-admin.js",
-  "/eventos/agendar-evento": "pages/eventos/agendar-evento.js"
-}

@@ -1,5 +1,5 @@
 
-@import "bootswatch/dist/yeti/bootstrap.min.css";
+@import "bootswatch/dist/pulse/bootstrap.min.css";
 @import "react-big-calendar/lib/css/react-big-calendar.css";
 
 
@@ -8,16 +8,16 @@
   box-sizing: border-box;
   box-shadow: none;
   margin: 0;
-  padding: 2px 5px;
-  background-color: #89d9c0; 
+  padding: 2px 5px; 
+  background-color: #a99edb ;    
   border-radius: 5px;
-  color: #fff;
+  color: white;
   cursor: pointer;
   width: 100%;
   text-align: left;
 }
 .rbc-day-slot .rbc-event, .rbc-day-slot .rbc-background-event {
-  border: 1px solid  #1aab7d;
+  border: 1px solid  #8272cb;
   display: flex;
   max-height: 100%;
   min-height: 20px;
@@ -27,11 +27,11 @@
   position: absolute;
 }
 .rbc-event.rbc-selected, .rbc-day-slot .rbc-selected.rbc-background-event {
-  background-color: #67b79e;
+  background-color: #9284d2;
 }
 
 .rbc-today {
-  background-color:#daf0e9;
+  background-color:#e5e1f4;
 }
 
 .button-group {
