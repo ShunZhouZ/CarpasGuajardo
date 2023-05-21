@@ -69,6 +69,7 @@ const Visitas = (props) => {
             <th style={{ width: "15%" }}>Nombre cliente</th>
             <th style={{ width: "15%" }}>Contacto</th>
             <th style={{ width: "15%" }}>Direccion</th>
+            <th style={{ width: "15%" }}>Descripción</th>
             <th style={{ width: "15%" }}>Fecha visita</th>
             <th style={{ width: "20%", textAlign: "center" }}>Realizacion</th>
           </tr>
@@ -80,6 +81,11 @@ const Visitas = (props) => {
               <td>{visit.nombre_cliente}</td>
               <td>{visit.numero_contacto_cliente}</td>
               <td>{visit.direccion_cliente}</td>
+              <td style={{ textAlign: "center" }}>
+                <Button className="btn btn-light" onClick={() => showDescription(visit._id)}> {/* Botón para mostrar la descripción */}
+                  Mostrar Descripción
+                </Button>
+              </td>
               <td className={moment(visit.fecha_hora_visita_terreno, "YYYY-MM-DD HH:mm:ss").isBefore(moment(), "minute") ? "text-danger" : ""}>
                 {moment(visit.fecha_hora_visita_terreno, "YYYY-MM-DD HH:mm:ss").format("dddd DD-MM-YYYY, HH:mm")}
               </td>
@@ -88,9 +94,7 @@ const Visitas = (props) => {
               </td>
               <td>
                 <div className="button-group">
-                  <Button className="btn btn-light" onClick={() => showDescription(visit._id)}> {/* Botón para mostrar la descripción */}
-                    Mostrar Descripción
-                  </Button>
+
                   <Button className="btn btn-info" onClick={() => modifyElement(visit._id)}>
                     Modificar
                   </Button>
