@@ -28,7 +28,7 @@ const NavBar = () => {
 						</NavDropdown>
 						<NavDropdown title="Trabajadores" id="basic-nav-dropdown" bg="primary" variant="dark">
 							<NavDropdown.Item href="/trabajadores/add-worker">Agregar</NavDropdown.Item>
-							<NavDropdown.Item href="#action/3.2">Lista de trabajadores</NavDropdown.Item>
+							<NavDropdown.Item href="/trabajadores/eliminar-trabajadores">Lista de trabajadores</NavDropdown.Item>
 							<NavDropdown.Divider />
 							<NavDropdown.Item href="#action/3.4">Visualizar todos</NavDropdown.Item>
 						</NavDropdown>
