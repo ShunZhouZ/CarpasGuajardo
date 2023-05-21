@@ -18,13 +18,13 @@ const NavBar = () => {
 							<NavDropdown.Item href="/eventos/agendar-evento">Agendar</NavDropdown.Item>
 							<NavDropdown.Item href="/eventos/eliminar-evento">Lista de eventos</NavDropdown.Item>
 							<NavDropdown.Divider />
-							<NavDropdown.Item href="/eventos/visualizar-admin">Visualizar todos</NavDropdown.Item>
+							<NavDropdown.Item href="/eventos/visualizar-admin">Visualizar calendario</NavDropdown.Item>
 						</NavDropdown>
 						<NavDropdown title="Visitas técnicas" id="basic-nav-dropdown" bg="primary" variant="dark">
 							<NavDropdown.Item href="/visitas-tecnicas/agendar-visita">Agendar</NavDropdown.Item>
 							<NavDropdown.Item href="/visitas-tecnicas/eliminar-visita">Lista de visitas</NavDropdown.Item>
 							<NavDropdown.Divider />
-							<NavDropdown.Item href="/visitas-tecnicas/visualizar-visitas-admin">Visualizar todas</NavDropdown.Item>
+							<NavDropdown.Item href="/visitas-tecnicas/visualizar-visitas-admin">Visualizar calendario</NavDropdown.Item>
 						</NavDropdown>
 						<NavDropdown title="Trabajadores" id="basic-nav-dropdown" bg="primary" variant="dark">
 							<NavDropdown.Item href="/trabajadores/add-worker">Agregar</NavDropdown.Item>

@@ -83,7 +83,7 @@ export function Form_(props) {
 				</Form.Group>
 				<div className="mt-3">
 					<Button type="submit" className="btn btn-primary  ">
-						Guardar
+						Agendar visita
 					</Button>
 				</div>
 			</Form>
