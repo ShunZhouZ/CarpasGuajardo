@@ -1,5 +1,5 @@
 import { Button, Modal } from "react-bootstrap";
-import { useCallback, useState, useEffect } from "react";
+import { useCallback, useState } from "react";
 import moment from "moment";
 import 'moment/locale/es';
 moment.locale('es');
@@ -11,9 +11,12 @@ const Trabajador = (props) => {
 	const [elementRole, setElementRole] = useState("");
 	const { defaultTrabajadores } = props;
 	const [trabajador, setTrabajadores] = useState(defaultTrabajadores);
+	const [showConfirmation, setShowConfirmation] = useState(false);
+	const [trabajadorIdToDelete, setTrabajadorIdToDelete] = useState(null);
 
 	const handleClose = () => setShow(false);
 	const handleShow = () => setShow(true);
+	const handleConfirmationClose = () => setShowConfirmation(false);
 
 	const modifyElement = (id) => {
 		window.location.href = `/eventos/modificar-trabajadores?id=${id}`;
@@ -31,23 +34,25 @@ const Trabajador = (props) => {
 	}, []);
 
 	const deleteElement = async (id, nombre, rol) => {
-		const confirmDelete = window.confirm("¿Estás seguro de que deseas eliminar este contacto?");
+		setTrabajadorIdToDelete(id);
+		setElementName(nombre);
+		setElementRole(rol);
+		setShowConfirmation(true);
+	};
 
-		if (confirmDelete) {
-			setElementName(nombre); // Guardar el nombre del elemento a eliminar
-			setElementRole(rol); // Guardar el rol del elemento a eliminar
-			const deleteResponse = await fetch(`http://localhost:3000/api/trabajadores?id=${id}`, {
-				method: "DELETE",
-				headers: {
-					"Content-Type": "application/json"
-				}
-			});
+	const confirmDelete = async () => {
+		const deleteResponse = await fetch(`http://localhost:3000/api/trabajadores?id=${trabajadorIdToDelete}`, {
+			method: "DELETE",
+			headers: {
+				"Content-Type": "application/json"
+			}
+		});
 
-			handleShow();
+		handleShow();
+		handleConfirmationClose();
 
-			console.log(await deleteResponse.json());
-			await reloadTrabajadores();
-		}
+		console.log(await deleteResponse.json());
+		await reloadTrabajadores();
 	};
 
 	return (
@@ -71,7 +76,7 @@ const Trabajador = (props) => {
 							<td>{trabajador.nombre}</td>
 							<td>
 								<div className="button-group">
-									<Button className="btn btn-info">
+									<Button className="btn btn-info" onClick={() => modifyElement(trabajador._id)}>
 										Modificar
 									</Button>
 									<Button className="btn btn-danger" onClick={() => deleteElement(trabajador._id, trabajador.nombre, trabajador.rol)}>
@@ -85,12 +90,26 @@ const Trabajador = (props) => {
 			</Table>
 			<Modal show={show} onHide={handleClose}>
 				<Modal.Header closeButton>
-					<Modal.Title>Elemento de trabajador eliminado</Modal.Title>
+					<Modal.Title>Trabajador eliminado</Modal.Title>
 				</Modal.Header>
 				<Modal.Body>Se ha eliminado el trabajador "{elementName}" con el rol de "{elementRole}" correctamente.</Modal.Body>
 				<Modal.Footer>
 					<Button variant="secondary" onClick={handleClose}>
 						Cerrar
+					</Button>
+				</Modal.Footer>
+			</Modal>
+			<Modal show={showConfirmation} onHide={handleConfirmationClose}>
+				<Modal.Header closeButton>
+					<Modal.Title>Confirmación de eliminación</Modal.Title>
+				</Modal.Header>
+				<Modal.Body>¿Estás seguro de que deseas eliminar este trabajador?</Modal.Body>
+				<Modal.Footer>
+					<Button variant="secondary" onClick={handleConfirmationClose}>
+						Cancelar
+					</Button>
+					<Button variant="danger" onClick={confirmDelete}>
+						Eliminar
 					</Button>
 				</Modal.Footer>
 			</Modal>
