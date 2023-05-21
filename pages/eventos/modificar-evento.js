@@ -190,7 +190,7 @@ console.log(data)
                         type="datetime-local" 
                         placeholder='fecha_inicio'
                         name='fecha_inicio' />
-						</Form.Group>
+						</Form.Group> 
 						<Form.Group>
 							<Form.Label className="mt-3">Fecha de Termino </Form.Label>
 							<Form.Control required 

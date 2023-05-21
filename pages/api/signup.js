@@ -28,7 +28,7 @@ export default async function handler(req, res) {
         nombre,
         correo,
         contacto,
-        rol : "user"
+        rol : "trabajador"
       };
 
       // Insertar el nuevo usuario en la base de datos

@@ -27,6 +27,7 @@ export function Form_(props) {
 				descripcion
 			});
 			console.log(res.data);
+			router.push("./visualizar-visitas-admin");
 		} catch (err) {
 			console.error(err);
 		}
@@ -37,7 +38,7 @@ export function Form_(props) {
 				<h1>Agendar visita a terreno</h1>
 				<Form.Group>
 					<Form.Label className="mt-3">Nombre Cliente </Form.Label>
-					<Form.Control type="text" value={nombre_cliente} onChange={(ev) => setnombre_cliente(ev.target.value)} name="nombre_cliente" id="nombres" placeholder="Nombre del cliente" />
+					<Form.Control type="text" value={nombre_cliente} onChange={(ev) => setnombre_cliente(ev.target.value)} name="nombre_cliente" id="nombres" placeholder="Nombre del cliente" required />
 				</Form.Group>
 				<Form.Group>
 					<Form.Label className="mt-3">Numero de contacto </Form.Label>
@@ -48,6 +49,7 @@ export function Form_(props) {
 						name="numero_contacto_cliente"
 						id="numero_contacto_cliente"
 						placeholder="Numero de contacto"
+						required
 					/>
 				</Form.Group>
 				<Form.Group>
@@ -59,11 +61,12 @@ export function Form_(props) {
 						name="direccion_cliente"
 						id="direccion_cliente"
 						placeholder="Direccion del cliente"
+						required
 					/>
 				</Form.Group>
 				<Form.Group>
 					<Form.Label className="mt-3">Fecha y hora de la visita </Form.Label>
-					<Form.Control name="fecha_hora_visita_terreno" value={fecha_hora_visita_terreno} onChange={(ev) => setfecha_hora_visita_terreno(ev.target.value)} type="datetime-local" />
+					<Form.Control name="fecha_hora_visita_terreno" value={fecha_hora_visita_terreno} onChange={(ev) => setfecha_hora_visita_terreno(ev.target.value)} type="datetime-local" required />
 				</Form.Group>
 				<Form.Group>
 					<Form.Label className="mt-3">Descripción </Form.Label>
@@ -75,12 +78,13 @@ export function Form_(props) {
 						name="descripcion"
 						id="descripcion"
 						placeholder="Descripción del evento"
+						required
 					/>
 				</Form.Group>
 				<div className="mt-3">
-					<button onClick={irAContacto} type="submit" className="btn btn-primary  ">
-						Guardar
-					</button>
+					<Button type="submit" className="btn btn-primary  ">
+						Agendar visita
+					</Button>
 				</div>
 			</Form>
 		</div>

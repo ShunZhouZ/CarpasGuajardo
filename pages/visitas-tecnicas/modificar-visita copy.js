@@ -65,40 +65,36 @@ const ModificarVisitas = (props) => {
 	return (
 		<div className="d-flex justify-content-center">
 			<Form className="mx-5 w-25" onSubmit={submitModificar}>
-				<h1>Modificar visita a terreno</h1>
+				<h4>Mofificar visita a terreno</h4>
 				<Form.Group>
-					<Form.Label className="mt-3">Nombre Cliente </Form.Label>
+					<Form.Label>Nombre Cliente </Form.Label>
 					<Form.Control onChange={handleControl} required defaultValue={data.nombre_cliente} type="text" placeholder="Nombre del evento" name="nombre_cliente" />
 				</Form.Group>
 				<Form.Group>
-					<Form.Label className="mt-3">Numero de contacto </Form.Label>
-					<Form.Control
-						onChange={handleControl} required defaultValue={data.numero_contacto_cliente} type="text" placeholder="Numero del cliente" name="numero_contacto_cliente"
-					/>
+					<Form.Label>Numero de contacto </Form.Label>
+					<Form.Control onChange={handleControl} required defaultValue={data.numero_contacto_cliente} type="text" placeholder="Numero del cliente" name="numero_contacto_cliente" />
 				</Form.Group>
 				<Form.Group>
-					<Form.Label className="mt-3">Direccion </Form.Label>
-					<Form.Control
-						onChange={handleControl} required defaultValue={data.direccion_cliente} type="text" placeholder="Direccion del cliente" name="direccion_cliente"
-					/>
+					<Form.Label>Direccion </Form.Label>
+					<Form.Control onChange={handleControl} required defaultValue={data.direccion_cliente} type="text" placeholder="Direccion del cliente" name="direccion_cliente" />
 				</Form.Group>
 				<Form.Group>
-					<Form.Label className="mt-3">Fecha y hora de la visita </Form.Label>
-					<Form.Control required
+					<Form.Label>Hora de la visita </Form.Label>
+					<Form.Control
+						required
 						onChange={handleControl}
 						defaultValue={moment(data.fecha_hora_visita_terreno).format("yyyy-MM DD")}
 						type="datetime-local"
 						placeholder="Fecha y hora de visita"
-						name="fecha_hora_visita_terreno" />
-				</Form.Group>
-				<Form.Group>
-					<Form.Label className="mt-3">Descripción </Form.Label>
-					<Form.Control
-						as="textarea" onChange={handleControl} required defaultValue={data.descripcion} type="text" placeholder="Descripcion" name="descripcion"
+						name="fecha_hora_visita_terreno"
 					/>
 				</Form.Group>
+				<Form.Group>
+					<Form.Label>Descripcion </Form.Label>
+					<Form.Control as="textarea" onChange={handleControl} required defaultValue={data.descripcion} type="text" placeholder="Descripcion" name="descripcion" />
+				</Form.Group>
 				<div className="mt-3">
-				<Button type="submit" className="btn btn-primary">
+					<Button type="submit" className="btn btn-primary">
 						Modificar
 					</Button>
 				</div>
@@ -123,7 +119,7 @@ export async function getServerSideProps() {
 	});
 	response = await response.json();
 
-	//console.log(response);
+	console.log(response);
 
 	return {
 		props: { visitas: response.data }
