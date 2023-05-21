@@ -3,13 +3,16 @@ import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
 import Image from "react-bootstrap/Image";
+import "react-minimal-side-navigation/lib/ReactMinimalSideNavigation.css";
+
+import React from "react";
 
 //eliminar si no os gusta el image, linea 13 al 19 y agregar Carpas Guajardo
 const NavBar = () => {
 	return (
 		<Navbar className="mb-4" bg="primary" variant="dark" expand="lg">
 			<Container>
-			<Navbar.Brand href="#home"> Carpas Guajardo</Navbar.Brand> 
+				<Navbar.Brand href="#home"> Carpas Guajardo</Navbar.Brand>
 				<Navbar.Toggle aria-controls="basic-navbar-nav" />
 				<Navbar.Collapse id="basic-navbar-nav">
 					<Nav className="me-auto">

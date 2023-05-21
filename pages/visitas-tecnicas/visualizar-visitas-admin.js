@@ -58,8 +58,8 @@ const CalendarPage = ({ allPosts }) => {
 
 	return (
 		<>
-			<div className="container mx-auto px-10">
-				<h1 className="text-4xl my-8 mb-5">Calendario de visitas</h1>
+			<div className="container mx-auto px-10 mb-5">
+				<h1 className="text-4xl my-8 mb-5">Calendario de visitas técnicas</h1>
 				<Calendar
 					localizer={localizer}
 					events={allEvents}
