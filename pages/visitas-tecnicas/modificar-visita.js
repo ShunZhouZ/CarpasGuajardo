@@ -123,7 +123,7 @@ export async function getServerSideProps() {
 	});
 	response = await response.json();
 
-	console.log(response);
+	//console.log(response);
 
 	return {
 		props: { visitas: response.data }
