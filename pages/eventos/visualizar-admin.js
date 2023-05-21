@@ -94,7 +94,7 @@ const CalendarPage = ({ allPosts }) => {
 
 	return (
 		<>
-			<div className="container mx-auto px-10">
+			<div className="container mx-auto px-10 mb-5">
 				<h1 className="text-4xl my-8 mb-5">Calendario de eventos</h1>
 				<Calendar
 					localizer={localizer}

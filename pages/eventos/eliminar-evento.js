@@ -1,25 +1,22 @@
 import { Button, Modal } from "react-bootstrap";
 import { useCallback, useState, useEffect } from "react";
 import moment from "moment";
-import 'moment/locale/es';
-moment.locale('es');
+import "moment/locale/es";
+moment.locale("es");
 import Table from "react-bootstrap/Table";
-
 
 const Eventos = (props) => {
 	const [show, setShow] = useState(false);
 	const { defaultEvents } = props;
 	const [events, setEvents] = useState(defaultEvents);
 
-	const [description, setDescription] = useState("");//descripcion
+	const [description, setDescription] = useState(""); //descripcion
 	const [showDescriptionModal, setShowDescriptionModal] = useState(false);
-
 
 	const handleShowDescriptionModal = (description) => {
 		setDescription(description);
 		setShowDescriptionModal(true);
 	};
-
 
 	const handleClose = () => setShow(false);
 	const handleShow = () => setShow(true);
@@ -57,7 +54,6 @@ const Eventos = (props) => {
 		}
 	};
 
-
 	return (
 		<div style={{ marginLeft: "40px", marginRight: "40px" }}>
 			<h1>Lista de eventos</h1>
@@ -66,19 +62,22 @@ const Eventos = (props) => {
 					<tr key={0}>
 						<th style={{ width: "2%" }}>Nº</th>
 						<th style={{ width: "10%" }}>Nombre</th>
-						<th style={{ width: "7%" }}>Telèfono</th>
+						<th style={{ width: "7%" }}>Teléfono</th>
 						<th style={{ width: "10%" }}>Dirección</th>
 						<th style={{ width: "10%" }}>Inicio evento</th>
 						<th style={{ width: "10%" }}>Fin evento</th>
-						<th style={{ width: "5%" }}>m<sup>2</sup></th>
-						<th style={{ width: "7%" }}>Cubre piso</th>
+						<th style={{ width: "5%" }}>
+							m<sup>2</sup>
+						</th>
+						<th style={{ width: "7%" }}>Cubrepiso</th>
 						<th style={{ width: "7%" }}>Carpa</th>
 						<th style={{ width: "7%" }}>Toldo</th>
-						<th style={{ width: "7%" }}>Iluminacion</th>
-						<th style={{ width: "7%" }}>Calefaccion</th>
+						<th style={{ width: "7%" }}>Iluminación</th>
+						<th style={{ width: "7%" }}>Calefacción</th>
 						<th style={{ width: "7%" }}>Monto total</th>
 						<th style={{ width: "5%" }}>Abono</th>
-						<th style={{ width: "5%" }}>Descripcion</th>
+						<th style={{ width: "5%" }}>Descripción</th>
+						<th style={{ width: "5%" }}>Acciones</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -90,18 +89,19 @@ const Eventos = (props) => {
 							<td>{event.direccion_cliente}</td>
 							<td>{moment(event.fecha_inicio).format("dddd DD-MM-YYYY  HH:mm")}</td>
 							<td>{moment(event.fecha_termino).format("dddd DD-MM-YYYY  HH:mm")}</td>
-							<td style={{textAlign: "center" }}>{event.metros_cuadrados}</td>
-							<td>{event.cubre_piso ? 'Si' : 'No'}</td>
-							<td>{event.carpa? 'Si' : 'No'}</td>
-							<td>{event.toldo? 'Si' : 'No'}</td>
-							<td>{event.Iluminacion? 'Si' : 'No'}</td>
-							<td>{event.calefaccion? 'Si' : 'No'}</td>
+							<td style={{ textAlign: "center" }}>{event.metros_cuadrados}</td>
+							<td>{event.cubre_piso ? "Sí" : "No"}</td>
+							<td>{event.carpa ? "Sí" : "No"}</td>
+							<td>{event.toldo ? "Sí" : "No"}</td>
+							<td>{event.Iluminacion ? "Sí" : "No"}</td>
+							<td>{event.calefaccion ? "Sí" : "No"}</td>
 							<td>{event.monto_total}</td>
 							<td>{event.anticipo}</td>
 							<td>
 								<Button className="btn btn-light" onClick={() => handleShowDescriptionModal(event.descripcion)}>
-								Visualizar
-								</Button></td>
+									Visualizar
+								</Button>
+							</td>
 							<td>
 								<div className="button-group">
 									<Button className="btn btn-info" onClick={() => modifyElement(event._id)}>
@@ -134,7 +134,6 @@ const Eventos = (props) => {
 				</Modal.Header>
 				<Modal.Body>{description}</Modal.Body>
 			</Modal>
-
 		</div>
 	);
 };
