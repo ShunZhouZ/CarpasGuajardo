@@ -28,15 +28,19 @@ const NavBar = () => {
 						</NavDropdown>
 						<NavDropdown title="Trabajadores" id="basic-nav-dropdown" bg="primary" variant="dark">
 							<NavDropdown.Item href="/trabajadores/add-worker">Agregar</NavDropdown.Item>
-							<NavDropdown.Item href="#action/3.2">Modificar</NavDropdown.Item>
-							<NavDropdown.Item href="#action/3.3">Eliminar</NavDropdown.Item>
+							<NavDropdown.Item href="#action/3.2">Lista de trabajadores</NavDropdown.Item>
 							<NavDropdown.Divider />
 							<NavDropdown.Item href="#action/3.4">Visualizar todos</NavDropdown.Item>
 						</NavDropdown>
 						<NavDropdown title="Contactos" id="basic-nav-dropdown" bg="primary" variant="dark">
 							<NavDropdown.Item href="#action/3.1">Agregar</NavDropdown.Item>
-							<NavDropdown.Item href="#action/3.2">Modificar</NavDropdown.Item>
-							<NavDropdown.Item href="#action/3.3">Eliminar</NavDropdown.Item>
+							<NavDropdown.Item href="/contactos/eliminar-contacto">Lista de contactos</NavDropdown.Item>
+							<NavDropdown.Divider />
+							<NavDropdown.Item href="#action/3.4">Visualizar todos</NavDropdown.Item>
+						</NavDropdown>
+						<NavDropdown title="Inventario" id="basic-nav-dropdown" bg="primary" variant="dark">
+							<NavDropdown.Item href="#action/3.1">Agregar</NavDropdown.Item>
+							<NavDropdown.Item href="/inventario/eliminar-inventario">Lista de inventario</NavDropdown.Item>
 							<NavDropdown.Divider />
 							<NavDropdown.Item href="#action/3.4">Visualizar todos</NavDropdown.Item>
 						</NavDropdown>
