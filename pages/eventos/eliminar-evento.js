@@ -77,6 +77,7 @@ const Eventos = (props) => {
 						<th style={{ width: "7%" }}>Monto total</th>
 						<th style={{ width: "5%" }}>Abono</th>
 						<th style={{ width: "5%" }}>Descripción</th>
+						<th style={{ width: "5%" }}>Acciones</th>
 					</tr>
 				</thead>
 				<tbody>
