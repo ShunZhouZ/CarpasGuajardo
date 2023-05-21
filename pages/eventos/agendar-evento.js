@@ -22,9 +22,6 @@ export function Form_(props) {
 	const [descripcion, setdescripcion] = useState("");
 	const [Iluminacion,setIluminacion ] = useState("");
 	const [calefaccion, setCalefacion] = useState("");
-	function irAContacto() {
-		router.push("./visualizar-admin");
-	}
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 		try {
@@ -47,6 +44,7 @@ export function Form_(props) {
 				descripcion
 			});
 			console.log(res.data);
+			router.push("./visualizar-admin")
 		} catch (err) {
 			console.error(err);
 		}
@@ -72,6 +70,7 @@ export function Form_(props) {
 								name="nombre_cliente"
 								id="nombres"
 								placeholder="Nombre del cliente"
+								required
 							/>
 						</Form.Group>
 
@@ -84,6 +83,7 @@ export function Form_(props) {
 								name="numero_contacto_cliente"
 								id="numero_contacto_cliente"
 								placeholder="Numero de contacto"
+								required
 							/>
 						</Form.Group>
 						<Form.Group>
@@ -95,15 +95,16 @@ export function Form_(props) {
 								name="direccion_cliente"
 								id="direccion_cliente"
 								placeholder="Direccion del cliente"
+								required
 							/>
 						</Form.Group>
 						<Form.Group>
 							<Form.Label className="mt-3">Metros cuadrados </Form.Label>
-							<Form.Control name="metros_cuadrados" value={metros_cuadrados} onChange={(ev) => setmetros_cuadrados(ev.target.value)} type="number" placeholder="Metros cuadrados" />
+							<Form.Control name="metros_cuadrados" value={metros_cuadrados} onChange={(ev) => setmetros_cuadrados(ev.target.value)} type="number" placeholder="Metros cuadrados" required />
 						</Form.Group>
 						<Form.Group>
 							<Form.Label className="mt-3" >Seleccione si desea carpa o toldo</Form.Label>
-								<Form.Control as="select" onChange={handleSelectChange}>
+								<Form.Control as="select" onChange={handleSelectChange} required>
 									<option  >Selección</option>
 									<option value="carpa" >Carpa</option>
 									<option value="toldo">Toldo</option>
@@ -111,7 +112,7 @@ export function Form_(props) {
 							<Row xs = "auto">
 								<Col>
 								<Form.Label className="mt-3">Cubrepiso</Form.Label>
-									<Form.Check type="switch" checked={cubre_piso} onChange={(ev) => setcubre_piso(ev.target.checked)} />
+									<Form.Check type="switch" checked={cubre_piso} onChange={(ev) => setcubre_piso(ev.target.checked)}  />
 								</Col>
 								<Col>
 								<Form.Label className="mt-3">Calefacción</Form.Label>
@@ -127,30 +128,30 @@ export function Form_(props) {
 					<Col>
 						<Form.Group>
 							<Form.Label>Fecha de inicio </Form.Label>
-							<Form.Control name="fecha_inicio" value={fecha_inicio} onChange={(ev) => setfecha_inicio(ev.target.value)} type="datetime-local" />
+							<Form.Control name="fecha_inicio" value={fecha_inicio} onChange={(ev) => setfecha_inicio(ev.target.value)} type="datetime-local" required />
 						</Form.Group>
 						<Form.Group>
 							<Form.Label className="mt-3">Fecha de Termino </Form.Label>
-							<Form.Control name="fecha_termino" value={fecha_termino} onChange={(ev) => setfecha_termino(ev.target.value)} type="datetime-local" />
+							<Form.Control name="fecha_termino" value={fecha_termino} onChange={(ev) => setfecha_termino(ev.target.value)} type="datetime-local" required />
 						</Form.Group>
 						<Form.Group>
 							<Form.Label className="mt-3">Monto total</Form.Label>
-							<Form.Control name="monto_total" value={monto_total} onChange={(ev) => setmonto_total(ev.target.value)} type="number" placeholder="Monto total" />
+							<Form.Control name="monto_total" value={monto_total} onChange={(ev) => setmonto_total(ev.target.value)} type="number" placeholder="Monto total" required />
 						</Form.Group>
 						<Form.Group>
 							<Form.Label className="mt-3">Anticipo</Form.Label>
-							<Form.Control name="anticipo" value={anticipo} onChange={(ev) => setanticipo(ev.target.value)} type="number" placeholder="Anticipo" />
+							<Form.Control name="anticipo" value={anticipo} onChange={(ev) => setanticipo(ev.target.value)} type="number" placeholder="Anticipo" required />
 						</Form.Group>
 						<Form.Group>
 							<Form.Label className="mt-3">Descripción</Form.Label>
-							<Form.Control as="textarea" name="descripcion" value={descripcion} onChange={(ev) => setdescripcion(ev.target.value)} type="text" placeholder="Descripcion" />
+							<Form.Control as="textarea" name="descripcion" value={descripcion} onChange={(ev) => setdescripcion(ev.target.value)} type="text" placeholder="Descripcion" required />
 						</Form.Group>
 					</Col>
 				</Row>
-				<div className="mt-3 text-center ">
-					<button onClick={irAContacto} type="submit" className="btn btn-primary w-25 ">
-						Guardar
-					</button>
+				<div className="mt-3 text-center">
+					<Button type="submit" className="btn btn-primary w-25">
+						Agendar
+					</Button>
 				</div>
 			</Form>
 		</div>
