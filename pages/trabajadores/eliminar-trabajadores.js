@@ -92,7 +92,7 @@ const Trabajador = (props) => {
 				<Modal.Header closeButton>
 					<Modal.Title>Trabajador eliminado</Modal.Title>
 				</Modal.Header>
-				<Modal.Body>Se ha eliminado el trabajador "{elementName}" con el rol de "{elementRole}" correctamente.</Modal.Body>
+				<Modal.Body>Se ha eliminado a "{elementName}" con el rol de "{elementRole}" correctamente.</Modal.Body>
 				<Modal.Footer>
 					<Button variant="secondary" onClick={handleClose}>
 						Cerrar
@@ -103,7 +103,7 @@ const Trabajador = (props) => {
 				<Modal.Header closeButton>
 					<Modal.Title>Confirmación de eliminación</Modal.Title>
 				</Modal.Header>
-				<Modal.Body>¿Estás seguro de que deseas eliminar este trabajador?</Modal.Body>
+				<Modal.Body>¿Estás seguro de que deseas eliminar a "{elementName}"?</Modal.Body>
 				<Modal.Footer>
 					<Button variant="secondary" onClick={handleConfirmationClose}>
 						Cancelar
