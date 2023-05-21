@@ -90,8 +90,8 @@ const Eventos = (props) => {
 							<td>{event.direccion_cliente}</td>
 							<td>{moment(event.fecha_inicio).format("dddd DD-MM-YYYY  HH:mm")}</td>
 							<td>{moment(event.fecha_termino).format("dddd DD-MM-YYYY  HH:mm")}</td>
-							<td>{event.metros_cuadrados} m2</td>
-							<td>{event.cubre_piso ? 'Si lleva' : 'No lleva'}</td>
+							<td style={{textAlign: "center" }}>{event.metros_cuadrados}</td>
+							<td>{event.cubre_piso ? 'Si' : 'No'}</td>
 							<td>{event.carpa? 'Si' : 'No'}</td>
 							<td>{event.toldo? 'Si' : 'No'}</td>
 							<td>{event.Iluminacion? 'Si' : 'No'}</td>
