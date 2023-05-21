@@ -8,7 +8,13 @@ const userServiceFactory = () => {
     function createUser(username, password, nombre, correo, contacto) {
         return axios.post('/api/signup', { username, password, nombre, correo, contacto });
     }
-    return {login, createUser};
+
+    function forgotPassword(username, correo) {
+        return axios.post('/api/forgot-password', { username, correo });
+    }
+
+
+    return {login, createUser, forgotPassword};
 };
 
 module.exports = {

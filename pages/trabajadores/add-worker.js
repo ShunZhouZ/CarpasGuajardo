@@ -17,6 +17,8 @@ export default function CreateUserForm() {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
+            // la constrasena sera igual al rut ingresado
+            const password = username;
             await userService.createUser(username, password, nombre, correo, contacto);
             window.location.href = `/`;
 
@@ -49,15 +51,11 @@ export default function CreateUserForm() {
         <div className="container">
             <div className="row">
                 <div className="col-md-4 offset-md-4 mt-5">
-                    <h3>Crear Usuario</h3>
+                    <h3>Agregar Trabajador</h3>
                     <Form onSubmit={handleSubmit}>
                         <FormGroup className="mb-3">
-                            <Form.Label htmlFor="uname"><b>Usuario</b></Form.Label>
-                            <Form.Control type="text" placeholder="Ingrese su RUT" name="uname" required onChange={usernameHandler} />
-                        </FormGroup>
-                        <FormGroup className="mb-3">
-                            <Form.Label htmlFor="psw"><b>Contraseña</b></Form.Label>
-                            <Form.Control type="password" placeholder="Ingrese su contraseña" name="psw" required onChange={passwordHandler} />
+                            <Form.Label htmlFor="uname"><b>Trabajador</b></Form.Label>
+                            <Form.Control type="text" placeholder="Ingrese el RUT" name="uname" required onChange={usernameHandler} />
                         </FormGroup>
                         <FormGroup className="mb-3">
                             <Form.Label htmlFor="name"><b>Nombre</b></Form.Label>

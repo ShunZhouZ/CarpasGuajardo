@@ -44,21 +44,25 @@ export default function Login() {
         <div className="container">
         <div className="row">
             <div className="col-md-4 offset-md-4 mt-5">
-                <h3>Login</h3>
+            <h1 className="text-4xl my-8">Login</h1>
                 <Form onSubmit={handleSubmit}> 
                     <FormGroup className="mb-3">
-                        <Form.Label htmlFor="uname"><b>Usuario</b></Form.Label>
+                        <Form.Label className="mt-3" htmlFor="uname"><b>Usuario</b></Form.Label>
                         <Form.Control type="text" placeholder="Ingrese su RUT" name="uname" required onChange={usernameHandler} />
                     </FormGroup>
                     <FormGroup className="mb-3">
-                        <Form.Label htmlFor="psw"><b>Contrasena</b></Form.Label>
-                        <Form.Control type="password" placeholder="Ingrese su contrasena" name="psw" required onChange={passwordHandler} />
+                        <Form.Label className="mt-3" htmlFor="psw"><b>Contraseña</b></Form.Label>
+                        <Form.Control type="password" placeholder="Ingrese su contraseña" name="psw" required onChange={passwordHandler} />
                     </FormGroup>
-                    <Button color="primary" type="submit">
+                    <Button variant="primary" type="submit">
                         Entrar
-                    </Button>
+                    </Button>{' '}
+                    <Button variant="link" href="./trabajadores/form-password">
+                        Recuperar Contraseña
+                    </Button>        
                 </Form>
             </div>
+            
         </div>
         </div>
         )}

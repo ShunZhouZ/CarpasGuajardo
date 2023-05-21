@@ -37,7 +37,7 @@ export default async function handler(req, res) {
       res.status(201).json({ message: "Agregado correctamente" });
     } catch (error) {
       console.error(error);
-      res.status(500).json({ error: "Error al crear el usuario" });
+      res.status(500).json({ error: "Error al crear el trabajador" });
     } finally {
       client.close();
     }
