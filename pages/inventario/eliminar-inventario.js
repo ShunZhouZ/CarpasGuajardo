@@ -50,7 +50,7 @@ const Inventario = (props) => {
 
 	return (
 		<div style={{ marginLeft: "40px", marginRight: "40px" }}>
-			<h1>Lista de contactos</h1>
+			<h1>Lista de inventario</h1>
 			<Table responsive striped bordered hover>
 				<thead>
 					<tr key={0}>
