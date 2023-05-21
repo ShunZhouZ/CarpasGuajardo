@@ -57,10 +57,9 @@ const Trabajador = (props) => {
 				<thead>
 					<tr key={0}>
 						<th style={{ width: "5%" }}>Nº</th>
-						<th style={{ width: "23%" }}>Nombre de usuario</th>
-						<th style={{ width: "23%" }}>Contraseña</th>
-						<th style={{ width: "23%" }}>Rol</th>
-						<th style={{ width: "23%" }}>Nombre trabajador</th>
+						<th style={{ width: "30%" }}>Nombre de usuario</th>
+						<th style={{ width: "30%" }}>Rol</th>
+						<th style={{ width: "30%" }}>Nombre trabajador</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -68,7 +67,6 @@ const Trabajador = (props) => {
 						<tr key={trabajador._id}>
 							<td>{index + 1}</td>
 							<td>{trabajador.username}</td>
-							<td>{trabajador.password}</td>
 							<td>{trabajador.rol}</td>
 							<td>{trabajador.nombre}</td>
 							<td>
