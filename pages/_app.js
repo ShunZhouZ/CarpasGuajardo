@@ -7,19 +7,6 @@ import "../styles/form.css";
 import Layout from "../components/layout";
 import { SSRProvider } from "react-bootstrap";
 
-// function MyApp({ Component, pageProps }) {
-// 	return (
-// 		<SSRProvider>
-// 			<Layout>
-// 				<Component {...pageProps} />;
-// 			</Layout>
-// 		</SSRProvider>
-// 	);
-// }
-// export default MyApp;
-
-// import "../styles/global.css";
-// import '../styles/globals.css'
 import { SWRConfig } from "swr";
 import fetch from "../lib/fetchJson";
 

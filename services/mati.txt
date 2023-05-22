@@ -1,0 +1,28 @@
+Para crear una aplicación en Node.js que permita el acceso solo a usuarios autorizados, puedes seguir los siguientes pasos:
+
+=1. Configura una base de datos: Utiliza una base de datos para almacenar la información de los usuarios y sus roles. Puedes utilizar una base de datos relacional como MySQL o PostgreSQL, o una base de datos NoSQL como MongoDB.
+
+2. Implementa la autenticación: Crea un sistema de autenticación que permita a los usuarios iniciar sesión. Puedes utilizar bibliotecas como Passport.js o jsonwebtoken para manejar la autenticación.
+
+   ; a. Configurar el almacenamiento de usuarios: Decide cómo almacenarás y administrarás los datos de los usuarios. Puedes utilizar una base de datos como MongoDB o MySQL para almacenar la información del usuario, como su nombre de usuario, contraseña y roles.
+
+   / b. Crear una página de inicio de sesión: Crea una página de inicio de sesión donde los usuarios puedan ingresar sus credenciales (por ejemplo, nombre de usuario y contraseña). Esta página debe enviar una solicitud al servidor para autenticar al usuario.
+
+   / c. Validar las credenciales del usuario: En el servidor, verifica las credenciales proporcionadas por el usuario. Esto puede implicar buscar en la base de datos el nombre de usuario ingresado y comparar la contraseña con la versión almacenada de forma segura (por ejemplo, utilizando una función de hashing).
+
+    d. Generar un token de acceso: Si las credenciales del usuario son válidas, genera un token de acceso seguro, como un JSON Web Token (JWT). Este token contiene información sobre la identidad del usuario y puede ser utilizado para autenticar al usuario en solicitudes futuras.
+
+    e. Almacenar el token de acceso: Devuelve el token de acceso al cliente y almacénalo de forma segura en el lado del cliente, generalmente en el almacenamiento local o en las cookies del navegador.
+
+    f. Proteger las rutas autenticadas: Configura un middleware en tu servidor para proteger las rutas que requieren autenticación. Este middleware verificará si el token de acceso proporcionado en las solicitudes es válido y si pertenece a un usuario autenticado. Si el token no es válido o no está presente, redirige al usuario a la página de inicio de sesión.
+
+    g. Validar el token en las solicitudes: En cada solicitud autenticada, verifica la validez y la integridad del token de acceso proporcionado por el cliente. Esto se puede hacer mediante la verificación de firma y la decodificación del token utilizando una clave secreta compartida.
+
+3. Gestiona los roles de usuario: Define los diferentes roles de usuario en tu aplicación, como "administrador", "usuario regular", etc. Asigna roles a los usuarios en la base de datos.
+
+4. Protege las rutas: Configura un middleware en tu aplicación para proteger las rutas que requieren autenticación. Verifica si el usuario tiene los permisos adecuados para acceder a una determinada ruta según su rol. Si el usuario no está autenticado o no tiene los permisos necesarios, redirígelos a la página de inicio de sesión.
+
+5. Almacena la información del usuario: Después de que un usuario inicie sesión correctamente, almacena la información del usuario en una sesión o en un token de acceso seguro (JWT). Esto permitirá que la aplicación verifique la identidad del usuario en las solicitudes posteriores.
+
+6. Filtra los datos según los roles: En las rutas y controladores que muestran información específica, filtra los datos que se devuelven al usuario según su rol. Solo muestra la información que el usuario tiene permitido ver según su rol en la base de datos.
+

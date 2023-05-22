@@ -4,12 +4,26 @@ import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
 import Image from "react-bootstrap/Image";
 import "react-minimal-side-navigation/lib/ReactMinimalSideNavigation.css";
+import useUser from "../lib/useUser";
+
+
 
 import React from "react";
 
 //eliminar si no os gusta el image, linea 13 al 19 y agregar Carpas Guajardo
 const NavBar = () => {
+
+	const { user, mutateUser } = useUser({
+        redirectTo: "/",
+        redirectIfFound: true,
+    });
+
+	if(!user) return <div>Cargando...</div>
+
 	return (
+		
+		<>
+		{user.isLoggedIn && (
 		<Navbar className="mb-4" bg="primary" variant="dark" expand="lg">
 			<Container>
 				<Navbar.Brand href="#home"> Carpas Guajardo</Navbar.Brand>
@@ -53,6 +67,9 @@ const NavBar = () => {
 				</Navbar.Collapse>
 			</Container>
 		</Navbar>
+		)}
+		</>
+		
 	);
 };
 
