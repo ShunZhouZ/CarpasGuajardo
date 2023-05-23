@@ -65,6 +65,7 @@ const Trabajador = (props) => {
 						<th style={{ width: "30%" }}>Nombre de usuario</th>
 						<th style={{ width: "30%" }}>Rol</th>
 						<th style={{ width: "30%" }}>Nombre trabajador</th>
+						<th style={{ width: "47%" }}>Acciones</th>
 					</tr>
 				</thead>
 				<tbody>

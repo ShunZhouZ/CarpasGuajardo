@@ -69,6 +69,7 @@ const Inventario = (props) => {
             <th style={{ width: "5%" }}>Nº</th>
             <th style={{ width: "47%" }}>Nombre</th>
             <th style={{ width: "47%" }}>Cantidad</th>
+            <th style={{ width: "47%" }}>Acciones</th>
           </tr>
         </thead>
         <tbody>

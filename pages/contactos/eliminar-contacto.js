@@ -62,6 +62,7 @@ const Contactos = (props) => {
 						<th style={{ width: "15%" }}>Contacto</th>
 						<th style={{ width: "25%" }}>Correo</th>
 						<th style={{ width: "25%" }}>Detalles</th>
+						<th style={{ width: "47%" }}>Acciones</th>
 					</tr>
 				</thead>
 				<tbody>

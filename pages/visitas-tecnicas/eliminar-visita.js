@@ -72,6 +72,7 @@ const Visitas = (props) => {
             <th style={{ width: "15%" }}>Descripción</th>
             <th style={{ width: "15%" }}>Fecha visita</th>
             <th style={{ width: "20%", textAlign: "center" }}>Realizacion</th>
+            <th style={{ width: "47%" }}>Acciones</th>
           </tr>
         </thead>
         <tbody>
