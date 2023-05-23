@@ -18,12 +18,12 @@ const NavBar = () => {
         redirectIfFound: true,
     });
 
-	if(!user) return <div>Cargando...</div>
+	// if(!user) return <div>Cargando...</div>
 
 	return (
 		
 		<>
-		{user.isLoggedIn && (
+		{(
 		<Navbar className="mb-4" bg="primary" variant="dark" expand="lg">
 			<Container>
 				<Navbar.Brand href="#home"> Carpas Guajardo</Navbar.Brand>
