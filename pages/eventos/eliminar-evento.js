@@ -110,7 +110,7 @@ const Eventos = (props) => {
         <div className="search-input">
           <input
             type="text"
-            placeholder="Buscar por nombre o dirección"
+            placeholder="Buscar por nombre, dirección o telefono"
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
           />

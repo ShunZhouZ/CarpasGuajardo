@@ -4,6 +4,8 @@ import moment from "moment";
 import 'moment/locale/es';
 moment.locale('es');
 import Table from "react-bootstrap/Table";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPencilAlt, faTrash, faEye } from "@fortawesome/free-solid-svg-icons";
 
 const Contactos = (props) => {
 	const [show, setShow] = useState(false);
@@ -76,10 +78,10 @@ const Contactos = (props) => {
 							<td>
 								<div className="button-group">
 									<Button className="btn btn-info" onClick={() => modifyElement(contact._id)}>
-										Modificar
+									<FontAwesomeIcon icon={faPencilAlt} /> Modificar
 									</Button>
 									<Button className="btn btn-danger" onClick={() => deleteElement(contact._id)}>
-										Eliminar
+									<FontAwesomeIcon icon={faTrash} /> Eliminar
 									</Button>
 								</div>
 							</td>

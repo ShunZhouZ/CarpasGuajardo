@@ -3,6 +3,8 @@ import { useCallback, useState } from "react";
 import moment from "moment";
 import 'moment/locale/es';
 moment.locale('es');
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPencilAlt, faTrash, faEye } from "@fortawesome/free-solid-svg-icons";
 import Table from "react-bootstrap/Table";
 
 const Trabajador = (props) => {
@@ -78,10 +80,10 @@ const Trabajador = (props) => {
 							<td>
 								<div className="button-group">
 									<Button className="btn btn-info" onClick={() => modifyElement(trabajador._id)}>
-										Modificar
+									<FontAwesomeIcon icon={faPencilAlt} /> Modificar
 									</Button>
 									<Button className="btn btn-danger" onClick={() => deleteElement(trabajador._id, trabajador.nombre, trabajador.rol)}>
-										Eliminar
+									<FontAwesomeIcon icon={faTrash} /> Eliminar
 									</Button>
 								</div>
 							</td>

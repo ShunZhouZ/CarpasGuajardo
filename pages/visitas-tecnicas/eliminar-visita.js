@@ -3,6 +3,8 @@ import { useCallback, useState } from "react";
 import moment from "moment";
 import 'moment/locale/es';
 moment.locale('es');
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPencilAlt, faTrash, faEye } from "@fortawesome/free-solid-svg-icons";
 
 const Visitas = (props) => {
   const { defaultVisits } = props;
@@ -84,7 +86,7 @@ const Visitas = (props) => {
               <td>{visit.direccion_cliente}</td>
               <td style={{ textAlign: "center" }}>
                 <Button className="btn btn-light" onClick={() => showDescription(visit._id)}> {/* Botón para mostrar la descripción */}
-                  Mostrar Descripción
+                <FontAwesomeIcon icon={faEye} />Visualizar Descripción
                 </Button>
               </td>
               <td className={moment(visit.fecha_hora_visita_terreno, "YYYY-MM-DD HH:mm:ss").isBefore(moment(), "minute") ? "text-danger" : ""}>
@@ -97,10 +99,10 @@ const Visitas = (props) => {
                 <div className="button-group">
 
                   <Button className="btn btn-info" onClick={() => modifyElement(visit._id)}>
-                    Modificar
+                  <FontAwesomeIcon icon={faPencilAlt} /> Modificar
                   </Button>
                   <Button className="btn btn-danger" onClick={() => deleteElement(visit._id)}>
-                    Eliminar
+                  <FontAwesomeIcon icon={faTrash} /> Eliminar
                   </Button>
                 </div>
               </td>
