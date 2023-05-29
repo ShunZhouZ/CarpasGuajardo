@@ -6,6 +6,7 @@ moment.locale('es');
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPencilAlt, faTrash, faEye } from "@fortawesome/free-solid-svg-icons";
 import Table from "react-bootstrap/Table";
+import * as XLSX from "xlsx";
 
 const Trabajador = (props) => {
 	const [show, setShow] = useState(false);
@@ -15,6 +16,9 @@ const Trabajador = (props) => {
 	const [trabajador, setTrabajadores] = useState(defaultTrabajadores);
 	const [showConfirmation, setShowConfirmation] = useState(false);
 	const [trabajadorIdToDelete, setTrabajadorIdToDelete] = useState(null);
+	const [searchTerm, setSearchTerm] = useState("");
+	const [sortAsc, setSortAsc] = useState(true);
+
 
 	const handleClose = () => setShow(false);
 	const handleShow = () => setShow(true);
@@ -57,21 +61,71 @@ const Trabajador = (props) => {
 		await reloadTrabajadores();
 	};
 
+	const filterTrabajador = () => {
+		const filtered = trabajador.filter(
+			(trabajador) =>
+				trabajador.username
+					.toLowerCase()
+					.includes(searchTerm.toLowerCase()) ||
+				trabajador.rol
+					.toLowerCase()
+					.includes(searchTerm.toLowerCase()) ||
+				trabajador.nombre
+					.toLowerCase()
+					.includes(searchTerm.toLowerCase())
+		);
+		return filtered;
+	};
+
+	const handleSort = () => {
+		setSortAsc(!sortAsc);
+	};
+
+	const filteredTrabajador = filterTrabajador();
+
+	const sortedTrabajador = filteredTrabajador.sort((a, b) => {
+		const dateA = moment(a.fecha_inicio);
+		const dateB = moment(b.fecha_inicio);
+		return sortAsc ? dateA - dateB : dateB - dateA;
+	});
+
+	const downloadExcel = () => {
+		const worksheet = XLSX.utils.json_to_sheet(sortedTrabajador);
+		const workbook = XLSX.utils.book_new();
+		XLSX.utils.book_append_sheet(workbook, worksheet, "Trabajadores");
+		XLSX.writeFile(workbook, "trabajadores.xlsx");
+	};
+
+
 	return (
 		<div style={{ marginLeft: "40px", marginRight: "40px" }}>
 			<h1>Lista de trabajadores</h1>
+			<div className="search-container">
+				<h2>Búsqueda de trabajadores</h2>
+				<div className="search-input">
+					<input
+						type="text"
+						placeholder="Buscar por ussername, rol o nombre trabajador"
+						value={searchTerm}
+						onChange={(e) => setSearchTerm(e.target.value)}
+					/>
+					<Button className="excel" variant="success" onClick={downloadExcel}>
+						Descargar Excel
+					</Button>
+				</div>
+			</div>
 			<Table responsive striped bordered hover>
 				<thead>
 					<tr key={0}>
 						<th style={{ width: "5%" }}>Nº</th>
-						<th style={{ width: "30%" }}>Nombre de usuario</th>
-						<th style={{ width: "30%" }}>Rol</th>
-						<th style={{ width: "30%" }}>Nombre trabajador</th>
-						<th style={{ width: "47%" }}>Acciones</th>
+						<th style={{ width: "15%" }}>Nombre de usuario</th>
+						<th style={{ width: "15%" }}>Rol</th>
+						<th style={{ width: "15%" }}>Nombre trabajador</th>
+						<th style={{ width: "3%" }}>Acciones</th>
 					</tr>
 				</thead>
 				<tbody>
-					{trabajador?.map((trabajador, index) => (
+					{sortedTrabajador?.map((trabajador, index) => (
 						<tr key={trabajador._id}>
 							<td>{index + 1}</td>
 							<td>{trabajador.username}</td>
@@ -79,11 +133,11 @@ const Trabajador = (props) => {
 							<td>{trabajador.nombre}</td>
 							<td>
 								<div className="button-group">
-									<Button className="btn btn-info" onClick={() => modifyElement(trabajador._id)}>
-									<FontAwesomeIcon icon={faPencilAlt} /> Modificar
+									<Button className="btn btn-info " onClick={() => modifyElement(trabajador._id)}>
+										<FontAwesomeIcon icon={faPencilAlt} /> Modificar
 									</Button>
 									<Button className="btn btn-danger" onClick={() => deleteElement(trabajador._id, trabajador.nombre, trabajador.rol)}>
-									<FontAwesomeIcon icon={faTrash} /> Eliminar
+										<FontAwesomeIcon icon={faTrash} /> Eliminar
 									</Button>
 								</div>
 							</td>

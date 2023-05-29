@@ -174,7 +174,7 @@ const Eventos = (props) => {
               <td>{event.anticipo}</td>
               <td>
                 <Button
-                  className="btn btn-light"
+                  className="btn btn-light btn-sm"
                   onClick={() =>
                     handleShowDescriptionModal(event.descripcion)
                   }
@@ -185,13 +185,13 @@ const Eventos = (props) => {
               <td>
                 <div className="button-group">
                   <Button
-                    className="btn btn-info"
+                    className="btn btn-info btn-sm"
                     onClick={() => modifyElement(event._id)}
                   >
                     <FontAwesomeIcon icon={faPencilAlt} /> Modificar
                   </Button>
                   <Button
-                    className="btn btn-danger"
+                    className="btn btn-danger btn-sm"
                     onClick={() => deleteElement(event._id)}
                   >
                     <FontAwesomeIcon icon={faTrash} /> Eliminar

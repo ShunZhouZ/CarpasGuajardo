@@ -6,6 +6,7 @@ moment.locale('es');
 import Table from "react-bootstrap/Table";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPencilAlt, faTrash, faEye } from "@fortawesome/free-solid-svg-icons";
+import * as XLSX from "xlsx";
 
 const Contactos = (props) => {
 	const [show, setShow] = useState(false);
@@ -13,6 +14,9 @@ const Contactos = (props) => {
 	const [contactIdToDelete, setContactIdToDelete] = useState(null);
 	const { defaultContacts } = props;
 	const [contacts, setContacts] = useState(defaultContacts);
+	const [searchTerm, setSearchTerm] = useState("");
+	const [sortAsc, setSortAsc] = useState(true);
+
 
 	const handleClose = () => setShow(false);
 	const handleShow = () => setShow(true);
@@ -53,22 +57,74 @@ const Contactos = (props) => {
 		await reloadContacts();
 	};
 
+	const filterContacts = () => {
+		const filtered = contacts.filter(
+			(contact) =>
+				contact.nombre
+					.toLowerCase()
+					.includes(searchTerm.toLowerCase()) ||
+				contact.contacto
+					.toLowerCase()
+					.includes(searchTerm.toLowerCase()) ||
+				contact.correo
+					.toLowerCase()
+					.includes(searchTerm.toLowerCase()) ||
+				contact.detalle
+					.toLowerCase()
+					.includes(searchTerm.toLowerCase())
+		);
+		return filtered;
+	};
+
+	const handleSort = () => {
+		setSortAsc(!sortAsc);
+	};
+
+	const filteredContacts = filterContacts();
+
+	const sortedContacts = filteredContacts.sort((a, b) => {
+		const dateA = moment(a.fecha_inicio);
+		const dateB = moment(b.fecha_inicio);
+		return sortAsc ? dateA - dateB : dateB - dateA;
+	});
+
+	const downloadExcel = () => {
+		const worksheet = XLSX.utils.json_to_sheet(sortedContacts);
+		const workbook = XLSX.utils.book_new();
+		XLSX.utils.book_append_sheet(workbook, worksheet, "Contactos");
+		XLSX.writeFile(workbook, "contactos.xlsx");
+	};
+
 	return (
 		<div style={{ marginLeft: "40px", marginRight: "40px" }}>
 			<h1>Lista de contactos</h1>
+			<div className="search-container">
+				<h2>Búsqueda de contactos</h2>
+				<div className="search-input">
+					<input
+						type="text"
+						placeholder="Buscar por nombre, contacto o correo"
+						value={searchTerm}
+						onChange={(e) => setSearchTerm(e.target.value)}
+					/>
+					<Button className="excel" variant="success" onClick={downloadExcel}>
+						Descargar Excel
+					</Button>
+				</div>
+			</div>
 			<Table responsive striped bordered hover>
 				<thead>
 					<tr key={0}>
 						<th style={{ width: "5%" }}>Nº</th>
-						<th style={{ width: "25%" }}>Nombre</th>
+						<th style={{ width: "15%" }}>Nombre</th>
 						<th style={{ width: "15%" }}>Contacto</th>
-						<th style={{ width: "25%" }}>Correo</th>
-						<th style={{ width: "25%" }}>Detalles</th>
-						<th style={{ width: "47%" }}>Acciones</th>
+						<th style={{ width: "15%" }}>Correo</th>
+						<th style={{ width: "15%" }}>Detalles</th>
+						<th style={{ width: "10%" }}>Acciones</th>
 					</tr>
 				</thead>
 				<tbody>
-					{contacts?.map((contact, index) => (
+					{sortedContacts?.map((contact, index) => (
 						<tr key={contact._id}>
 							<td>{index + 1}</td>
 							<td>{contact.nombre}</td>
@@ -77,11 +133,11 @@ const Contactos = (props) => {
 							<td>{contact.detalle}</td>
 							<td>
 								<div className="button-group">
-									<Button className="btn btn-info" onClick={() => modifyElement(contact._id)}>
-									<FontAwesomeIcon icon={faPencilAlt} /> Modificar
+									<Button className="btn btn-info btn-sm" onClick={() => modifyElement(contact._id)}>
+										<FontAwesomeIcon icon={faPencilAlt} /> Modificar
 									</Button>
-									<Button className="btn btn-danger" onClick={() => deleteElement(contact._id)}>
-									<FontAwesomeIcon icon={faTrash} /> Eliminar
+									<Button className="btn btn-danger btn-sm" onClick={() => deleteElement(contact._id)}>
+										<FontAwesomeIcon icon={faTrash} /> Eliminar
 									</Button>
 								</div>
 							</td>
@@ -97,7 +153,7 @@ const Contactos = (props) => {
 				<Modal.Footer>
 					<Button variant="secondary" onClick={handleClose}>
 						Cerrar
-						</Button>
+					</Button>
 				</Modal.Footer>
 			</Modal>
 			<Modal show={showConfirmation} onHide={handleConfirmationClose}>
