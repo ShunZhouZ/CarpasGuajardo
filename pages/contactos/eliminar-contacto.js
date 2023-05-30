@@ -5,11 +5,8 @@ import "moment/locale/es";
 moment.locale("es");
 import Table from "react-bootstrap/Table";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPencilAlt, faTrash, faEye } from "@fortawesome/free-solid-svg-icons";
+import { faPencilAlt, faTrash, faEye, faSearch } from "@fortawesome/free-solid-svg-icons";
 import * as XLSX from "xlsx";
-
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faSearch } from "@fortawesome/free-solid-svg-icons";
 
 const Contactos = (props) => {
 	const [show, setShow] = useState(false);

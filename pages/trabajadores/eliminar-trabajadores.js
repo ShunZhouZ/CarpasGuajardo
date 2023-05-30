@@ -5,7 +5,7 @@ import "moment/locale/es";
 moment.locale("es");
 import Table from "react-bootstrap/Table";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faSearch } from "@fortawesome/free-solid-svg-icons";
+import { faSearch, faPencilAlt, faTrash } from "@fortawesome/free-solid-svg-icons";
 
 const Trabajador = (props) => {
 	const [show, setShow] = useState(false);
