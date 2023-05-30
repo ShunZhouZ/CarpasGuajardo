@@ -35,10 +35,18 @@ export function Form_(props) {
 	return (
 		<div className="d-flex justify-content-center">
 			<Form className="mx-5 w-25" onSubmit={handleSubmit}>
-				<h1>Agendar visita a terreno</h1>
+				<h2 className="mb-3 my-3">Agendar visita a terreno</h2>
 				<Form.Group>
 					<Form.Label className="mt-3">Nombre Cliente </Form.Label>
-					<Form.Control type="text" value={nombre_cliente} onChange={(ev) => setnombre_cliente(ev.target.value)} name="nombre_cliente" id="nombres" placeholder="Nombre del cliente" required />
+					<Form.Control
+						type="text"
+						value={nombre_cliente}
+						onChange={(ev) => setnombre_cliente(ev.target.value)}
+						name="nombre_cliente"
+						id="nombres"
+						placeholder="Nombre del cliente"
+						required
+					/>
 				</Form.Group>
 				<Form.Group>
 					<Form.Label className="mt-3">Numero de contacto </Form.Label>
