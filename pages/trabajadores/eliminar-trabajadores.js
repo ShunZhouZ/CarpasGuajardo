@@ -1,18 +1,22 @@
 import { Button, Modal } from "react-bootstrap";
 import { useCallback, useState } from "react";
 import moment from "moment";
-import 'moment/locale/es';
-moment.locale('es');
+import "moment/locale/es";
+moment.locale("es");
 import Table from "react-bootstrap/Table";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faSearch } from "@fortawesome/free-solid-svg-icons";
 
 const Trabajador = (props) => {
 	const [show, setShow] = useState(false);
 	const [elementName, setElementName] = useState("");
 	const [elementRole, setElementRole] = useState("");
 	const { defaultTrabajadores } = props;
-	const [trabajador, setTrabajadores] = useState(defaultTrabajadores);
+	const [trabajadores, setTrabajadores] = useState(defaultTrabajadores);
 	const [showConfirmation, setShowConfirmation] = useState(false);
 	const [trabajadorIdToDelete, setTrabajadorIdToDelete] = useState(null);
+	const [busqueda, setBusqueda] = useState("");
+	const [trabajadoresFiltrado, setTrabajadoresFiltrado] = useState(trabajadores);
 
 	const handleClose = () => setShow(false);
 	const handleShow = () => setShow(true);
@@ -55,9 +59,36 @@ const Trabajador = (props) => {
 		await reloadTrabajadores();
 	};
 
+	const handleChange = (e) => {
+		setBusqueda(e.target.value);
+		console.log(e.target.value);
+		filtrarBusqueda(e.target.value);
+	};
+	const filtrarBusqueda = (terminoBusqueda) => {
+		console.log(terminoBusqueda);
+		var resultado = trabajadores.filter((elemento) => {
+			if (elemento.nombre.toLowerCase().includes(terminoBusqueda.toLowerCase())) {
+				return elemento;
+			}
+		});
+		if (resultado.length > 0) {
+			setTrabajadoresFiltrado(resultado);
+		} else if (terminoBusqueda === "") {
+			setTrabajadoresFiltrado(trabajadores);
+		} else {
+			setTrabajadoresFiltrado([]);
+		}
+	};
+
 	return (
 		<div style={{ marginLeft: "40px", marginRight: "40px" }}>
 			<h1>Lista de trabajadores</h1>
+			<div className="containerInput">
+				<input className="form-control inputBuscar" value={busqueda} placeholder="Búsqueda por nombre" onChange={handleChange} />
+				<Button className="btn btn-primary">
+					<FontAwesomeIcon icon={faSearch} />
+				</Button>
+			</div>
 			<Table responsive striped bordered hover>
 				<thead>
 					<tr key={0}>
@@ -67,8 +98,9 @@ const Trabajador = (props) => {
 						<th style={{ width: "30%" }}>Nombre trabajador</th>
 					</tr>
 				</thead>
+
 				<tbody>
-					{trabajador?.map((trabajador, index) => (
+					{trabajadoresFiltrado?.map((trabajador, index) => (
 						<tr key={trabajador._id}>
 							<td>{index + 1}</td>
 							<td>{trabajador.username}</td>
@@ -88,11 +120,14 @@ const Trabajador = (props) => {
 					))}
 				</tbody>
 			</Table>
+			{trabajadoresFiltrado.length == 0 && <h4>No hay resultados</h4>}
 			<Modal show={show} onHide={handleClose}>
 				<Modal.Header closeButton>
 					<Modal.Title>Trabajador eliminado</Modal.Title>
 				</Modal.Header>
-				<Modal.Body>Se ha eliminado a "{elementName}" con el rol de "{elementRole}" correctamente.</Modal.Body>
+				<Modal.Body>
+					Se ha eliminado a "{elementName}" con el rol de "{elementRole}" correctamente.
+				</Modal.Body>
 				<Modal.Footer>
 					<Button variant="secondary" onClick={handleClose}>
 						Cerrar

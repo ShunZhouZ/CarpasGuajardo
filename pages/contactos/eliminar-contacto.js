@@ -1,9 +1,12 @@
 import { Button, Modal } from "react-bootstrap";
 import { useCallback, useState, useEffect } from "react";
 import moment from "moment";
-import 'moment/locale/es';
-moment.locale('es');
+import "moment/locale/es";
+moment.locale("es");
 import Table from "react-bootstrap/Table";
+
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faSearch } from "@fortawesome/free-solid-svg-icons";
 
 const Contactos = (props) => {
 	const [show, setShow] = useState(false);
@@ -11,6 +14,8 @@ const Contactos = (props) => {
 	const [contactIdToDelete, setContactIdToDelete] = useState(null);
 	const { defaultContacts } = props;
 	const [contacts, setContacts] = useState(defaultContacts);
+	const [busqueda, setBusqueda] = useState("");
+	const [contactosFiltrado, setContacsFiltrado] = useState(contacts);
 
 	const handleClose = () => setShow(false);
 	const handleShow = () => setShow(true);
@@ -51,9 +56,36 @@ const Contactos = (props) => {
 		await reloadContacts();
 	};
 
+	const handleChange = (e) => {
+		setBusqueda(e.target.value);
+		console.log(e.target.value);
+		filtrarBusqueda(e.target.value);
+	};
+	const filtrarBusqueda = (terminoBusqueda) => {
+		console.log(terminoBusqueda);
+		var resultado = contacts.filter((elemento) => {
+			if (elemento.nombre.toLowerCase().includes(terminoBusqueda.toLowerCase())) {
+				return elemento;
+			}
+		});
+		if (resultado.length > 0) {
+			setContacsFiltrado(resultado);
+		} else if (terminoBusqueda === "") {
+			setContacsFiltrado(contacts);
+		} else {
+			setContacsFiltrado([]);
+		}
+	};
+
 	return (
 		<div style={{ marginLeft: "40px", marginRight: "40px" }}>
 			<h1>Lista de contactos</h1>
+			<div className="containerInput">
+				<input className="form-control inputBuscar" value={busqueda} placeholder="Búsqueda por nombre" onChange={handleChange} />
+				<Button className="btn btn-primary">
+					<FontAwesomeIcon icon={faSearch} />
+				</Button>
+			</div>
 			<Table responsive striped bordered hover>
 				<thead>
 					<tr key={0}>
@@ -65,7 +97,7 @@ const Contactos = (props) => {
 					</tr>
 				</thead>
 				<tbody>
-					{contacts?.map((contact, index) => (
+					{contactosFiltrado?.map((contact, index) => (
 						<tr key={contact._id}>
 							<td>{index + 1}</td>
 							<td>{contact.nombre}</td>
@@ -86,6 +118,7 @@ const Contactos = (props) => {
 					))}
 				</tbody>
 			</Table>
+			{contactosFiltrado.length == 0 && <h4>No hay resultados</h4>}
 			<Modal show={show} onHide={handleClose}>
 				<Modal.Header closeButton>
 					<Modal.Title>Contacto eliminado</Modal.Title>
@@ -94,7 +127,7 @@ const Contactos = (props) => {
 				<Modal.Footer>
 					<Button variant="secondary" onClick={handleClose}>
 						Cerrar
-						</Button>
+					</Button>
 				</Modal.Footer>
 			</Modal>
 			<Modal show={showConfirmation} onHide={handleConfirmationClose}>

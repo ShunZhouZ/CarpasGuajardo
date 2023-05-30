@@ -43,4 +43,26 @@
 .text-danger {
   color: red;
 }
+.inputBuscar{
+  width: 35% !important;
+}
+.containerInput{
+  padding-bottom: 15px;
+}
+.containerInput{
+  align-items: end;
+  right: 0;
+  display: flex;
+  justify-content: flex-end;
+  padding-bottom: 25px;
+}
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
 
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
