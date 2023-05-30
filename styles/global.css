@@ -117,5 +117,30 @@
   margin-right: 5px;
 }
 
+.modal-title {
+  font-size: 30px;
+  font-weight: bold;
+}
+
+.button-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.excel {
+  padding: 8px;
+  font-size: 16px;
+  border-radius: 3px;
+  margin-left: -40%;
+}
+
+.check-box {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+  justify-content: flex-end;
+}
+
 
 
