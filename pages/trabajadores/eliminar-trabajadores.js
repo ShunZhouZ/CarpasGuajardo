@@ -6,6 +6,10 @@ moment.locale("es");
 import Table from "react-bootstrap/Table";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch, faPencilAlt, faTrash } from "@fortawesome/free-solid-svg-icons";
+import Card from 'react-bootstrap/Card';
+import ListGroup from 'react-bootstrap/ListGroup';
+import Col from 'react-bootstrap/Col';
+import Row from 'react-bootstrap/Row';
 
 const Trabajador = (props) => {
 	const [show, setShow] = useState(false);
@@ -23,7 +27,7 @@ const Trabajador = (props) => {
 	const handleConfirmationClose = () => setShowConfirmation(false);
 
 	const modifyElement = (id) => {
-		window.location.href = `/eventos/modificar-trabajadores?id=${id}`;
+		window.location.href = `/trabajadores/modificar-trabajadores?id=${id}`;
 	};
 
 	const reloadTrabajadores = useCallback(async () => {
@@ -90,7 +94,7 @@ const Trabajador = (props) => {
 				</Button>
 			</div>
 			<Table responsive striped bordered hover>
-				<thead>
+				{/* <thead>
 					<tr key={0}>
 						<th style={{ width: "5%" }}>Nº</th>
 						<th style={{ width: "15%" }}>Nombre de usuario</th>
@@ -98,27 +102,52 @@ const Trabajador = (props) => {
 						<th style={{ width: "15%" }}>Nombre trabajador</th>
 						<th style={{ width: "3%" }}>Acciones</th>
 					</tr>
-				</thead>
+				</thead> */}
 
 				<tbody>
+					<Row xs={1} md={3} className="g-4">
 					{trabajadoresFiltrado?.map((trabajador, index) => (
-						<tr key={trabajador._id}>
-							<td>{index + 1}</td>
-							<td>{trabajador.username}</td>
-							<td>{trabajador.rol}</td>
-							<td>{trabajador.nombre}</td>
-							<td>
-								<div className="button-group">
-									<Button className="btn btn-info " onClick={() => modifyElement(trabajador._id)}>
-										<FontAwesomeIcon icon={faPencilAlt} /> Modificar
-									</Button>
-									<Button className="btn btn-danger" onClick={() => deleteElement(trabajador._id, trabajador.nombre, trabajador.rol)}>
-										<FontAwesomeIcon icon={faTrash} /> Eliminar
-									</Button>
-								</div>
-							</td>
-						</tr>
+						
+						<Card style={{ width: '18rem' }}  key={trabajador._id}>
+							{/* aca va la imagen de la persona */}
+						<Card.Img variant="top" src="" />
+						<Card.Body>
+						<Card.Title>{trabajador.nombre}</Card.Title>
+						{/* <Card.Text>
+							Some quick example text to build on the card title and make up the
+							bulk of the card's content.
+						</Card.Text> */}
+						</Card.Body>
+						<ListGroup className="list-group-flush">
+						<ListGroup.Item>Rol: {trabajador.rol}</ListGroup.Item>
+						<ListGroup.Item>RUT: {trabajador.username}</ListGroup.Item>
+						<ListGroup.Item>Contacto: {trabajador.contacto}</ListGroup.Item>
+						<ListGroup.Item>Correo: {trabajador.correo}</ListGroup.Item>
+						</ListGroup>
+						<Card.Body>
+						<Button className="btn btn-info" onClick={() => modifyElement(trabajador._id)}> <FontAwesomeIcon icon={faPencilAlt} />Modificar</Button>
+						<Button className="btn btn-danger" onClick={() => deleteElement(trabajador._id, trabajador.nombre, trabajador.rol)}> <FontAwesomeIcon icon={faTrash} />Eliminar</Button>
+						</Card.Body>
+						</Card>
+						// para dejarlo como tabla, descomentar todo y comentar lo de arriba
+						// <tr key={trabajador._id}>
+						// 	<td>{index + 1}</td>
+						// 	<td>{trabajador.username}</td>
+						// 	<td>{trabajador.rol}</td>
+						// 	<td>{trabajador.nombre}</td>
+						// 	<td>
+						// 		<div className="button-group">
+						// 			<Button className="btn btn-info " onClick={() => modifyElement(trabajador._id)}>
+						// 				<FontAwesomeIcon icon={faPencilAlt} /> Modificar
+						// 			</Button>
+						// 			<Button className="btn btn-danger" onClick={() => deleteElement(trabajador._id, trabajador.nombre, trabajador.rol)}>
+						// 				<FontAwesomeIcon icon={faTrash} /> Eliminar
+						// 			</Button>
+						// 		</div>
+						// 	</td>
+						// </tr>
 					))}
+					</Row>
 				</tbody>
 			</Table>
 			{trabajadoresFiltrado.length == 0 && <h4>No hay resultados</h4>}
