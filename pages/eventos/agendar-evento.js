@@ -20,12 +20,11 @@ export function Form_(props) {
 	const [cubre_piso, setcubre_piso] = useState("");
 	const [metros_cuadrados, setmetros_cuadrados] = useState("");
 	const [descripcion, setdescripcion] = useState("");
-	const [Iluminacion,setIluminacion ] = useState("");
+	const [Iluminacion, setIluminacion] = useState("");
 	const [calefaccion, setCalefacion] = useState("");
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 		try {
-			
 			const res = await axios.post("../api/agregar_ev", {
 				tipo_evento,
 				nombre_cliente,
@@ -44,16 +43,16 @@ export function Form_(props) {
 				descripcion
 			});
 			console.log(res.data);
-			router.push("./visualizar-admin")
+			router.push("./visualizar-admin");
 		} catch (err) {
 			console.error(err);
 		}
 	};
 	const handleSelectChange = (event) => {
-		const seleccion = event.target.value === 'carpa';
+		const seleccion = event.target.value === "carpa";
 		setCarpa(seleccion);
 		setToldo(!seleccion);
-	  };
+	};
 	//className='d-flex justify-content-center'
 	return (
 		<div className="d-flex justify-content-center">
@@ -100,26 +99,33 @@ export function Form_(props) {
 						</Form.Group>
 						<Form.Group>
 							<Form.Label className="mt-3">Metros cuadrados </Form.Label>
-							<Form.Control name="metros_cuadrados" value={metros_cuadrados} onChange={(ev) => setmetros_cuadrados(ev.target.value)} type="number" placeholder="Metros cuadrados" required />
+							<Form.Control
+								name="metros_cuadrados"
+								value={metros_cuadrados}
+								onChange={(ev) => setmetros_cuadrados(ev.target.value)}
+								type="number"
+								placeholder="Metros cuadrados"
+								required
+							/>
 						</Form.Group>
 						<Form.Group>
-							<Form.Label className="mt-3" >Seleccione si desea carpa o toldo</Form.Label>
-								<Form.Control as="select" onChange={handleSelectChange} required>
-									<option  >Selección</option>
-									<option value="carpa" >Carpa</option>
-									<option value="toldo">Toldo</option>
-								</Form.Control>
-							<Row xs = "auto">
+							<Form.Label className="mt-3">Seleccione si desea carpa o toldo</Form.Label>
+							<Form.Control as="select" onChange={handleSelectChange} required>
+								<option>Selección</option>
+								<option value="carpa">Carpa</option>
+								<option value="toldo">Toldo</option>
+							</Form.Control>
+							<Row xs="auto">
 								<Col>
-								<Form.Label className="mt-3">Cubrepiso</Form.Label>
-									<Form.Check type="switch" checked={cubre_piso} onChange={(ev) => setcubre_piso(ev.target.checked)}  />
+									<Form.Label className="mt-3">Cubrepiso</Form.Label>
+									<Form.Check type="switch" checked={cubre_piso} onChange={(ev) => setcubre_piso(ev.target.checked)} />
 								</Col>
 								<Col>
-								<Form.Label className="mt-3">Calefacción</Form.Label>
+									<Form.Label className="mt-3">Calefacción</Form.Label>
 									<Form.Check type="switch" checked={calefaccion} onChange={(ev) => setCalefacion(ev.target.checked)} />
 								</Col>
 								<Col>
-								<Form.Label className="mt-3">Iluminación</Form.Label>
+									<Form.Label className="mt-3">Iluminación</Form.Label>
 									<Form.Check type="switch" checked={Iluminacion} onChange={(ev) => setIluminacion(ev.target.checked)} />
 								</Col>
 							</Row>

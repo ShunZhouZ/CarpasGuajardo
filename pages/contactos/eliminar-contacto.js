@@ -1,11 +1,11 @@
 import { Button, Modal } from "react-bootstrap";
 import { useCallback, useState, useEffect } from "react";
 import moment from "moment";
-import 'moment/locale/es';
-moment.locale('es');
+import "moment/locale/es";
+moment.locale("es");
 import Table from "react-bootstrap/Table";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPencilAlt, faTrash, faEye } from "@fortawesome/free-solid-svg-icons";
+import { faPencilAlt, faTrash, faEye, faSearch } from "@fortawesome/free-solid-svg-icons";
 import * as XLSX from "xlsx";
 
 const Contactos = (props) => {
@@ -14,9 +14,10 @@ const Contactos = (props) => {
 	const [contactIdToDelete, setContactIdToDelete] = useState(null);
 	const { defaultContacts } = props;
 	const [contacts, setContacts] = useState(defaultContacts);
+	const [busqueda, setBusqueda] = useState("");
+	const [contactosFiltrado, setContacsFiltrado] = useState(contacts);
 	const [searchTerm, setSearchTerm] = useState("");
 	const [sortAsc, setSortAsc] = useState(true);
-
 
 	const handleClose = () => setShow(false);
 	const handleShow = () => setShow(true);
@@ -57,60 +58,35 @@ const Contactos = (props) => {
 		await reloadContacts();
 	};
 
-	const filterContacts = () => {
-		const filtered = contacts.filter(
-			(contact) =>
-				contact.nombre
-					.toLowerCase()
-					.includes(searchTerm.toLowerCase()) ||
-				contact.contacto
-					.toLowerCase()
-					.includes(searchTerm.toLowerCase()) ||
-				contact.correo
-					.toLowerCase()
-					.includes(searchTerm.toLowerCase()) ||
-				contact.detalle
-					.toLowerCase()
-					.includes(searchTerm.toLowerCase())
-		);
-		return filtered;
+	const handleChange = (e) => {
+		setBusqueda(e.target.value);
+		console.log(e.target.value);
+		filtrarBusqueda(e.target.value);
 	};
-
-	const handleSort = () => {
-		setSortAsc(!sortAsc);
-	};
-
-	const filteredContacts = filterContacts();
-
-	const sortedContacts = filteredContacts.sort((a, b) => {
-		const dateA = moment(a.fecha_inicio);
-		const dateB = moment(b.fecha_inicio);
-		return sortAsc ? dateA - dateB : dateB - dateA;
-	});
-
-	const downloadExcel = () => {
-		const worksheet = XLSX.utils.json_to_sheet(sortedContacts);
-		const workbook = XLSX.utils.book_new();
-		XLSX.utils.book_append_sheet(workbook, worksheet, "Contactos");
-		XLSX.writeFile(workbook, "contactos.xlsx");
+	const filtrarBusqueda = (terminoBusqueda) => {
+		console.log(terminoBusqueda);
+		var resultado = contacts.filter((elemento) => {
+			if (elemento.nombre.toLowerCase().includes(terminoBusqueda.toLowerCase())) {
+				return elemento;
+			}
+		});
+		if (resultado.length > 0) {
+			setContacsFiltrado(resultado);
+		} else if (terminoBusqueda === "") {
+			setContacsFiltrado(contacts);
+		} else {
+			setContacsFiltrado([]);
+		}
 	};
 
 	return (
 		<div style={{ marginLeft: "40px", marginRight: "40px" }}>
 			<h1>Lista de contactos</h1>
-			<div className="search-container">
-				<h2>Búsqueda de contactos</h2>
-				<div className="search-input">
-					<input
-						type="text"
-						placeholder="Buscar por nombre, contacto o correo"
-						value={searchTerm}
-						onChange={(e) => setSearchTerm(e.target.value)}
-					/>
-					<Button className="excel" variant="success" onClick={downloadExcel}>
-						Descargar Excel
-					</Button>
-				</div>
+			<div className="containerInput">
+				<input className="form-control inputBuscar" value={busqueda} placeholder="Búsqueda por nombre" onChange={handleChange} />
+				<Button className="btn btn-primary">
+					<FontAwesomeIcon icon={faSearch} />
+				</Button>
 			</div>
 			<Table responsive striped bordered hover>
 				<thead>
@@ -124,7 +100,7 @@ const Contactos = (props) => {
 					</tr>
 				</thead>
 				<tbody>
-					{sortedContacts?.map((contact, index) => (
+					{contactosFiltrado?.map((contact, index) => (
 						<tr key={contact._id}>
 							<td>{index + 1}</td>
 							<td>{contact.nombre}</td>
@@ -145,6 +121,7 @@ const Contactos = (props) => {
 					))}
 				</tbody>
 			</Table>
+			{contactosFiltrado.length == 0 && <h4>No hay resultados</h4>}
 			<Modal show={show} onHide={handleClose}>
 				<Modal.Header closeButton>
 					<Modal.Title>Contacto eliminado</Modal.Title>

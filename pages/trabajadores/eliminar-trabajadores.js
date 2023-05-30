@@ -1,24 +1,22 @@
 import { Button, Modal } from "react-bootstrap";
 import { useCallback, useState } from "react";
 import moment from "moment";
-import 'moment/locale/es';
-moment.locale('es');
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPencilAlt, faTrash, faEye } from "@fortawesome/free-solid-svg-icons";
+import "moment/locale/es";
+moment.locale("es");
 import Table from "react-bootstrap/Table";
-import * as XLSX from "xlsx";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faSearch, faPencilAlt, faTrash } from "@fortawesome/free-solid-svg-icons";
 
 const Trabajador = (props) => {
 	const [show, setShow] = useState(false);
 	const [elementName, setElementName] = useState("");
 	const [elementRole, setElementRole] = useState("");
 	const { defaultTrabajadores } = props;
-	const [trabajador, setTrabajadores] = useState(defaultTrabajadores);
+	const [trabajadores, setTrabajadores] = useState(defaultTrabajadores);
 	const [showConfirmation, setShowConfirmation] = useState(false);
 	const [trabajadorIdToDelete, setTrabajadorIdToDelete] = useState(null);
-	const [searchTerm, setSearchTerm] = useState("");
-	const [sortAsc, setSortAsc] = useState(true);
-
+	const [busqueda, setBusqueda] = useState("");
+	const [trabajadoresFiltrado, setTrabajadoresFiltrado] = useState(trabajadores);
 
 	const handleClose = () => setShow(false);
 	const handleShow = () => setShow(true);
@@ -61,58 +59,35 @@ const Trabajador = (props) => {
 		await reloadTrabajadores();
 	};
 
-	const filterTrabajador = () => {
-		const filtered = trabajador.filter(
-			(trabajador) =>
-				trabajador.username
-					.toLowerCase()
-					.includes(searchTerm.toLowerCase()) ||
-				trabajador.rol
-					.toLowerCase()
-					.includes(searchTerm.toLowerCase()) ||
-				trabajador.nombre
-					.toLowerCase()
-					.includes(searchTerm.toLowerCase())
-		);
-		return filtered;
+	const handleChange = (e) => {
+		setBusqueda(e.target.value);
+		console.log(e.target.value);
+		filtrarBusqueda(e.target.value);
 	};
-
-	const handleSort = () => {
-		setSortAsc(!sortAsc);
+	const filtrarBusqueda = (terminoBusqueda) => {
+		console.log(terminoBusqueda);
+		var resultado = trabajadores.filter((elemento) => {
+			if (elemento.nombre.toLowerCase().includes(terminoBusqueda.toLowerCase())) {
+				return elemento;
+			}
+		});
+		if (resultado.length > 0) {
+			setTrabajadoresFiltrado(resultado);
+		} else if (terminoBusqueda === "") {
+			setTrabajadoresFiltrado(trabajadores);
+		} else {
+			setTrabajadoresFiltrado([]);
+		}
 	};
-
-	const filteredTrabajador = filterTrabajador();
-
-	const sortedTrabajador = filteredTrabajador.sort((a, b) => {
-		const dateA = moment(a.fecha_inicio);
-		const dateB = moment(b.fecha_inicio);
-		return sortAsc ? dateA - dateB : dateB - dateA;
-	});
-
-	const downloadExcel = () => {
-		const worksheet = XLSX.utils.json_to_sheet(sortedTrabajador);
-		const workbook = XLSX.utils.book_new();
-		XLSX.utils.book_append_sheet(workbook, worksheet, "Trabajadores");
-		XLSX.writeFile(workbook, "trabajadores.xlsx");
-	};
-
 
 	return (
 		<div style={{ marginLeft: "40px", marginRight: "40px" }}>
 			<h1>Lista de trabajadores</h1>
-			<div className="search-container">
-				<h2>Búsqueda de trabajadores</h2>
-				<div className="search-input">
-					<input
-						type="text"
-						placeholder="Buscar por ussername, rol o nombre trabajador"
-						value={searchTerm}
-						onChange={(e) => setSearchTerm(e.target.value)}
-					/>
-					<Button className="excel" variant="success" onClick={downloadExcel}>
-						Descargar Excel
-					</Button>
-				</div>
+			<div className="containerInput">
+				<input className="form-control inputBuscar" value={busqueda} placeholder="Búsqueda por nombre" onChange={handleChange} />
+				<Button className="btn btn-primary">
+					<FontAwesomeIcon icon={faSearch} />
+				</Button>
 			</div>
 			<Table responsive striped bordered hover>
 				<thead>
@@ -124,8 +99,9 @@ const Trabajador = (props) => {
 						<th style={{ width: "3%" }}>Acciones</th>
 					</tr>
 				</thead>
+
 				<tbody>
-					{sortedTrabajador?.map((trabajador, index) => (
+					{trabajadoresFiltrado?.map((trabajador, index) => (
 						<tr key={trabajador._id}>
 							<td>{index + 1}</td>
 							<td>{trabajador.username}</td>
@@ -145,11 +121,14 @@ const Trabajador = (props) => {
 					))}
 				</tbody>
 			</Table>
+			{trabajadoresFiltrado.length == 0 && <h4>No hay resultados</h4>}
 			<Modal show={show} onHide={handleClose}>
 				<Modal.Header closeButton>
 					<Modal.Title>Trabajador eliminado</Modal.Title>
 				</Modal.Header>
-				<Modal.Body>Se ha eliminado a "{elementName}" con el rol de "{elementRole}" correctamente.</Modal.Body>
+				<Modal.Body>
+					Se ha eliminado a "{elementName}" con el rol de "{elementRole}" correctamente.
+				</Modal.Body>
 				<Modal.Footer>
 					<Button variant="secondary" onClick={handleClose}>
 						Cerrar
