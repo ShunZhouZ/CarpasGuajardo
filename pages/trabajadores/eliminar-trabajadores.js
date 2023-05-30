@@ -93,9 +93,10 @@ const Trabajador = (props) => {
 				<thead>
 					<tr key={0}>
 						<th style={{ width: "5%" }}>Nº</th>
-						<th style={{ width: "30%" }}>Nombre de usuario</th>
-						<th style={{ width: "30%" }}>Rol</th>
-						<th style={{ width: "30%" }}>Nombre trabajador</th>
+						<th style={{ width: "15%" }}>Nombre de usuario</th>
+						<th style={{ width: "15%" }}>Rol</th>
+						<th style={{ width: "15%" }}>Nombre trabajador</th>
+						<th style={{ width: "3%" }}>Acciones</th>
 					</tr>
 				</thead>
 
@@ -108,11 +109,11 @@ const Trabajador = (props) => {
 							<td>{trabajador.nombre}</td>
 							<td>
 								<div className="button-group">
-									<Button className="btn btn-info" onClick={() => modifyElement(trabajador._id)}>
-										Modificar
+									<Button className="btn btn-info " onClick={() => modifyElement(trabajador._id)}>
+										<FontAwesomeIcon icon={faPencilAlt} /> Modificar
 									</Button>
 									<Button className="btn btn-danger" onClick={() => deleteElement(trabajador._id, trabajador.nombre, trabajador.rol)}>
-										Eliminar
+										<FontAwesomeIcon icon={faTrash} /> Eliminar
 									</Button>
 								</div>
 							</td>

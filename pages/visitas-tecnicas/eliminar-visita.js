@@ -1,8 +1,13 @@
-import { Button, Modal, Table } from "react-bootstrap";
+import { Button, Modal } from "react-bootstrap";
 import { useCallback, useState } from "react";
 import moment from "moment";
 import 'moment/locale/es';
 moment.locale('es');
+import Table from "react-bootstrap/Table";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPencilAlt, faTrash, faEye } from "@fortawesome/free-solid-svg-icons";
+import * as XLSX from "xlsx";
+
 
 const Visitas = (props) => {
   const { defaultVisits } = props;
@@ -12,6 +17,9 @@ const Visitas = (props) => {
   const [showSuccessModal, setShowSuccessModal] = useState(false);
   const [visitIdToDelete, setVisitIdToDelete] = useState(null);
   const [visitIdToShowDescription, setVisitIdToShowDescription] = useState(null); // Nuevo estado para almacenar el ID de la visita a mostrar
+  const [searchTerm, setSearchTerm] = useState("");
+  const [sortAsc, setSortAsc] = useState(true);
+
 
   const reloadVisits = useCallback(async () => {
     let res = await fetch("http://localhost:3000/api/visitas", {
@@ -59,9 +67,59 @@ const Visitas = (props) => {
     setShowSuccessModal(false);
   };
 
+  const filterVisits = () => {
+    const filtered = visits.filter(
+      (visit) =>
+        visit.nombre_cliente
+          .toLowerCase()
+          .includes(searchTerm.toLowerCase()) ||
+        visit.direccion_cliente
+          .toLowerCase()
+          .includes(searchTerm.toLowerCase()) ||
+        visit.numero_contacto_cliente
+          .toLowerCase()
+          .includes(searchTerm.toLowerCase())
+    );
+    return filtered;
+  };
+
+  const handleSort = () => {
+    setSortAsc(!sortAsc);
+  };
+
+  const filteredVisits = filterVisits();
+
+  const sortedVisits = filteredVisits.sort((a, b) => {
+    const dateA = moment(a.fecha_inicio);
+    const dateB = moment(b.fecha_inicio);
+    return sortAsc ? dateA - dateB : dateB - dateA;
+  });
+
+  const downloadExcel = () => {
+    const worksheet = XLSX.utils.json_to_sheet(sortedVisits);
+    const workbook = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(workbook, worksheet, "Visitas");
+    XLSX.writeFile(workbook, "visitas.xlsx");
+  };
+
+
   return (
     <div style={{ marginLeft: "40px", marginRight: "40px" }}>
       <h1>Lista de visitas</h1>
+      <div className="search-container">
+        <h2>Búsqueda de visitas</h2>
+        <div className="search-input">
+          <input
+            type="text"
+            placeholder="Buscar por nombre, dirección o telefono"
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+          />
+          <Button className="excel" variant="success" onClick={downloadExcel}>
+            Descargar Excel
+          </Button>
+        </div>
+      </div>
       <Table responsive striped bordered hover>
         <thead>
           <tr key={0}>
@@ -72,10 +130,11 @@ const Visitas = (props) => {
             <th style={{ width: "15%" }}>Descripción</th>
             <th style={{ width: "15%" }}>Fecha visita</th>
             <th style={{ width: "20%", textAlign: "center" }}>Realizacion</th>
+            <th style={{ width: "47%" }}>Acciones</th>
           </tr>
         </thead>
         <tbody>
-          {visits?.map((visit, index) => (
+          {sortedVisits?.map((visit, index) => (
             <tr key={visit._id}>
               <td>{index + 1}</td>
               <td>{visit.nombre_cliente}</td>
@@ -83,7 +142,7 @@ const Visitas = (props) => {
               <td>{visit.direccion_cliente}</td>
               <td style={{ textAlign: "center" }}>
                 <Button className="btn btn-light" onClick={() => showDescription(visit._id)}> {/* Botón para mostrar la descripción */}
-                  Mostrar Descripción
+                  <FontAwesomeIcon icon={faEye} /> Visualizar Descripción
                 </Button>
               </td>
               <td className={moment(visit.fecha_hora_visita_terreno, "YYYY-MM-DD HH:mm:ss").isBefore(moment(), "minute") ? "text-danger" : ""}>
@@ -95,11 +154,11 @@ const Visitas = (props) => {
               <td>
                 <div className="button-group">
 
-                  <Button className="btn btn-info" onClick={() => modifyElement(visit._id)}>
-                    Modificar
+                  <Button className="btn btn-info btn-sm" onClick={() => modifyElement(visit._id)}>
+                    <FontAwesomeIcon icon={faPencilAlt} /> Modificar
                   </Button>
-                  <Button className="btn btn-danger" onClick={() => deleteElement(visit._id)}>
-                    Eliminar
+                  <Button className="btn btn-danger btn-sm" onClick={() => deleteElement(visit._id)}>
+                    <FontAwesomeIcon icon={faTrash} /> Eliminar
                   </Button>
                 </div>
               </td>

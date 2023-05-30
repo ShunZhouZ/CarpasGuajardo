@@ -4,6 +4,9 @@ import moment from "moment";
 import "moment/locale/es";
 moment.locale("es");
 import Table from "react-bootstrap/Table";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPencilAlt, faTrash, faEye } from "@fortawesome/free-solid-svg-icons";
+import * as XLSX from "xlsx";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
@@ -16,6 +19,8 @@ const Contactos = (props) => {
 	const [contacts, setContacts] = useState(defaultContacts);
 	const [busqueda, setBusqueda] = useState("");
 	const [contactosFiltrado, setContacsFiltrado] = useState(contacts);
+	const [searchTerm, setSearchTerm] = useState("");
+	const [sortAsc, setSortAsc] = useState(true);
 
 	const handleClose = () => setShow(false);
 	const handleShow = () => setShow(true);
@@ -90,10 +95,11 @@ const Contactos = (props) => {
 				<thead>
 					<tr key={0}>
 						<th style={{ width: "5%" }}>Nº</th>
-						<th style={{ width: "25%" }}>Nombre</th>
+						<th style={{ width: "15%" }}>Nombre</th>
 						<th style={{ width: "15%" }}>Contacto</th>
-						<th style={{ width: "25%" }}>Correo</th>
-						<th style={{ width: "25%" }}>Detalles</th>
+						<th style={{ width: "15%" }}>Correo</th>
+						<th style={{ width: "15%" }}>Detalles</th>
+						<th style={{ width: "10%" }}>Acciones</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -106,11 +112,11 @@ const Contactos = (props) => {
 							<td>{contact.detalle}</td>
 							<td>
 								<div className="button-group">
-									<Button className="btn btn-info" onClick={() => modifyElement(contact._id)}>
-										Modificar
+									<Button className="btn btn-info btn-sm" onClick={() => modifyElement(contact._id)}>
+										<FontAwesomeIcon icon={faPencilAlt} /> Modificar
 									</Button>
-									<Button className="btn btn-danger" onClick={() => deleteElement(contact._id)}>
-										Eliminar
+									<Button className="btn btn-danger btn-sm" onClick={() => deleteElement(contact._id)}>
+										<FontAwesomeIcon icon={faTrash} /> Eliminar
 									</Button>
 								</div>
 							</td>

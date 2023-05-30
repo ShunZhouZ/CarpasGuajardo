@@ -32,13 +32,16 @@
     "react": "^18.2.0",
     "react-big-calendar": "^1.6.9",
     "react-bootstrap": "^2.7.4",
+    "react-datepicker": "^4.11.0",
     "react-dom": "^18.2.0",
     "react-minimal-side-navigation": "^1.9.2",
     "react-native-elements": "^3.4.3",
     "react-native-vector-icons": "^9.2.0",
     "react-native-web": "^0.19.4",
+    "react-table": "^7.8.0",
     "reactstrap": "^9.1.9",
-    "swr": "^2.1.5"
+    "swr": "^2.1.5",
+    "xlsx": "^0.18.5"
   },
   "devDependencies": {
     "eslint": "8.18.0",
