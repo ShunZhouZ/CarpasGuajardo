@@ -146,7 +146,7 @@ const Eventos = (props) => {
           </Button>
 
           <Button className="sort" variant="primary" onClick={handleSortOrder}>
-            Ordenar {sortOrder === "asc" ? "descendente" : "ascendente"}
+            Mas {sortOrder === "desc" ? "recientes" : "antiguos"}
           </Button>
         </div>
         <div className="check-box">
@@ -228,7 +228,7 @@ const Eventos = (props) => {
                   </Col>
 
                   <Col>
-				  <Card.Text>
+                    <Card.Text>
                       <strong>Toldo:</strong> {event.toldo ? "Sí" : "No"}
                     </Card.Text>
                     <Card.Text>
@@ -247,35 +247,35 @@ const Eventos = (props) => {
                     </Card.Text>
                   </Col>
 
-				  <Col>
-				  <Button
-                  className="btn btn-light btn-sm mb-2"
-                  onClick={() => handleShowDescriptionModal(event.descripcion)}
-                >
-                  <FontAwesomeIcon icon={faEye} /> Visualizar Descripción
-                </Button>
-				<br></br>
-				<br></br>
-                <Button
-                  className="btn btn-info btn-sm"
-                  onClick={() => modifyElement(event._id)}
-                >
-                  <FontAwesomeIcon icon={faPencilAlt} /> Modificar
-                </Button>
-				<br></br>
-				<br></br>
-                <Button
-                  className="btn btn-danger btn-sm"
-                  onClick={() => deleteElement(event._id)}
-                >
-                  <FontAwesomeIcon icon={faTrash} /> Eliminar
-                </Button>
-				  </Col>
+                  <Col>
+                    <Button
+                      className="btn btn-light btn-sm mb-2"
+                      onClick={() => handleShowDescriptionModal(event.descripcion)}
+                    >
+                      <FontAwesomeIcon icon={faEye} /> Visualizar Descripción
+                    </Button>
+                    <br></br>
+                    <br></br>
+                    <Button
+                      className="btn btn-info btn-sm"
+                      onClick={() => modifyElement(event._id)}
+                    >
+                      <FontAwesomeIcon icon={faPencilAlt} /> Modificar
+                    </Button>
+                    <br></br>
+                    <br></br>
+                    <Button
+                      className="btn btn-danger btn-sm"
+                      onClick={() => deleteElement(event._id)}
+                    >
+                      <FontAwesomeIcon icon={faTrash} /> Eliminar
+                    </Button>
+                  </Col>
                 </Row>
               </div>
               <br></br>
               <div className="button-group">
-                
+
               </div>
             </Card.Body>
           </Card>

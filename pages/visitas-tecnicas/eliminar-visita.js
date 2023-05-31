@@ -1,4 +1,4 @@
-import { Button, Modal } from "react-bootstrap";
+import { Card, Button, Modal, Row, Col } from "react-bootstrap";
 import { useCallback, useState } from "react";
 import moment from "moment";
 import 'moment/locale/es';
@@ -105,8 +105,8 @@ const Visitas = (props) => {
 
   return (
     <div style={{ marginLeft: "40px", marginRight: "40px" }}>
-      <h1>Lista de visitas</h1>
-      <div className="search-container">
+      <h1 className="display-3 text-center mb-5">Lista de visitas</h1>
+      {/* <div className="search-container">
         <h2>Búsqueda de visitas</h2>
         <div className="search-input">
           <input
@@ -119,53 +119,82 @@ const Visitas = (props) => {
             Descargar Excel
           </Button>
         </div>
-      </div>
-      <Table responsive striped bordered hover>
-        <thead>
-          <tr key={0}>
-            <th style={{ width: "5%" }}>Nº</th>
-            <th style={{ width: "15%" }}>Nombre cliente</th>
-            <th style={{ width: "15%" }}>Contacto</th>
-            <th style={{ width: "15%" }}>Direccion</th>
-            <th style={{ width: "15%" }}>Descripción</th>
-            <th style={{ width: "15%" }}>Fecha visita</th>
-            <th style={{ width: "20%", textAlign: "center" }}>Realizacion</th>
-            <th style={{ width: "47%" }}>Acciones</th>
-          </tr>
-        </thead>
-        <tbody>
-          {sortedVisits?.map((visit, index) => (
-            <tr key={visit._id}>
-              <td>{index + 1}</td>
-              <td>{visit.nombre_cliente}</td>
-              <td>{visit.numero_contacto_cliente}</td>
-              <td>{visit.direccion_cliente}</td>
-              <td style={{ textAlign: "center" }}>
-                <Button className="btn btn-light" onClick={() => showDescription(visit._id)}> {/* Botón para mostrar la descripción */}
-                  <FontAwesomeIcon icon={faEye} /> Visualizar Descripción
-                </Button>
-              </td>
-              <td className={moment(visit.fecha_hora_visita_terreno, "YYYY-MM-DD HH:mm:ss").isBefore(moment(), "minute") ? "text-danger" : ""}>
-                {moment(visit.fecha_hora_visita_terreno, "YYYY-MM-DD HH:mm:ss").format("dddd DD-MM-YYYY, HH:mm")}
-              </td>
-              <td className={`text-center ${moment(visit.fecha_hora_visita_terreno, "YYYY-MM-DD HH:mm:ss").isBefore(moment(), "minute") ? "text-danger" : ""}`}>
-                {moment(visit.fecha_hora_visita_terreno, "YYYY-MM-DD HH:mm:ss").startOf("minute").fromNow()}
-              </td>
-              <td>
-                <div className="button-group">
+      </div> */}
+      <div className="card-container">
 
-                  <Button className="btn btn-info btn-sm" onClick={() => modifyElement(visit._id)}>
-                    <FontAwesomeIcon icon={faPencilAlt} /> Modificar
-                  </Button>
-                  <Button className="btn btn-danger btn-sm" onClick={() => deleteElement(visit._id)}>
-                    <FontAwesomeIcon icon={faTrash} /> Eliminar
-                  </Button>
-                </div>
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </Table>
+        {sortedVisits?.map((visit, index) => (
+          <Card key={visit._id}>
+            <Card.Body>
+              <div className="row">
+                <Row>
+                  <Card.Title className="modal-title">
+                    Evento {index + 1}
+                  </Card.Title>
+                  <Col>
+                    <Card.Text>
+                      <strong>Nombre:</strong> {visit.nombre_cliente}
+                    </Card.Text>
+                    <Card.Text>
+                      <strong>Telefono:</strong> {visit.numero_contacto_cliente}
+                    </Card.Text>
+                    <Card.Text>
+                      <strong>Direccion:</strong> {visit.direccion_cliente}
+                    </Card.Text>
+                  </Col>
+
+                  <Col>
+                    <Card.Text>
+                      <strong>Inicio evento:</strong>{" "}
+                      <td className={moment(visit.fecha_hora_visita_terreno, "YYYY-MM-DD HH:mm:ss").isBefore(moment(), "minute") ? "text-danger" : ""}>
+                        {moment(visit.fecha_hora_visita_terreno, "YYYY-MM-DD HH:mm:ss").format("dddd DD-MM-YYYY, HH:mm")}
+                      </td>
+                    </Card.Text>
+                    <Card.Text>
+                      <strong>Fin evento:</strong>{" "}
+                      <td className={`text-center ${moment(visit.fecha_hora_visita_terreno, "YYYY-MM-DD HH:mm:ss").isBefore(moment(), "minute") ? "text-danger" : ""}`}>
+                        {moment(visit.fecha_hora_visita_terreno, "YYYY-MM-DD HH:mm:ss").startOf("minute").fromNow()}
+                      </td>
+                    </Card.Text>
+                  </Col>
+
+                  <Col>
+                    <Card.Text>
+                      <Button className="btn btn-light" onClick={() => showDescription(visit._id)}> {/* Botón para mostrar la descripción */}
+                        <FontAwesomeIcon icon={faEye} /> Visualizar Descripción
+                      </Button>
+
+                    </Card.Text>
+                    <Button className="btn btn-info btn-sm" onClick={() => modifyElement(visit._id)}>
+                      <FontAwesomeIcon icon={faPencilAlt} /> Modificar
+                    </Button>
+                    <br></br>
+                    <br></br>
+                    <Button className="btn btn-danger btn-sm" onClick={() => deleteElement(visit._id)}>
+                      <FontAwesomeIcon icon={faTrash} /> Eliminar
+                    </Button>
+                  </Col>
+
+                  <Col>
+
+                  </Col>
+
+
+
+
+
+
+
+
+
+
+
+                </Row>
+              </div>
+            </Card.Body>
+          </Card>
+        ))}
+
+      </div>
       <Modal show={showDeleteModal} onHide={handleCloseDeleteModal}>
         <Modal.Header closeButton>
           <Modal.Title>Confirmación de eliminación</Modal.Title>
