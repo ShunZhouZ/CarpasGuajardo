@@ -93,7 +93,7 @@ const Trabajador = (props) => {
 					<FontAwesomeIcon icon={faSearch} />
 				</Button>
 			</div>
-			<Table responsive striped bordered hover>
+			{/* <Table responsive striped bordered hover> */}
 				{/* <thead>
 					<tr key={0}>
 						<th style={{ width: "5%" }}>Nº</th>
@@ -104,7 +104,7 @@ const Trabajador = (props) => {
 					</tr>
 				</thead> */}
 
-				<tbody>
+				{/* <tbody> */}
 					<Row xs={1} md={3} className="g-4">
 					{trabajadoresFiltrado?.map((trabajador, index) => (
 						
@@ -148,8 +148,8 @@ const Trabajador = (props) => {
 						// </tr>
 					))}
 					</Row>
-				</tbody>
-			</Table>
+				{/* </tbody> */}
+			{/* </Table> */}
 			{trabajadoresFiltrado.length == 0 && <h4>No hay resultados</h4>}
 			<Modal show={show} onHide={handleClose}>
 				<Modal.Header closeButton>
