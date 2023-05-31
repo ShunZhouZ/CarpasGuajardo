@@ -30,5 +30,21 @@ export default async function handler(req, res) {
                 query: id,
                 response: deleteEvento
             })
+
+            case "PUT":
+                const { body } = req;
+                const { _id, ...data } = body;
+                const responseUpdate = await db.collection("Inventario").updateOne(
+                    {
+                        _id: new ObjectId(_id)
+                    },
+                    {
+                        $set: data
+                    }
+                );
+                return res.status(200).send({
+                    message: "Modificado",
+                    response: responseUpdate
+                });
     }
 }
