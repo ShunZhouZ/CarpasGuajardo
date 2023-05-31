@@ -50,7 +50,7 @@
   padding-bottom: 15px;
 }
 .containerInput{
-  align-items: end;
+  align-items: flex-end;
   right: 0;
   display: flex;
   justify-content: flex-end;
