@@ -144,16 +144,16 @@ const Visitas = (props) => {
 
                   <Col>
                     <Card.Text>
-                      <strong>Inicio evento:</strong>{" "}
-                      <td className={moment(visit.fecha_hora_visita_terreno, "YYYY-MM-DD HH:mm:ss").isBefore(moment(), "minute") ? "text-danger" : ""}>
+                      <strong>Inicio evento:</strong>
+                      <span className={moment(visit.fecha_hora_visita_terreno, "YYYY-MM-DD HH:mm:ss").isBefore(moment(), "minute") ? "text-danger" : ""}>
                         {moment(visit.fecha_hora_visita_terreno, "YYYY-MM-DD HH:mm:ss").format("dddd DD-MM-YYYY, HH:mm")}
-                      </td>
+                      </span>
                     </Card.Text>
                     <Card.Text>
-                      <strong>Fin evento:</strong>{" "}
-                      <td className={`text-center ${moment(visit.fecha_hora_visita_terreno, "YYYY-MM-DD HH:mm:ss").isBefore(moment(), "minute") ? "text-danger" : ""}`}>
+                      <strong>Fin evento:</strong>
+                      <span className={`text-center ${moment(visit.fecha_hora_visita_terreno, "YYYY-MM-DD HH:mm:ss").isBefore(moment(), "minute") ? "text-danger" : ""}`}>
                         {moment(visit.fecha_hora_visita_terreno, "YYYY-MM-DD HH:mm:ss").startOf("minute").fromNow()}
-                      </td>
+                      </span>
                     </Card.Text>
                   </Col>
 
@@ -173,21 +173,6 @@ const Visitas = (props) => {
                       <FontAwesomeIcon icon={faTrash} /> Eliminar
                     </Button>
                   </Col>
-
-                  <Col>
-
-                  </Col>
-
-
-
-
-
-
-
-
-
-
-
                 </Row>
               </div>
             </Card.Body>
