@@ -197,15 +197,15 @@ const Eventos = (props) => {
                       <strong>Direccion:</strong> {event.direccion_cliente}
                     </Card.Text>
                     <Card.Text>
-                      <strong>Inicio evento:</strong>{" "}
+                      <strong>Inicio evento:</strong>
                       {moment(event.fecha_inicio).format(
-                        "dddd DD-MM-YYYY  HH:mm"
+                        "dddd DD-MM-YYYY"
                       )}
                     </Card.Text>
                     <Card.Text>
-                      <strong>Fin evento:</strong>{" "}
+                      <strong>Fin evento:</strong>
                       {moment(event.fecha_termino).format(
-                        "dddd DD-MM-YYYY  HH:mm"
+                        "dddd DD-MM-YYYY"
                       )}
                     </Card.Text>
                   </Col>
@@ -217,12 +217,30 @@ const Eventos = (props) => {
                       </strong>{" "}
                       {event.metros_cuadrados}
                     </Card.Text>
+                    
                     <Card.Text>
-                      <strong>Cubrepiso:</strong>{" "}
+                      <strong>Cubrepiso:</strong>
                       {event.cubre_piso ? "Si" : "No"}
                     </Card.Text>
+                    
                     <Card.Text>
                       <strong>Carpa:</strong> {event.carpa ? "Sí" : "No"}
+                    </Card.Text>
+
+                    <Card.Text>
+                      <strong>Inicio evento:</strong>
+                      {moment(event.fecha_inicio).format(
+                        "HH:mm"
+                      )}
+                    </Card.Text>
+
+
+
+                    <Card.Text>
+                    <strong>Fin evento:</strong>
+                      {moment(event.fecha_termino).format(
+                        "HH:mm"
+                      )}
                     </Card.Text>
 
                   </Col>

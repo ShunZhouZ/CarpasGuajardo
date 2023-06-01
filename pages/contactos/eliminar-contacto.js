@@ -1,4 +1,4 @@
-import { Button, Modal } from "react-bootstrap";
+import { Card, Button, Modal, Row, Col } from "react-bootstrap";
 import { useCallback, useState, useEffect } from "react";
 import moment from "moment";
 import "moment/locale/es";
@@ -81,46 +81,62 @@ const Contactos = (props) => {
 
 	return (
 		<div style={{ marginLeft: "40px", marginRight: "40px" }}>
-			<h1>Lista de contactos</h1>
+			<h1 className="display-3 text-center mb-5">Lista de contactos</h1>
 			<div className="containerInput">
 				<input className="form-control inputBuscar" value={busqueda} placeholder="Búsqueda por nombre" onChange={handleChange} />
 				<Button className="btn btn-primary">
 					<FontAwesomeIcon icon={faSearch} />
 				</Button>
 			</div>
-			<Table responsive striped bordered hover>
-				<thead>
-					<tr key={0}>
-						<th style={{ width: "5%" }}>Nº</th>
-						<th style={{ width: "15%" }}>Nombre</th>
-						<th style={{ width: "15%" }}>Contacto</th>
-						<th style={{ width: "15%" }}>Correo</th>
-						<th style={{ width: "15%" }}>Detalles</th>
-						<th style={{ width: "10%" }}>Acciones</th>
-					</tr>
-				</thead>
-				<tbody>
-					{contactosFiltrado?.map((contact, index) => (
-						<tr key={contact._id}>
-							<td>{index + 1}</td>
-							<td>{contact.nombre}</td>
-							<td>{contact.contacto}</td>
-							<td>{contact.correo}</td>
-							<td>{contact.detalle}</td>
-							<td>
-								<div className="button-group">
-									<Button className="btn btn-info btn-sm" onClick={() => modifyElement(contact._id)}>
-										<FontAwesomeIcon icon={faPencilAlt} /> Modificar
-									</Button>
-									<Button className="btn btn-danger btn-sm" onClick={() => deleteElement(contact._id)}>
-										<FontAwesomeIcon icon={faTrash} /> Eliminar
-									</Button>
-								</div>
-							</td>
-						</tr>
-					))}
-				</tbody>
-			</Table>
+			<div className="card-container">
+				{contactosFiltrado?.map((contact, index) => (
+					<Card key={contact._id} className="mb-3">
+						<Card.Body>
+							<div className="row">
+								<Row>
+									<Card.Title className="modal-title">
+										Contacto {index + 1}
+									</Card.Title>
+
+									<Col>
+										<Card.Text>
+											<strong>Nombre:</strong> {contact.nombre}
+										</Card.Text>
+										<Card.Text>
+											<strong>Telefono:</strong> {contact.contacto}
+										</Card.Text>
+									</Col>
+
+									<Col>
+										<Card.Text>
+											<strong>Correo:</strong> {contact.correo}
+										</Card.Text>
+										<Card.Text>
+											<strong>Detalle:</strong> {contact.detalle}
+										</Card.Text>
+									</Col>
+									<Col>
+										
+											<div className="button-group">
+												<Button className="btn btn-info btn-sm" onClick={() => modifyElement(contact._id)}>
+													<FontAwesomeIcon icon={faPencilAlt} /> Modificar
+												</Button>
+												
+												<Button className="btn btn-danger btn-sm" onClick={() => deleteElement(contact._id)}>
+													<FontAwesomeIcon icon={faTrash} /> Eliminar
+												</Button>
+											</div>
+									</Col>
+								</Row>
+							</div>
+							<br></br>
+							<div className="button-group">
+
+							</div>
+						</Card.Body>
+					</Card>
+				))}
+			</div>
 			{contactosFiltrado.length == 0 && <h4>No hay resultados</h4>}
 			<Modal show={show} onHide={handleClose}>
 				<Modal.Header closeButton>
