@@ -164,6 +164,10 @@
   justify-content: flex-end;
 }
 
+.card-container {
+  display: grid;
+  gap: 30px;
+}
 /*
 .modal-title {
   background-color: rgb(212, 216, 218);
