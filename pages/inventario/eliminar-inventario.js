@@ -1,4 +1,4 @@
-import { Button, Modal } from "react-bootstrap";
+import { Card, Button, Modal, Row, Col } from "react-bootstrap";
 import { useCallback, useState } from "react";
 import moment from "moment";
 import "moment/locale/es";
@@ -97,53 +97,60 @@ const Inventario = (props) => {
 
   return (
     <div style={{ marginLeft: "40px", marginRight: "40px" }}>
-      <h1>Lista de inventario</h1>
-      <div className="search-container">
-        <h2>Búsqueda de inventario</h2>
-        <div className="search-input">
-          <input
-            type="text"
-            placeholder="Buscar por nombre"
-            value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
-          />
-          <Button className="excel" variant="success" onClick={downloadExcel}>
-            Descargar Excel
-          </Button>
-        </div>
+      <h1 className="display-3 text-center mb-5">Lista de inventario</h1>
+      <div className="card-container">
+        {sortedInventary?.map((inventary, index) => (
+          <Card key={inventary._id} className="mb-3">
+            <Card.Body>
+              <div className="row">
+                <Row>
+                  <Card.Title className="modal-title">
+                    Elemento {index + 1}
+                  </Card.Title>
+
+                  <Col>
+                    <Card.Text>
+                      <strong>Nombre:</strong> {inventary.nombre}
+                    </Card.Text>
+                    <Card.Text>
+                      <strong>Cantidad:</strong> {inventary.cantidad}
+                    </Card.Text>
+                  </Col>
+                  <Col>
+                    <Button
+                      className="btn btn-light btn-sm mb-2"
+                      onClick={() => handleShowDescriptionModal(event.descripcion)}
+                    >
+                      <FontAwesomeIcon icon={faEye} /> Visualizar Descripción
+                    </Button>
+                    <br></br>
+                    <br></br>
+                    <Button
+                      className="btn btn-info btn-sm"
+                      onClick={() => modifyElement(inventary._id)}
+                    >
+                      <FontAwesomeIcon icon={faPencilAlt} /> Modificar
+                    </Button>
+                    <br></br>
+                    <br></br>
+                    <Button
+                      className="btn btn-danger btn-sm"
+                      onClick={() => deleteElement(inventary._id)}
+                    >
+                      <FontAwesomeIcon icon={faTrash} /> Eliminar
+                    </Button>
+                  </Col>
+                </Row>
+              </div>
+              <br></br>
+              <div className="button-group">
+
+              </div>
+            </Card.Body>
+          </Card>
+        ))}
       </div>
-      <Table responsive striped bordered hover>
-        <thead>
-          <tr key={0}>
-            <th style={{ width: "5%" }}>Nº</th>
-            <th style={{ width: "15%" }}>Nombre</th>
-            <th style={{ width: "15%" }}>Cantidad</th>
-            <th style={{ width: "5%" }}>Acciones</th>
-          </tr>
-        </thead>
-        <tbody>
-          {sortedInventary?.map((inventary, index) => (
-            <tr key={inventary._id}>
-              <td>{index + 1}</td>
-              <td>{inventary.nombre}</td>
-              <td>{inventary.cantidad}</td>
-              <td>
-                <div className="button-group">
-                  <Button className="btn btn-info " onClick={() => modifyElement(inventary._id)}>
-                    <FontAwesomeIcon icon={faPencilAlt} /> Modificar
-                  </Button>
-                  <Button
-                    className="btn btn-danger "
-                    onClick={() => deleteElement(inventary._id, inventary.nombre)}
-                  >
-                    <FontAwesomeIcon icon={faTrash} /> Eliminar
-                  </Button>
-                </div>
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </Table>
+
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
           <Modal.Title>Elemento de inventario eliminado</Modal.Title>
