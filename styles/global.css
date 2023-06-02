@@ -212,10 +212,10 @@
   padding: 10px;
 }
 .carrusel{
- margin-block-end: 50px;
- padding: 10px;
-
-}
+    margin-block-end: 50px;
+    padding: 10px;
+ 
+ }
 .cards-inicio{
   margin-bottom: 50px;
   margin-top: 50px;
@@ -224,3 +224,6 @@
   box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
 }
 
+.img-div{ 
+  width: 100%;
+}

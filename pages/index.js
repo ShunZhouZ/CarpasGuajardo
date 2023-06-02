@@ -1,6 +1,6 @@
 import Head from "next/head";
 import withSession from "../lib/session";
-import { Container, Row, Col, Table, Card } from "react-bootstrap";
+import { Container, Row, Col, Table, Card, Image } from "react-bootstrap";
 import Carousel from "react-bootstrap/Carousel";
 import moment from "moment";
 
@@ -177,6 +177,9 @@ export default function Home({ user, allEvents, allVisits }) {
 
 			<Container className="text-center carrusel">
 				<Row className="justify-content-center">
+					<Col xs={12} md={6} lg={4} className="d-flex align-items-center justify-content-center">
+						<Image className="img-div" src="/images/logo.png" thumbnail />
+					</Col>
 					<Col xs={12} md={6} lg={4}>
 						<div className="text-center">
 							<Carousel>
