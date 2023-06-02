@@ -9,7 +9,7 @@
   box-shadow: none;
   margin: 0;
   padding: 2px 5px; 
-  background-color: #4ba3c3 ;    
+  background-color: #2f94c6 ;    
   border-radius: 5px;
   color: white;
   cursor: pointer;
@@ -17,7 +17,7 @@
   text-align: left;
 }
 .rbc-day-slot .rbc-event, .rbc-day-slot .rbc-background-event {
-  border: 1px solid  #006daa;
+  border: 1px solid  #2f94c6;
   display: flex;
   max-height: 100%;
   min-height: 20px;
@@ -27,11 +27,11 @@
   position: absolute;
 }
 .rbc-event.rbc-selected, .rbc-day-slot .rbc-selected.rbc-background-event {
-  background-color: #006daa;
+  background-color: #1f6284;
 }
 
 .rbc-today {
-  background-color: #e1eff6
+  background-color: #c6e3f2
 }
 
 .button-group {

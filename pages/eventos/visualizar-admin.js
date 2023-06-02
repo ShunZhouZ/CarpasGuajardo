@@ -6,6 +6,7 @@ import Modal from "react-bootstrap/Modal";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import { all } from "axios";
+import { faAngleRight } from "@fortawesome/free-solid-svg-icons";
 ("moment/locale/nb");
 require("moment/locale/es.js");
 
@@ -59,6 +60,12 @@ const CalendarPage = ({ allPosts }) => {
 		const toldo = event.toldo ? "Sí" : "No";
 		const calefaccion = event.calefaccion ? "Sí" : "No";
 		const iluminacion = event.iluminacion ? "Sí" : "No";
+
+		const anticipo = parseInt(event.anticipo);
+		const anticipo_format = anticipo.toLocaleString("de-DE");
+
+		const total = parseInt(event.monto_total);
+		const total_format = total.toLocaleString("de-DE");
 		let carpa_toldo;
 		if (carpa === "Sí") {
 			carpa_toldo = "Carpa";
@@ -77,8 +84,8 @@ const CalendarPage = ({ allPosts }) => {
 			h_inicio: h_inicio,
 			f_termino: f_termino,
 			h_termino: h_termino,
-			monto_total: event.monto_total,
-			anticipo: event.anticipo,
+			monto_total: total_format,
+			anticipo: anticipo_format,
 			carpa_toldo: carpa_toldo,
 			calefaccion: calefaccion,
 			iluminacion: iluminacion,
@@ -194,13 +201,13 @@ const CalendarPage = ({ allPosts }) => {
 					<Row>
 						<Col xs={10} md={6}>
 							<p>
-								<strong>Total: </strong>
+								<strong>Total: $</strong>
 								{modalData.monto_total}
 							</p>
 						</Col>
 						<Col xs={10} md={6}>
 							<p>
-								<strong>Abono: </strong>
+								<strong>Abono: $</strong>
 								{modalData.anticipo}
 							</p>
 						</Col>

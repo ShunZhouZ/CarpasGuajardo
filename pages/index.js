@@ -4,7 +4,7 @@ import { Container, Row, Col, Table, Card, Image } from "react-bootstrap";
 import Carousel from "react-bootstrap/Carousel";
 import moment from "moment";
 
-export default function Home({ user, allEvents, allVisits }) {
+export default function Home({ user, allEvents, allVisits, eventos_mes, ganancias }) {
 	// traer todos los eventos
 	const events = [];
 	const visits = [];
@@ -99,7 +99,7 @@ export default function Home({ user, allEvents, allVisits }) {
 						<Card bg="warning" text="white" className="mb-2 tarjeta-inicio">
 							<Card.Body>
 								<Card.Title style={titleStyle}>Eventos de hoy</Card.Title>
-								<Card.Text style={parrafoStyle}>numero</Card.Text>
+								<Card.Text style={parrafoStyle}>{eventos_hoy.length}</Card.Text>
 							</Card.Body>
 						</Card>
 					</Col>
@@ -107,7 +107,7 @@ export default function Home({ user, allEvents, allVisits }) {
 						<Card bg="info" text="white" className="mb-2 tarjeta-inicio">
 							<Card.Body>
 								<Card.Title style={titleStyle}>Eventos del mes</Card.Title>
-								<Card.Text style={parrafoStyle}>numero</Card.Text>
+								<Card.Text style={parrafoStyle}> {eventos_mes}</Card.Text>
 							</Card.Body>
 						</Card>
 					</Col>
@@ -115,7 +115,7 @@ export default function Home({ user, allEvents, allVisits }) {
 						<Card bg="success" text="white" className="mb-2 tarjeta-inicio">
 							<Card.Body>
 								<Card.Title style={titleStyle}>Ganancias del mes</Card.Title>
-								<Card.Text style={parrafoStyle}>numero</Card.Text>
+								<Card.Text style={parrafoStyle}>$ {ganancias}</Card.Text>
 							</Card.Body>
 						</Card>
 					</Col>
@@ -228,16 +228,23 @@ export const getServerSideProps = withSession(async function ({ req, res }) {
 			"Content-Type": "application/json"
 		}
 	});
+	let getEstadisticas = await fetch("http://localhost:3000/api/estadisticas", {
+		method: "GET",
+		headers: {
+			"Content-Type": "application/json"
+		}
+	});
+	let allEstadistics = await getEstadisticas.json();
 	let allVisits = await getVisits.json();
 	let allEvents = await getAllEvents.json();
 	if (user === undefined) {
 		res.setHeader("location", "/login");
 		res.statusCode = 302;
 		res.end();
-		return { props: { allEvents: allEvents.data, allVisits: allVisits.data } };
+		return { props: { allEvents: allEvents.data, allVisits: allVisits.data, eventos_mes: allEstadistics.eventosMes, ganancias: allEstadistics.ganancias } };
 	}
 
 	return {
-		props: { user: req.session.get("user"), allEvents: allEvents.data, allVisits: allVisits.data }
+		props: { user: req.session.get("user"), allEvents: allEvents.data, allVisits: allVisits.data, eventos_mes: allEstadistics.eventosMes, ganancias: allEstadistics.ganancias }
 	};
 });
