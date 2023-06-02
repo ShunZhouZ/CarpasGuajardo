@@ -1,13 +1,15 @@
 import Head from "next/head";
 import withSession from "../lib/session";
-import { Container, Row, Col, Table } from "react-bootstrap";
+import { Container, Row, Col, Table, Card } from "react-bootstrap";
 import Carousel from "react-bootstrap/Carousel";
 import moment from "moment";
 
-export default function Home({ user, allEvents }) {
+export default function Home({ user, allEvents, allVisits }) {
 	// traer todos los eventos
 	const events = [];
+	const visits = [];
 
+	//todos los eventos
 	for (let i = 0; i < allEvents.length; i++) {
 		const fecha_inicio = moment(allEvents[i].fecha_inicio).format("YYYY-MM-DD HH:mm:ss");
 		const fecha_termino = moment(allEvents[i].fecha_termino).format("YYYY-MM-DD HH:mm:ss");
@@ -31,8 +33,23 @@ export default function Home({ user, allEvents }) {
 			descripcion: allEvents[i].descripcion
 		});
 	}
+	//todas las visitas
+	for (let i = 0; i < allVisits.length; i++) {
+		const fecha_inicio = moment(allVisits[i].fecha_hora_visita_terreno).format("YYYY-MM-DD HH:mm:ss");
+		visits.push({
+			id: allVisits[i]._id,
+			title: allVisits[i].nombre_cliente,
+			start: fecha_inicio,
+			end: fecha_inicio,
+			allDay: false,
+			//otras cosas
+			contacto: allVisits[i].numero_contacto_cliente,
+			direccion: allVisits[i].direccion_cliente,
+			descripcion: allVisits[i].descripcion
+		});
+	}
 
-	const filtrarBusqueda = (fecha_hoy) => {
+	const filtrarEventosHoy = (fecha_hoy) => {
 		console.log(fecha_hoy);
 		var resultado = events.filter((elemento) => {
 			if (elemento.start.includes(fecha_hoy)) {
@@ -46,72 +63,119 @@ export default function Home({ user, allEvents }) {
 		}
 	};
 
-	const eventos_hoy = filtrarBusqueda(moment().format("YYYY-MM-DD"));
+	const filtrarVisitasHoy = (fecha_hoy) => {
+		console.log(fecha_hoy);
+		var resultado = visits.filter((elemento) => {
+			if (elemento.start.includes(fecha_hoy)) {
+				return elemento;
+			}
+		});
+		if (resultado.length > 0) {
+			return resultado;
+		} else {
+			return [];
+		}
+	};
+
+	const eventos_hoy = filtrarEventosHoy(moment().format("YYYY-MM-DD"));
+	const visitas_hoy = filtrarVisitasHoy(moment().format("YYYY-MM-DD"));
+	console.log(visitas_hoy);
+
+	const titleStyle = {
+		fontSize: "1.5rem"
+	};
+	const parrafoStyle = {
+		fontSize: "1.2rem"
+	};
 
 	return (
 		<div>
 			<Head>
 				<title>Carpas Guajardo</title>
 			</Head>
-			<h2>Bienvenido {user.username}!</h2>
-
-			<Row className="justify-content-center">
-				<Col xs={12} md={6} lg={4}>
-					<div className="p-3 bg-white shadow-sm d-flex justify-content-around align-items-center rounded">
-						<div>
-							<h4 className="fs-5">Eventos para hoy</h4>
-							<p className="text-muted">Número</p>
-						</div>
-					</div>
-				</Col>
-				<Col xs={12} md={6} lg={4}>
-					<div className="p-3 bg-white shadow-sm d-flex justify-content-around align-items-center rounded">
-						<div>
-							<h4 className="fs-5">Eventos realizados en el mes</h4>
-							<p className="text-muted">Número</p>
-						</div>
-					</div>
-				</Col>
-				<Col xs={12} md={6} lg={4}>
-					<div className="p-3 bg-white shadow-sm d-flex justify-content-around align-items-center rounded">
-						<div>
-							<h4 className="fs-5">Ganancias del mes</h4>
-							<p className="text-muted">Número</p>
-						</div>
-					</div>
-				</Col>
-			</Row>
-
-			<Container className="text-center mt-4">
+			<Container className="text-center cards-inicio">
+				<Row className="justify-content-center">
+					<Col xs={12} md={4} lg={4}>
+						<Card bg="warning" text="white" className="mb-2 tarjeta-inicio">
+							<Card.Body>
+								<Card.Title style={titleStyle}>Eventos de hoy</Card.Title>
+								<Card.Text style={parrafoStyle}>numero</Card.Text>
+							</Card.Body>
+						</Card>
+					</Col>
+					<Col xs={12} md={4} lg={4}>
+						<Card bg="info" text="white" className="mb-2 tarjeta-inicio">
+							<Card.Body>
+								<Card.Title style={titleStyle}>Eventos del mes</Card.Title>
+								<Card.Text style={parrafoStyle}>numero</Card.Text>
+							</Card.Body>
+						</Card>
+					</Col>
+					<Col xs={12} md={4} lg={4}>
+						<Card bg="success" text="white" className="mb-2 tarjeta-inicio">
+							<Card.Body>
+								<Card.Title style={titleStyle}>Ganancias del mes</Card.Title>
+								<Card.Text style={parrafoStyle}>numero</Card.Text>
+							</Card.Body>
+						</Card>
+					</Col>
+				</Row>
+			</Container>
+			<Container className="text-center mt-4 container-inicio">
 				<Row className="justify-content-center">
 					<Col md={6}>
 						<h2>Eventos de hoy</h2>
-						<Table responsive striped bordered hover>
-							<thead>
-								<tr key={0}>
-									<th style={{ width: "15%" }}>Nombre</th>
-									<th style={{ width: "15%" }}>Contacto</th>
-									<th style={{ width: "15%" }}>Dirección</th>
-								</tr>
-							</thead>
-							<tbody>
-								{eventos_hoy.map((event, index) => (
-									<tr key={index}>
-										<td>{event.title}</td>
-										<td>{event.contacto}</td>
-										<td>{event.direccion}</td>
+						{eventos_hoy.length > 0 && (
+							<Table responsive bordereless variant="light">
+								<thead>
+									<tr key={0}>
+										<th style={{ width: "40%" }}>Nombre</th>
+										<th style={{ width: "10%" }}>Contacto</th>
+										<th style={{ width: "80%" }}>Dirección</th>
 									</tr>
-								))}
-							</tbody>
-						</Table>
+								</thead>
+								<tbody>
+									{eventos_hoy.map((event, index) => (
+										<tr key={index}>
+											<td>{event.title}</td>
+											<td>{event.contacto}</td>
+											<td>{event.direccion}</td>
+										</tr>
+									))}
+								</tbody>
+							</Table>
+						)}
+						{eventos_hoy.length == 0 && <h6>No hay eventos</h6>}
 					</Col>
+
 					<Col md={6}>
 						<h2>Visitas de hoy</h2>
+						{visitas_hoy.length > 0 && (
+							<Table responsive bordered variant="dark">
+								<thead>
+									<tr key={0}>
+										<th style={{ width: "15%" }}>Nombre</th>
+										<th style={{ width: "15%" }}>Contacto</th>
+										<th style={{ width: "15%" }}>Dirección</th>
+									</tr>
+								</thead>
+								<tbody>
+									{visitas_hoy.map((visit, index) => (
+										<tr key={index}>
+											<td>{visit.title}</td>
+											<td>{visit.contacto}</td>
+											<td>{visit.direccion}</td>
+										</tr>
+									))}
+								</tbody>
+							</Table>
+						)}
+						{visitas_hoy.length == 0 && <h6>No hay visitas</h6>}
 					</Col>
 				</Row>
 			</Container>
 
-			<Container className="text-center mt-4">
+			<Container className="text-center carrusel">
 				<Row className="justify-content-center">
 					<Col xs={12} md={6} lg={4}>
 						<div className="text-center">
@@ -155,15 +219,22 @@ export const getServerSideProps = withSession(async function ({ req, res }) {
 			"Content-Type": "application/json"
 		}
 	});
+	let getVisits = await fetch("http://localhost:3000/api/visitas", {
+		method: "GET",
+		headers: {
+			"Content-Type": "application/json"
+		}
+	});
+	let allVisits = await getVisits.json();
 	let allEvents = await getAllEvents.json();
 	if (user === undefined) {
 		res.setHeader("location", "/login");
 		res.statusCode = 302;
 		res.end();
-		return { props: { allEvents: allEvents.data } };
+		return { props: { allEvents: allEvents.data, allVisits: allVisits.data } };
 	}
 
 	return {
-		props: { user: req.session.get("user"), allEvents: allEvents.data }
+		props: { user: req.session.get("user"), allEvents: allEvents.data, allVisits: allVisits.data }
 	};
 });
