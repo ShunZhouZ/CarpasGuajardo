@@ -110,7 +110,7 @@ const Trabajador = (props) => {
 						
 						<Card style={{ width: '18rem' }}  key={trabajador._id}>
 							{/* aca va la imagen de la persona */}
-						<Card.Img variant="top" src="" />
+						<Card.Img variant="top" src="/images/user-square-svgrepo-com.svg" />
 						<Card.Body>
 						<Card.Title>{trabajador.nombre}</Card.Title>
 						{/* <Card.Text>

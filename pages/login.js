@@ -1,7 +1,7 @@
 import { useState } from "react";
 import {userServiceFactory} from "../clientServices/userService";
 import useUser from "../lib/useUser";
-import { FormGroup } from "react-bootstrap";
+import { FormGroup, Modal } from "react-bootstrap";
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 
@@ -16,6 +16,9 @@ export default function Login() {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
 
+    const handleConfirmationClose = () => setShowConfirmation(false);
+    const [showConfirmation, setShowConfirmation] = useState(false);
+
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
@@ -23,7 +26,8 @@ export default function Login() {
                 await userService.login(username, password)
             );
         } catch (error) {
-            alert(error.response.data.error);
+            setShowConfirmation(true);
+            // alert(error.response.data.error);
         }
     };
 
@@ -64,6 +68,19 @@ export default function Login() {
             </div>
             
         </div>
+            <Modal show={showConfirmation} onHide={handleConfirmationClose}>
+                <Modal.Header closeButton>
+                    <Modal.Title>Error de autenticacion</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                    Usuario o contraseña incorrecta
+                </Modal.Body>
+                <Modal.Footer>
+                    <Button variant="secondary" onClick={handleConfirmationClose}>
+                        Aceptar
+                    </Button>
+                </Modal.Footer>
+            </Modal>
         </div>
         )}
       </>
