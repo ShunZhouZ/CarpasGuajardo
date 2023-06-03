@@ -43,11 +43,11 @@ const NavBar = () => {
 									<NavDropdown.Item href="/trabajadores/eliminar-trabajadores">Lista de trabajadores</NavDropdown.Item>
 								</NavDropdown>
 								<NavDropdown title="Contactos" id="basic-nav-dropdown" bg="primary" variant="dark">
-									<NavDropdown.Item href="#action/3.1">Agregar</NavDropdown.Item>
+									<NavDropdown.Item href="/contactos/agregar-contacto">Agregar</NavDropdown.Item>
 									<NavDropdown.Item href="/contactos/eliminar-contacto">Lista de contactos</NavDropdown.Item>
 								</NavDropdown>
 								<NavDropdown title="Inventario" id="basic-nav-dropdown" bg="primary" variant="dark">
-									<NavDropdown.Item href="#action/3.1">Agregar</NavDropdown.Item>
+									<NavDropdown.Item href="/inventario/agregar-inventario">Agregar</NavDropdown.Item>
 									<NavDropdown.Item href="/inventario/eliminar-inventario">Lista de inventario</NavDropdown.Item>
 								</NavDropdown>
 							</Nav>
