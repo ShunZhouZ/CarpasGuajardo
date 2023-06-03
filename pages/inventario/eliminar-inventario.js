@@ -118,14 +118,6 @@ const Inventario = (props) => {
                   </Col>
                   <Col>
                     <Button
-                      className="btn btn-light btn-sm mb-2"
-                      onClick={() => handleShowDescriptionModal(event.descripcion)}
-                    >
-                      <FontAwesomeIcon icon={faEye} /> Visualizar Descripción
-                    </Button>
-                    <br></br>
-                    <br></br>
-                    <Button
                       className="btn btn-info btn-sm"
                       onClick={() => modifyElement(inventary._id)}
                     >
