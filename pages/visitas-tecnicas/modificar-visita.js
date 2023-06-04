@@ -83,21 +83,24 @@ const ModificarVisitas = (props) => {
 					/>
 				</Form.Group>
 				<Form.Group>
-					<Form.Label className="mt-3">Fecha y hora de la visita </Form.Label>
-					<Form.Control required
-						onChange={handleControl}
-						defaultValue={moment(data.fecha_hora_visita_terreno).format("yyyy-MM DD")}
-						type="datetime-local"
-						placeholder="Fecha y hora de visita"
-						name="fecha_hora_visita_terreno" />
+				<Form.Label className="mt-3">Fecha y hora de la visita</Form.Label>
+				<Form.Control
+					required
+					onChange={handleControl}
+					defaultValue={moment(data.fecha_hora_visita_terreno).format('YYYY-MM-DDTHH:mm')}
+					type="datetime-local"
+					placeholder={moment(data.fecha_hora_visita_terreno).format('YYYY-MM-DDTHH:mm')}
+					name="fecha_hora_visita_terreno"
+				/>
 				</Form.Group>
+
 				<Form.Group>
 					<Form.Label className="mt-3">Descripción </Form.Label>
 					<Form.Control
 						as="textarea" onChange={handleControl} required defaultValue={data.descripcion} type="text" placeholder="Descripcion" name="descripcion"
 					/>
 				</Form.Group>
-				<div className="mt-3">
+				<div className="mt-4 text-center">
 				<Button type="submit" className="btn btn-primary">
 						Modificar
 					</Button>

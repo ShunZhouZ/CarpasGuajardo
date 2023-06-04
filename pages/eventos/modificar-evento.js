@@ -23,7 +23,7 @@ const Eventos = ({ eventos, clientes, inventario, contactos }) => {
       metros_cuadrados: evento.metros_cuadrados,
       descripcion: evento.descripcion,
       fecha_inicio: evento.fecha_inicio,
-      termino_inicio: evento.termino_inicio,
+      fecha_termino: evento.fecha_termino,
       toldo: evento.toldo,
       carpa: evento.carpa,
       cubre_piso: evento.cubre_piso,
@@ -90,7 +90,7 @@ const Eventos = ({ eventos, clientes, inventario, contactos }) => {
       })
     }
 
-console.log(data)
+//console.log(data)
 
     return (
       <div className="d-flex justify-content-center">
@@ -182,24 +182,30 @@ console.log(data)
 						</Form.Group>
 					</Col>
 					<Col>
-						<Form.Group>
-							<Form.Label>Fecha de inicio </Form.Label>
-							<Form.Control required 
-                        onChange={handleControl}
-                        defaultValue={moment(data.fecha_inicio).format('yyyy-MM-DD')}
-                        type="datetime-local" 
-                        placeholder='fecha_inicio'
-                        name='fecha_inicio' />
-						</Form.Group> 
-						<Form.Group>
-							<Form.Label className="mt-3">Fecha de Termino </Form.Label>
-							<Form.Control required 
-                        onChange={handleControl}
-                        defaultValue={moment(data.fecha_termino).format('yyyy-MM-DD')}
-                        type="datetime-local" 
-                        placeholder='fecha_termino'
-                        name='fecha_termino' />
-						</Form.Group>
+          <Form.Group>
+          <Form.Label className="mt-3">Fecha de inicio</Form.Label>
+          <Form.Control
+            required
+            onChange={handleControl}
+            defaultValue={moment(data.fecha_inicio).format('YYYY-MM-DDTHH:mm')}
+            type="datetime-local"
+            placeholder={moment(data.fecha_inicio).format('YYYY-MM-DDTHH:mm')}
+            name="fecha_inicio"
+            />
+          </Form.Group>
+
+					<Form.Group>
+            <Form.Label className="mt-3">Fecha de termino</Form.Label>
+            <Form.Control
+              required
+              onChange={handleControl}
+              defaultValue={moment(data.fecha_termino).format('YYYY-MM-DDTHH:mm')}
+              type="datetime-local"
+              placeholder={moment(data.fecha_termino).format('YYYY-MM-DDTHH:mm')}
+              name="fecha_termino"
+            />
+          </Form.Group>
+
 						<Form.Group>
 							<Form.Label className="mt-3">Monto total</Form.Label>
 							<Form.Control 

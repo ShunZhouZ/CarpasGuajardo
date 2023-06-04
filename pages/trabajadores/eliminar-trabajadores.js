@@ -27,7 +27,7 @@ const Trabajador = (props) => {
 	const handleConfirmationClose = () => setShowConfirmation(false);
 
 	const modifyElement = (id) => {
-		window.location.href = `/trabajadores/modificar-trabajadores?id=${id}`;
+		window.location.href = `/trabajadores/modificar_trabajador?id=${id}`;
 	};
 
 	const reloadTrabajadores = useCallback(async () => {

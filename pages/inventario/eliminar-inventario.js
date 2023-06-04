@@ -23,7 +23,7 @@ const Inventario = (props) => {
   const handleConfirmationClose = () => setShowConfirmation(false);
 
   const modifyElement = (id) => {
-    window.location.href = `/eventos/modificar-inventario?id=${id}`;
+    window.location.href = `/inventario/modificar-inventario?id=${id}`;
   };
 
   const reloadInventarios = useCallback(async () => {

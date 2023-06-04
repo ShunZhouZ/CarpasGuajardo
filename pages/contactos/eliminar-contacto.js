@@ -24,7 +24,7 @@ const Contactos = (props) => {
 	const handleConfirmationClose = () => setShowConfirmation(false);
 
 	const modifyElement = (id) => {
-		window.location.href = `/eventos/modificar-contacts?id=${id}`;
+		window.location.href = `/contactos/modificar-contacto?id=${id}`;
 	};
 
 	const reloadContacts = useCallback(async () => {
