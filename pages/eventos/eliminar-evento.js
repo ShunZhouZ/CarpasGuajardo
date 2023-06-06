@@ -20,6 +20,7 @@ const Eventos = (props) => {
 	const [filterCarpa, setFilterCarpa] = useState(false);
 	const [filterIluminacion, setFilterIluminacion] = useState(false);
 
+	
 	const handleShowDescriptionModal = (description) => {
 		setDescription(description);
 		setShowDescriptionModal(true);
@@ -108,15 +109,8 @@ const Eventos = (props) => {
 	const sortedEvents = filteredEvents.sort((a, b) => {
 		const dateA = moment(a.fecha_inicio);
 		const dateB = moment(b.fecha_inicio);
-		return sortOrder === "asc" ? dateA - dateB : dateB - dateA;
+		return sortOrder === "desc" ? dateA - dateB : dateB - dateA;
 	});
-
-	const downloadExcel = () => {
-		const worksheet = XLSX.utils.json_to_sheet(sortedEvents);
-		const workbook = XLSX.utils.book_new();
-		XLSX.utils.book_append_sheet(workbook, worksheet, "Eventos");
-		XLSX.writeFile(workbook, "eventos.xlsx");
-	};
 
 	return (
 		<div className="container">
@@ -124,10 +118,6 @@ const Eventos = (props) => {
 			<div className="search-input">
 				<div className="button-container">
 					<input type="text" placeholder="Buscar por nombre, dirección o teléfono" value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)} />
-					<Button className="excel" variant="success" onClick={downloadExcel}>
-						Descargar Excel
-					</Button>
-
 					<Button className="sort" variant="primary" onClick={handleSortOrder}>
 						Mas {sortOrder === "desc" ? "recientes" : "antiguos"}
 					</Button>
