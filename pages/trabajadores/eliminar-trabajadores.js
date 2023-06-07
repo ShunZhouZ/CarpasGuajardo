@@ -105,11 +105,12 @@ const Trabajador = (props) => {
 				</thead> */}
 
 				{/* <tbody> */}
+				<div className="text-center">
 					<Row xs={1} md={3} className="m-3">
 					
 					{trabajadoresFiltrado?.map((trabajador, index) => (
 						
-						<Card className="m-3 w-20" key={trabajador._id}>
+						<Card className="m-3 w-20 vista-trabajador" key={trabajador._id}>
 							{/* aca va la imagen de la persona */}
 						<Card.Img variant="top" src="/images/user-square-svgrepo-com.svg" />
 						<Card.Body>
@@ -149,6 +150,7 @@ const Trabajador = (props) => {
 						// </tr>
 					))}
 					</Row>
+				</div>
 				{/* </tbody> */}
 			{/* </Table> */}
 			{trabajadoresFiltrado.length == 0 && <h4>No hay resultados</h4>}
