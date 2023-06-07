@@ -19,7 +19,7 @@ export default async function handler(req, res) {
                         nombre_cliente: nombre_cliente,
                         numero_contacto_cliente: numero_contacto_cliente,
                         direccion_cliente: direccion_cliente,
-                        metros_cuadrados: metros_cuadrados,
+                        correo: metros_cuadrados,
                         descripcion: descripcion,
 
 					  });
