@@ -151,7 +151,7 @@ export default function Home({ user, allEvents, allVisits, eventos_mes, ganancia
 					<Col md={6}>
 						<h2>Visitas de hoy</h2>
 						{visitas_hoy.length > 0 && (
-							<Table responsive bordered variant="dark">
+							<Table responsive bordered variant="light">
 								<thead>
 									<tr key={0}>
 										<th style={{ width: "15%" }}>Nombre</th>
