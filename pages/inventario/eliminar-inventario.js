@@ -147,7 +147,7 @@ const Inventario = (props) => {
         <Modal.Header closeButton>
           <Modal.Title>Elemento de inventario eliminado</Modal.Title>
         </Modal.Header>
-        <Modal.Body>Se ha eliminado "{elementName}" correctamente.</Modal.Body>
+        <Modal.Body>Se ha eliminado correctamente.</Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={handleClose}>
             Cerrar
@@ -159,7 +159,7 @@ const Inventario = (props) => {
           <Modal.Title>Confirmación de eliminación</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          ¿Estás seguro de que deseas eliminar el elemento "{elementName}"?
+          ¿Estás seguro de que deseas eliminar el elemento?
         </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={handleConfirmationClose}>

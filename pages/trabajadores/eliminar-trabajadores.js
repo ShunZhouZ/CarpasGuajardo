@@ -61,6 +61,7 @@ const Trabajador = (props) => {
 
 		console.log(await deleteResponse.json());
 		await reloadTrabajadores();
+		window.location.reload(); // Refrescar la página
 	};
 
 	const handleChange = (e) => {
