@@ -35,7 +35,8 @@ export function Form_(props) {
     //nombre, teléfono, dirección, correo electrónico y detalle.
 	return (
 		<div className="d-flex justify-content-center">
-			<Form className="mx-5 w-25" onSubmit={handleSubmit}>
+			<div className="custom-bg-color  text-center w-sm-75 w-md-50 w-lg-25 p-5">
+			<Form  onSubmit={handleSubmit}>
 				<h1 className=" text-center my-4 ">Agregar contaco</h1>
 						<Form.Group>
 							<Form.Label>Nombre Cliente </Form.Label>
@@ -90,6 +91,7 @@ export function Form_(props) {
 					</Button>
 				</div>
 			</Form>
+			</div>
 		</div>
 	);
 }

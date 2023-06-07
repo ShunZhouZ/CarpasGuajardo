@@ -9,7 +9,7 @@ import { Button, Col, Form, Row } from "react-bootstrap";
 export function Form_(props) {
 	const [nombre_cliente, setnombre_cliente] = useState("");
 	const [tipo_evento, settipo_evento] = useState("inventario");
-	const [numero_contacto_cliente, setnumero_contacto_cliente] = useState("");
+	const [cantidad, setcantidad] = useState("");
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 		try {
@@ -17,7 +17,7 @@ export function Form_(props) {
 			const res = await axios.post("../api/agregar_inv", {
 				tipo_evento,
 				nombre_cliente,
-				numero_contacto_cliente,
+				cantidad,
 			});
 			console.log(res.data);
 			router.push("./visualizar-inventario")
@@ -28,7 +28,8 @@ export function Form_(props) {
 	//className='d-flex justify-content-center'
 	return (
 		<div className="d-flex justify-content-center">
-			<Form className="mx-5 w-20" onSubmit={handleSubmit}>
+			    <div className="custom-bg-color  text-center w-sm-75 w-md-50 w-lg-25 p-5">
+			<Form  onSubmit={handleSubmit}>
 				<h1 className=" text-center my-4 ">Agregar Item inventario</h1>
 
 						<Form.Group>
@@ -48,8 +49,8 @@ export function Form_(props) {
 							<Form.Label className="mt-3">Cantidad </Form.Label>
 							<Form.Control
 								type="number"
-								value={numero_contacto_cliente}
-								onChange={(ev) => setnumero_contacto_cliente(ev.target.value)}
+								value={cantidad}
+								onChange={(ev) => setcantidad(ev.target.value)}
 								name="numero_contacto_cliente"
 								id="numero_contacto_cliente"
 								placeholder="Cantidad"
@@ -62,6 +63,7 @@ export function Form_(props) {
 					</Button>
 				</div>
 			</Form>
+			</div>
 		</div>
 	);
 }

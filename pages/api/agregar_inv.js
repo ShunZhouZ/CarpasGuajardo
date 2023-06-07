@@ -8,13 +8,14 @@ export default async function handler(req, res) {
 			const {
 				tipo_evento,
 				nombre_cliente,
-				numero_contacto_cliente,
+				cantidad,
 		} = req.body; //Ejemplo de campos del objeto enviado
 				if(tipo_evento === "inventario"){
 					console.log("entre a evento");
+					const cantidadEntera = parseInt(cantidad);
 					const miEvento = await db.collection("Inventario").insertOne({
                         nombre_cliente: nombre_cliente,
-                        numero_contacto_cliente: numero_contacto_cliente,
+                        cantidad: cantidadEntera,
 					  });
 					  res.json({ status: 200, data: miEvento });
 				}
