@@ -24,8 +24,10 @@ const Trabajador = (props) => {
 
 	const handleClose = () => setShow(false);
 	const handleShow = () => setShow(true);
-	const handleConfirmationClose = () => setShowConfirmation(false);
-
+	const handleConfirmationClose = () => {
+		setShowConfirmation(false);
+		window.location.reload(); // Recargar la página al cerrar el modal de confirmación
+	  };
 	const modifyElement = (id) => {
 		window.location.href = `/trabajadores/modificar_trabajador?id=${id}`;
 	};
@@ -61,7 +63,6 @@ const Trabajador = (props) => {
 
 		console.log(await deleteResponse.json());
 		await reloadTrabajadores();
-		window.location.reload(); // Refrescar la página
 	};
 
 	const handleChange = (e) => {

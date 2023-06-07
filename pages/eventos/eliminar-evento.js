@@ -134,35 +134,35 @@ const Eventos = (props) => {
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
           />
+          <div className="check-box">
+            <label>
+              <input
+                type="checkbox"
+                checked={filterToldo}
+                onChange={handleToldoFilterChange}
+              />
+              Toldo
+            </label>
+            <label>
+              <input
+                type="checkbox"
+                checked={filterCarpa}
+                onChange={handleCarpaFilterChange}
+              />
+              Carpa
+            </label>
+            <label>
+              <input
+                type="checkbox"
+                checked={filterIluminacion}
+                onChange={handleIluminacionFilterChange}
+              />
+              Iluminación
+            </label>
+          </div>
           <Button className="sort" variant="primary" onClick={handleSortOrder}>
             Mas {sortOrder === "desc" ? "recientes" : "antiguos"}
           </Button>
-        </div>
-        <div className="check-box">
-          <label>
-            <input
-              type="checkbox"
-              checked={filterToldo}
-              onChange={handleToldoFilterChange}
-            />
-            Toldo
-          </label>
-          <label>
-            <input
-              type="checkbox"
-              checked={filterCarpa}
-              onChange={handleCarpaFilterChange}
-            />
-            Carpa
-          </label>
-          <label>
-            <input
-              type="checkbox"
-              checked={filterIluminacion}
-              onChange={handleIluminacionFilterChange}
-            />
-            Iluminación
-          </label>
         </div>
       </div>
       <div className="card-container">
