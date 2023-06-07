@@ -105,10 +105,11 @@ const Trabajador = (props) => {
 				</thead> */}
 
 				{/* <tbody> */}
-					<Row xs={1} md={3} className="g-4">
+					<Row xs={1} md={3} className="m-3">
+					
 					{trabajadoresFiltrado?.map((trabajador, index) => (
 						
-						<Card style={{ width: '18rem' }}  key={trabajador._id}>
+						<Card className="m-3 w-20" key={trabajador._id}>
 							{/* aca va la imagen de la persona */}
 						<Card.Img variant="top" src="/images/user-square-svgrepo-com.svg" />
 						<Card.Body>
@@ -125,7 +126,7 @@ const Trabajador = (props) => {
 						<ListGroup.Item>Correo: {trabajador.correo}</ListGroup.Item>
 						</ListGroup>
 						<Card.Body>
-						<Button className="btn btn-info" onClick={() => modifyElement(trabajador._id)}> <FontAwesomeIcon icon={faPencilAlt} />Modificar</Button>
+						<Button className="btn btn-info m-3" onClick={() => modifyElement(trabajador._id)}> <FontAwesomeIcon icon={faPencilAlt} />Modificar</Button>
 						<Button className="btn btn-danger" onClick={() => deleteElement(trabajador._id, trabajador.nombre, trabajador.rol)}> <FontAwesomeIcon icon={faTrash} />Eliminar</Button>
 						</Card.Body>
 						</Card>

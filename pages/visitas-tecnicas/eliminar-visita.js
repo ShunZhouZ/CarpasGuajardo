@@ -120,7 +120,7 @@ const Visitas = (props) => {
 									<Card.Title className="modal-title mb-3">Evento {index + 1}</Card.Title>
 									<Col>
 										<Card.Text>
-											<strong>Nombre:c</strong> {visit.nombre_cliente}
+											<strong>Nombre:</strong> {visit.nombre_cliente}
 										</Card.Text>
 										<Card.Text>
 											<strong>Número de contacto: </strong> {visit.numero_contacto_cliente}
