@@ -56,7 +56,7 @@ export function Form_(props) {
 						<Form.Group>
 							<Form.Label className="mt-3">Telefono </Form.Label>
 							<Form.Control
-								type="text"
+								type="number"
 								value={numero_contacto_cliente}
 								onChange={(ev) => setnumero_contacto_cliente(ev.target.value)}
 								name="numero_contacto_cliente"
