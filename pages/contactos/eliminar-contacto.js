@@ -118,7 +118,7 @@ const Contactos = (props) => {
 
                     <Col>
                       <Card.Text>
-                        <strong>Correo:</strong> {contact.metros_cuadrados}
+                        <strong>Correo:</strong> {contact.correo}
                       </Card.Text>
                       <Card.Text>
                         <strong>Detalle:</strong> {contact.descripcion}

@@ -13,15 +13,16 @@ const Modificarcontactos = (props) => {
 
 	// Filtrar eventos por ID
 	const contacto = contactos.find((value) => value._id === id);
-	console.log(contacto)
+	//console.log(contacto)
 	//const contacto = {}
 
 	const [data, setData] = useState({
 		_id: id,
-		nombre: contacto.nombre,
-		contacto: contacto.contacto,
+		nombre_cliente: contacto.nombre_cliente,
+		numero_contacto_cliente: contacto.numero_contacto_cliente,
+		direccion_cliente: contacto.direccion_cliente,
 		correo: contacto.correo,
-		detalle: contacto.detalle
+		descripcion: contacto.descripcion
 	});
 
 	const submitModificar = async (e) => {
@@ -67,12 +68,18 @@ const Modificarcontactos = (props) => {
 				<h1>Modificar datos de contacto</h1>
 				<Form.Group>
 					<Form.Label className="mt-3">Nombre </Form.Label>
-					<Form.Control onChange={handleControl} required defaultValue={data.nombre} type="text" placeholder="Nombre" name="nombre" />
+					<Form.Control onChange={handleControl} required defaultValue={data.nombre_cliente} type="text" placeholder="Nombre" name="nombre_cliente" />
 				</Form.Group>
 				<Form.Group>
 					<Form.Label className="mt-3">Numero de contacto </Form.Label>
 					<Form.Control
-						onChange={handleControl} required defaultValue={data.contacto} type="text" placeholder="Contacto" name="contacto"
+						onChange={handleControl} required defaultValue={data.numero_contacto_cliente} type="text" placeholder="Contacto" name="numero_contacto_cliente"
+					/>
+				</Form.Group>
+				<Form.Group>
+					<Form.Label className="mt-3">Direccion </Form.Label>
+					<Form.Control
+						onChange={handleControl} required defaultValue={data.direccion_cliente} type="text" placeholder="Direccion" name="direccion_cliente"
 					/>
 				</Form.Group>
 				<Form.Group>
@@ -85,7 +92,7 @@ const Modificarcontactos = (props) => {
 				<Form.Group>
 					<Form.Label className="mt-3">Detalles </Form.Label>
 					<Form.Control
-						as="textarea" onChange={handleControl} required defaultValue={data.detalle} type="text" placeholder="Detalle" name="detalle"
+						as="textarea" onChange={handleControl} required defaultValue={data.descripcion} type="text" placeholder="Detalle" name="descripcion"
 					/>
 				</Form.Group>
 				<div className="mt-4 text-center">
