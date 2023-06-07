@@ -13,11 +13,13 @@ export function Form_(props) {
 	const [direccion_cliente, setdireccion_cliente] = useState("");
 	const [metros_cuadrados, setmetros_cuadrados] = useState("");
 	const [descripcion, setdescripcion] = useState("");
+	const [estado,setestado] = useState("Disponible");
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 		try {
 			
 			const res = await axios.post("../api/agregar_con", {
+				estado,
 				tipo_evento,
 				nombre_cliente,
 				numero_contacto_cliente,
