@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { userServiceFactory } from "../../clientServices/userService";
 import useUser from "../../lib/useUser";
+import { router } from "next/router";
 import { FormGroup } from "react-bootstrap";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
@@ -9,7 +10,7 @@ const userService = userServiceFactory();
 
 export default function CreateUserForm() {
 	const [username, setUsername] = useState("");
-	const [password, setPassword] = useState("");
+	// const [password, setPassword] = useState("");
 	const [nombre, setNombre] = useState("");
 	const [correo, setCorreo] = useState("");
 	const [contacto, setContacto] = useState("");
@@ -20,7 +21,7 @@ export default function CreateUserForm() {
 			// la constrasena sera igual al rut ingresado
 			const password = username;
 			await userService.createUser(username, password, nombre, correo, contacto);
-			window.location.href = `/`;
+			router.push("./eliminar-trabajadores")
 		} catch (error) {
 			alert("Error al crear el usuario");
 		}
@@ -30,9 +31,9 @@ export default function CreateUserForm() {
 		setUsername(e.target.value);
 	};
 
-	const passwordHandler = (e) => {
-		setPassword(e.target.value);
-	};
+	// const passwordHandler = (e) => {
+	// 	setPassword(e.target.value);
+	// };
 
 	const nombreHandler = (e) => {
 		setNombre(e.target.value);

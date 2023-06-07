@@ -6,7 +6,8 @@ export default async function handler(req, res) {
   await client.connect();
   const db = client.db("carpas-guajardo-db");
 
-  if (req.method === "POST") {
+  const method = req.method.toLowerCase();
+  if (method === "post") {
     let { username, password, nombre, correo, contacto} = req.body;
 
     try {
@@ -33,17 +34,14 @@ export default async function handler(req, res) {
 
       // Insertar el nuevo usuario en la base de datos
       let result = await db.collection("usuarios").insertOne( newUser );
-
-      res.status(201).json({ message: "Agregado correctamente" });
+      return res.status(201).json({ message: "Agregado correctamente" });
     } catch (error) {
       console.error(error);
-      res.status(500).json({ error: "Error al crear el trabajador" });
-    } finally {
-      client.close();
+      return res.status(500).json({ error: "Error al crear el trabajador" });
     }
   } else {
     res.setHeader("Allow", ["POST"]);
-    res.status(405).end(`Método ${req.method} no permitido`);
+    return res.status(405).end(`Método ${req.method} no permitido`);
   }
 }
 
