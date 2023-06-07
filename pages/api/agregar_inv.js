@@ -14,7 +14,7 @@ export default async function handler(req, res) {
 					console.log("entre a evento");
 					const cantidadEntera = parseInt(cantidad);
 					const miEvento = await db.collection("Inventario").insertOne({
-                        nombre_cliente: nombre_cliente,
+                        nombre: nombre_cliente,
                         cantidad: cantidadEntera,
 					  });
 					  res.json({ status: 200, data: miEvento });
