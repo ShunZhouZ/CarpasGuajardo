@@ -26,7 +26,7 @@ export function Form_(props) {
 				descripcion
 			});
 			console.log(res.data);
-			router.push("./visualizar-admin")
+			router.push("./eliminar-contacto")
 		} catch (err) {
 			console.error(err);
 		}

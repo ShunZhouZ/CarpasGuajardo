@@ -20,7 +20,7 @@ export function Form_(props) {
 				cantidad,
 			});
 			console.log(res.data);
-			router.push("./eliminar-contacto")
+			router.push("./eliminar-inventario")
 		} catch (err) {
 			console.error(err);
 		}
