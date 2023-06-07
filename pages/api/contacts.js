@@ -7,11 +7,11 @@ export default async function handler(req, res) {
     switch (req.method) {
         case "POST":
             let bodyObject = req.body;
-            let miEvento = await db.collection("contacts").insertOne(bodyObject);
+            let miEvento = await db.collection("contacto").insertOne(bodyObject);
             res.json(miEvento);
             break;
         case "GET":
-            const allEventos = await db.collection("contacts").find({}).toArray();
+            const allEventos = await db.collection("contacto").find({}).toArray();
             res.json({ status: 200, data: allEventos });
             break;
         case "DELETE":
@@ -23,7 +23,7 @@ export default async function handler(req, res) {
                 })
             }
 
-            const deleteEvento = await db.collection("contacts").deleteOne({_id: new ObjectId(id.toString())})
+            const deleteEvento = await db.collection("contacto").deleteOne({_id: new ObjectId(id.toString())})
 
             return res.status(200).send({
                 message: 'Elemento eliminado exitosamente',
@@ -34,7 +34,7 @@ export default async function handler(req, res) {
             case "PUT":
                 const { body } = req;
                 const { _id, ...data } = body;
-                const responseUpdate = await db.collection("contacts").updateOne(
+                const responseUpdate = await db.collection("contacto").updateOne(
                     {
                         _id: new ObjectId(_id)
                     },

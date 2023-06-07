@@ -100,19 +100,22 @@ const Contactos = (props) => {
 
 									<Col>
 										<Card.Text>
-											<strong>Nombre:</strong> {contact.nombre}
+											<strong>Nombre:</strong> {contact.nombre_cliente}
 										</Card.Text>
 										<Card.Text>
-											<strong>Telefono:</strong> {contact.contacto}
+											<strong>Telefono:</strong> {contact.numero_contacto_cliente}
+										</Card.Text>
+										<Card.Text>
+											<strong>Direccion:</strong> {contact.direccion_cliente}
 										</Card.Text>
 									</Col>
 
 									<Col>
 										<Card.Text>
-											<strong>Correo:</strong> {contact.correo}
+											<strong>Correo:</strong> {contact.metros_cuadrados}
 										</Card.Text>
 										<Card.Text>
-											<strong>Detalle:</strong> {contact.detalle}
+											<strong>Detalle:</strong> {contact.descripcion}
 										</Card.Text>
 									</Col>
 									<Col>
