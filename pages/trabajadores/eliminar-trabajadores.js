@@ -164,9 +164,6 @@ const Trabajador = (props) => {
 					Se ha eliminado a "{elementName}" con el rol de "{elementRole}" correctamente.
 				</Modal.Body>
 				<Modal.Footer>
-					<Button variant="secondary" onClick={handleClose}>
-						Cerrar
-					</Button>
 				</Modal.Footer>
 			</Modal>
 			<Modal show={showConfirmation} onHide={handleConfirmationClose}>
