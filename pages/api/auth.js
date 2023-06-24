@@ -23,6 +23,7 @@ export default withSession(async (req, res) => {
         let userCredentials = await db.collection("usuarios").findOne({ username });
         if (await authService.validate(password, userCredentials.password) === true) {
             await saveSession({username}, req);
+            // console.log(userCredentials.rol);
             res.status(200).json({username});
             return;
         }

@@ -12,9 +12,11 @@ const userServiceFactory = () => {
     function forgotPassword(username, correo) {
         return axios.post('/api/forgot-password', { username, correo });
     }
+    function logout() {
+        return axios.post('/api/logout');
+    }
 
-
-    return {login, createUser, forgotPassword};
+    return {login, createUser, forgotPassword, logout};
 };
 
 module.exports = {
