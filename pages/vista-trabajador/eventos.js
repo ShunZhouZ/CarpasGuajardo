@@ -31,28 +31,6 @@ const Eventos = (props) => {
 
   //-------------------------------------------------------
 
-  const submitModificar = async (e) => {
-    e.preventDefault();
-    
-    const response = await fetch('http://localhost:3000/api/eventos', {
-      method: 'PUT',
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify(data)
-    })
-    handleModShow();
-  };
-
-  const handleModControl = (e) => {
-    e.preventDefault();
-    const {value, name} = e.target
-    setData({
-      ...data,
-      [name]: value
-    })
-  }
-
   const [ModShow, setModShow] = useState(false);
     const handleModShow = (id) => setModShow(true);
     const handleModClose = () => {
@@ -69,7 +47,7 @@ const Eventos = (props) => {
     }
 
     const handleProceso = (id) => {
-      //insertar super codigo de modificar el estado [pendiente]
+      
     };
 
     const handleFinalizado = (id) => {
