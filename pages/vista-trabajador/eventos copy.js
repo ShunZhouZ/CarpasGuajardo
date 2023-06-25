@@ -24,59 +24,14 @@ const Eventos = (props) => {
     setDescription(description);
     setShowDescriptionModal(true);
   };
+
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
   const handleConfirmationClose = () => setShowConfirmation(false);
-  
 
-  //-------------------------------------------------------
-
-  const submitModificar = async (e) => {
-    e.preventDefault();
-    
-    const response = await fetch('http://localhost:3000/api/eventos', {
-      method: 'PUT',
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify(data)
-    })
-    handleModShow();
+  const modifyElement = (id) => {
+    window.location.href = `/vista-trabajador/modestado?id=${id}`;
   };
-
-  const handleModControl = (e) => {
-    e.preventDefault();
-    const {value, name} = e.target
-    setData({
-      ...data,
-      [name]: value
-    })
-  }
-
-  const [ModShow, setModShow] = useState(false);
-    const handleModShow = (id) => setModShow(true);
-    const handleModClose = () => {
-      setModShow(false);
-      window.location.href = "/vista-trabajador/eventos";// Reinicia la página web
-    };
-
-    const handleModCheck = (e) => {
-      const {checked, name} = e.target
-      setData({
-        ...data,
-        [name]: checked
-      })
-    }
-
-    const handleProceso = (id) => {
-      //insertar super codigo de modificar el estado [pendiente]
-    };
-
-    const handleFinalizado = (id) => {
-      //insertar super codigo de modificar el estado [pendiente]
-    };
-
-  //--------------------------------------------------------
 
   const reloadEvents = useCallback(async () => {
     let res = await fetch("http://localhost:3000/api/eventos", {
@@ -303,11 +258,18 @@ const Eventos = (props) => {
                     <br></br>
                     <Button
                       className="btn btn-info btn-sm"
-                      onClick={() => handleModShow(event._id)}
+                      onClick={() => modifyElement(event._id)}
                     >
                       <FontAwesomeIcon icon={faPencilAlt} /> Modificar estado
                     </Button>
-                    
+                    {/* <br></br>
+                    <br></br>
+                    <Button
+                      className="btn btn-danger btn-sm"
+                      onClick={() => deleteElement(event._id)}
+                    >
+                      <FontAwesomeIcon icon={faTrash} /> Eliminar
+                    </Button> */}
                   </Col>
                 </Row>
               </div>
@@ -338,25 +300,6 @@ const Eventos = (props) => {
         </Modal.Header>
         <Modal.Body>{description}</Modal.Body>
       </Modal>
-
-      {/* ------------------------------------------------------ */}
-
-      <Modal show={ModShow} onHide={handleModClose}>
-				<Modal.Header closeButton>
-					<Modal.Title>Estado del evento</Modal.Title>
-				</Modal.Header>
-				<Modal.Body>Estado actual:</Modal.Body>
-				<Modal.Footer className="d-flex justify-content-center">
-          <Button onClick={handleProceso}>
-						En proceso
-					</Button>
-          <Button onClick={handleFinalizado}>
-						Finalizado
-					</Button>
-				</Modal.Footer>
-			</Modal>
-
-      {/* ------------------------------------------------------ */}
 
       <Modal show={showConfirmation} onHide={handleConfirmationClose}>
         <Modal.Header closeButton>
