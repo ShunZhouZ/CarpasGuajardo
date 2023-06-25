@@ -54,7 +54,7 @@ const NavBar = () => {
 						</Navbar.Collapse>
 						<Navbar.Collapse className="justify-content-end" id="basic-navbar-nav">
 							<NavDropdown title="ADMINISTRADOR" id="basic-nav-dropdown" bg="primary" variant="dark">
-								<NavDropdown.Item href="#action/3.1">Mi perfil</NavDropdown.Item>
+								<NavDropdown.Item href="/perfil">Mi perfil</NavDropdown.Item>
 								<NavDropdown.Divider />
 								<NavDropdown.Item href="/api/logout">Cerrar sesión</NavDropdown.Item>
 							</NavDropdown>
