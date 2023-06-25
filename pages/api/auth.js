@@ -1,7 +1,7 @@
 import { authServiceFactory } from "../../services/authService"
 import withSession from "../../lib/session";
 import clientPromise from "../../lib/mongodb";
-
+import jwt from "jsonwebtoken";
 
 const authService = authServiceFactory();
 
@@ -22,9 +22,10 @@ export default withSession(async (req, res) => {
     try {
         let userCredentials = await db.collection("usuarios").findOne({ username });
         if (await authService.validate(password, userCredentials.password) === true) {
-            await saveSession({username}, req);
-            // console.log(userCredentials.rol);
-            res.status(200).json({username});
+            const token = jwt.sign( userCredentials, "super-secreta");
+            await saveSession({username}, token, req);
+            // console.log(token);
+            res.status(200).json(token);
             return;
         }
     } catch (error) {
@@ -33,7 +34,8 @@ export default withSession(async (req, res) => {
     res.status(403).json({error: ERROR_CREDENTIALS});
 })
 
-async function saveSession(user, request) {
+async function saveSession(user, token, request) {
     request.session.set("user", user);
+    request.session.set("token", token);
     await request.session.save();
 }
