@@ -3,8 +3,12 @@ import withSession from "../lib/session";
 import { Container, Row, Col, Table, Card, Image } from "react-bootstrap";
 import Carousel from "react-bootstrap/Carousel";
 import moment from "moment";
+import jwt from "jsonwebtoken";
 
-export default function Home({ user, allEvents, allVisits, eventos_mes, ganancias }) {
+export default function Home({ token, allEvents, allVisits, eventos_mes, ganancias }) {
+	const rol = jwt.decode(token).rol;
+	console.log(rol);
+	if(rol === "administrador"){
 	// traer todos los eventos
 	const events = [];
 	const visits = [];
@@ -50,7 +54,7 @@ export default function Home({ user, allEvents, allVisits, eventos_mes, ganancia
 	}
 
 	const filtrarEventosHoy = (fecha_hoy) => {
-		console.log(fecha_hoy);
+		// console.log(fecha_hoy);
 		var resultado = events.filter((elemento) => {
 			if (elemento.start.includes(fecha_hoy)) {
 				return elemento;
@@ -64,7 +68,7 @@ export default function Home({ user, allEvents, allVisits, eventos_mes, ganancia
 	};
 
 	const filtrarVisitasHoy = (fecha_hoy) => {
-		console.log(fecha_hoy);
+		// console.log(fecha_hoy);
 		var resultado = visits.filter((elemento) => {
 			if (elemento.start.includes(fecha_hoy)) {
 				return elemento;
@@ -79,7 +83,7 @@ export default function Home({ user, allEvents, allVisits, eventos_mes, ganancia
 
 	const eventos_hoy = filtrarEventosHoy(moment().format("YYYY-MM-DD"));
 	const visitas_hoy = filtrarVisitasHoy(moment().format("YYYY-MM-DD"));
-	console.log(visitas_hoy);
+	// console.log(visitas_hoy);
 
 	const titleStyle = {
 		fontSize: "1.5rem"
@@ -211,10 +215,15 @@ export default function Home({ user, allEvents, allVisits, eventos_mes, ganancia
 			</Container>
 		</div>
 	);
+	}
+	else{
+		return <h1>Cargando...</h1>
+	}
+
 }
 
 export const getServerSideProps = withSession(async function ({ req, res }) {
-	const user = req.session.get("user");
+	const token = req.session.get("token");
 
 	let getAllEvents = await fetch("http://localhost:3000/api/eventos", {
 		method: "GET",
@@ -237,7 +246,7 @@ export const getServerSideProps = withSession(async function ({ req, res }) {
 	let allEstadistics = await getEstadisticas.json();
 	let allVisits = await getVisits.json();
 	let allEvents = await getAllEvents.json();
-	if (user === undefined) {
+	if (token === undefined) {
 		res.setHeader("location", "/login");
 		res.statusCode = 302;
 		res.end();
@@ -245,6 +254,6 @@ export const getServerSideProps = withSession(async function ({ req, res }) {
 	}
 
 	return {
-		props: { user: req.session.get("user"), allEvents: allEvents.data, allVisits: allVisits.data, eventos_mes: allEstadistics.eventosMes, ganancias: allEstadistics.ganancias }
+		props: { token: req.session.get("token"), allEvents: allEvents.data, allVisits: allVisits.data, eventos_mes: allEstadistics.eventosMes, ganancias: allEstadistics.ganancias }
 	};
 });
