@@ -258,3 +258,48 @@
   margin-top: 10px;
   margin-bottom: 10px;
 }
+/* ------------columnas notificaciones---------------- */
+.whatsapp-column {
+  background-color: #e9e9e9bb;
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.whatsapp-column h2 {
+  color: #032521;
+}
+
+.whatsapp-column .card-container {
+  margin-top: 10px;
+}
+
+.whatsapp-column .card {
+  border-radius: 10px;
+  border: 1px solid #dddfe2;
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin-bottom: 10px;
+}
+
+.whatsapp-column .card-body {
+  padding: 10px;
+}
+
+.whatsapp-column .card-title {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.whatsapp-column .card-text {
+  margin-bottom: 5px;
+}
+
+.whatsapp-column .button-group {
+  text-align: right;
+}
+
+.event-scroll-container,
+.inventory-scroll-container {
+  max-height: 700px; /* Ajusta la altura máxima del contenedor según tus necesidades */
+  overflow-y: auto;
+}
