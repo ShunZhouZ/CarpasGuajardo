@@ -1,5 +1,5 @@
-import { Card, Row, Col, Container } from "react-bootstrap";
-import { useState, useEffect } from "react";
+import { Card, Row, Col, Container,Button, Modal } from "react-bootstrap";
+import { useCallback, useState, useEffect } from "react";
 import moment from "moment";
 import "moment/locale/es";
 moment.locale("es");
@@ -42,6 +42,97 @@ const Eventos = (props) => {
     reloadInventario();
   }, []);
 
+  //-------------------------------------------------------
+
+  const [ModShow, setModShow] = useState(false);
+  const handleModShow = (id) => {
+    setModid(id);
+    setModShow(true);
+  };
+  const handleModClose = () => {
+    setModShow(false);
+  };
+
+  const [ModShow1, setModShow1] = useState(false);
+  const handleModShow1 = (id) => {
+    setModid1(id);
+    setModShow1(true);
+  };
+  const handleModClose1 = () => {
+    setModShow1(false);
+  };
+
+  const [Modid, setModid] = useState(null);
+  const [Modid1, setModid1] = useState(null);
+
+  //Actualizar id para data (evento)
+  useEffect(() => {
+    setData((prevData) => ({
+      ...prevData,
+      _id: Modid,
+    }));
+  }, [Modid]);
+
+  //Actualizar id para data1 (inventario)
+  useEffect(() => {
+    setData1((prevData) => ({
+      ...prevData,
+      _id: Modid1,
+    }));
+  }, [Modid1]);
+
+  //Modificar a evneto
+  const handleProceso = async () => {
+    console.log(Modid);
+    console.log(data);
+    const putResponse = await fetch(
+      `http://localhost:3000/api/eventos?eventid=${Modid}`,
+      {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      }
+    );
+    //reinicio
+    setModShow(false);
+    window.location.href = "/notificaciones/notificacion";
+  };
+
+  const [data, setData] = useState({
+    _id: Modid,
+    notificacion: false,
+  });
+
+  //Modificar a Finalizado
+  const handleFinalizado = async () => {
+    console.log(Modid);
+    console.log(data1);
+    const putResponse = await fetch(
+      `http://localhost:3000/api/Inventario?inventarioid=${Modid}`,
+      {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data1),
+      }
+    );
+    //reinicio
+    setModShow(false);
+    window.location.href = "/notificaciones/notificacion";
+  };
+
+  const [data1, setData1] = useState({
+    _id: Modid1,
+    notificacion: false,
+    estado: null
+  });
+
+  //--------------------------------------------------------
+  
+
   return (
     <div>
       <h1 className="display-3 text-center mb-5">Notificaciones</h1>
@@ -66,10 +157,21 @@ const Eventos = (props) => {
                               <strong>Nombre: </strong> {event.nombre_cliente}
                             </Card.Text>
                             <Card.Text>
-                              <strong>Estado de notificación: </strong>{" "}
+                              <strong>Estado: </strong>{" "}
                               {event.notificacion ? "Agendado" : "Sin notificación"}
                             </Card.Text>
                           </Col>
+                          
+                          <Col>
+                            <Button
+                              className="btn btn-info btn-sm"
+                              onClick={() => handleModShow(event._id,)}
+                            >
+                              <FontAwesomeIcon icon={faPencilAlt} /> Marcar como leido
+                            </Button>
+                          </Col>
+                          
+                          
                         </Row>
                       </div>
                       <br />
@@ -99,10 +201,20 @@ const Eventos = (props) => {
                               <strong>Nombre: </strong> {inventario.nombre}
                             </Card.Text>
                             <Card.Text>
-                              <strong>Estado de notificación: </strong>{" "}
-                              {inventario.notificacion ? "Agendado" : "Sin notificación"}
+                              <strong>Detalle: </strong>{" "}
+                              {inventario.estado ? "Agendado" : "Sin notificación"}
                             </Card.Text>
                           </Col>
+
+                          <Col>
+                            <Button
+                              className="btn btn-info btn-sm"
+                              onClick={() => handleModShow1(inventario._id)}
+                            >
+                              <FontAwesomeIcon icon={faPencilAlt} /> Marcar como leido
+                            </Button>
+                          </Col>
+
                         </Row>
                       </div>
                       <br />
@@ -115,6 +227,29 @@ const Eventos = (props) => {
           </Col>
         </Row>
       </Container>
+
+      <Modal show={ModShow} onHide={handleModClose}>
+        <Modal.Header closeButton>
+          <Modal.Title>Estado del evento</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>Marcar la notificacion como leido: </Modal.Body>
+        <Modal.Footer className="d-flex justify-content-center">
+          <Button onClick={handleProceso}>Aceptar</Button>
+          <Button onClick={handleModClose}>Cancelar</Button>
+        </Modal.Footer>
+      </Modal>
+
+      <Modal show={ModShow1} onHide={handleModClose1}>
+        <Modal.Header closeButton>
+          <Modal.Title>Cambiar estado</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>Marcar la notificacion como leido </Modal.Body>
+        <Modal.Footer className="d-flex justify-content-center"> 
+          <Button onClick={handleFinalizado}>Aceptar</Button>
+          <Button onClick={handleModClose1}>Cancelar</Button>
+        </Modal.Footer>
+      </Modal>
+
     </div>
   );
 };
