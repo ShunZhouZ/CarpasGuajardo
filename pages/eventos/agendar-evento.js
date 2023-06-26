@@ -15,11 +15,14 @@ const FormularioPorPasos = () => {
 	const [anticipo, setanticipo] = useState("");
 	const [carpa, setCarpa] = useState("");
 	const [toldo, setToldo] = useState("");
-	const [cubre_piso, setcubre_piso] = useState("");
+	const [cubre_piso, setcubre_piso] = useState(false);
 	const [metros_cuadrados, setmetros_cuadrados] = useState("");
 	const [descripcion, setdescripcion] = useState("");
-	const [Iluminacion, setIluminacion] = useState("");
-	const [calefaccion, setCalefacion] = useState("");
+	const [Iluminacion, setIluminacion] = useState(false);
+	const [calefaccion, setCalefacion] = useState(false);
+	const [estado, setEstado] = useState("Agendado");
+  const [notificacion, setNotificacion] = useState(false);
+
 
 	const router = useRouter();
 
@@ -35,6 +38,8 @@ const FormularioPorPasos = () => {
 		e.preventDefault();
 		try {
 			const res = await axios.post("../api/agregar_ev", {
+        estado,
+        notificacion,
 				tipo_evento,
 				nombre_cliente,
 				numero_contacto_cliente,

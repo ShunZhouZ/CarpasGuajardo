@@ -12,6 +12,9 @@ export function Form_(props) {
 	const [direccion_cliente, setdireccion_cliente] = useState("");
 	const [fecha_hora_visita_terreno, setfecha_hora_visita_terreno] = useState("");
 	const [descripcion, setdescripcion] = useState("");
+	const [estado, setEstado] = useState("Agendado");
+	const [notificacion, setNotificacion] = useState(false);
+
 	function irAContacto() {
 		router.push("./visualizar-visitas-admin");
 	}
@@ -19,6 +22,8 @@ export function Form_(props) {
 		e.preventDefault();
 		try {
 			const res = await axios.post("../api/agregar_ev", {
+				notificacion,
+				estado,
 				nombre_cliente,
 				tipo_evento,
 				numero_contacto_cliente,
