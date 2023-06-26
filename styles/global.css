@@ -300,6 +300,6 @@
 
 .event-scroll-container,
 .inventory-scroll-container {
-  max-height: 700px; /* Ajusta la altura máxima del contenedor según tus necesidades */
+  max-height: 600px; /* Ajusta la altura máxima del contenedor según tus necesidades */
   overflow-y: auto;
 }

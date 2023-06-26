@@ -31,6 +31,7 @@ const NavBar = (res, req) => {
 										<NavDropdown.Item href="/eventos/eliminar-evento">Lista de eventos</NavDropdown.Item>
 										<NavDropdown.Divider />
 										<NavDropdown.Item href="/eventos/visualizar-admin">Visualizar calendario</NavDropdown.Item>
+										<NavDropdown.Item href="/notificaciones/notificacion">Notificaciones</NavDropdown.Item>
 									</NavDropdown>
 									<NavDropdown title="Visitas técnicas" id="basic-nav-dropdown" bg="primary" variant="dark">
 										<NavDropdown.Item href="/visitas-tecnicas/agendar-visita">Agendar</NavDropdown.Item>
@@ -49,6 +50,8 @@ const NavBar = (res, req) => {
 									<NavDropdown title="Inventario" id="basic-nav-dropdown" bg="primary" variant="dark">
 										<NavDropdown.Item href="/inventario/agregar-inventario">Agregar</NavDropdown.Item>
 										<NavDropdown.Item href="/inventario/eliminar-inventario">Lista de inventario</NavDropdown.Item>
+										<NavDropdown.Divider />
+										<NavDropdown.Item href="/notificaciones/notificacion">Notificaciones</NavDropdown.Item>
 									</NavDropdown>
 								</Nav>
 							</Navbar.Collapse>
