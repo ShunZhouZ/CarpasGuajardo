@@ -23,7 +23,7 @@ const Inventario = (props) => {
   const handleConfirmationClose = () => setShowConfirmation(false);
 
   const modifyElement = (id) => {
-    window.location.href = `/inventario/modificar-inventario?id=${id}`;
+    window.location.href = `/vista-trabajador/notificar-inventario?id=${id}`;
   };
 
   const reloadInventarios = useCallback(async () => {
@@ -125,12 +125,6 @@ const Inventario = (props) => {
                     </Button>
                     <br></br>
                     <br></br>
-                    <Button
-                      className="btn btn-danger btn-sm"
-                      onClick={() => deleteElement(inventary._id)}
-                    >
-                      <FontAwesomeIcon icon={faTrash} /> Eliminar
-                    </Button>
                   </Col>
                 </Row>
               </div>

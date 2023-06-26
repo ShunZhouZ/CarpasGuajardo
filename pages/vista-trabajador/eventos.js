@@ -38,7 +38,7 @@ const Eventos = (props) => {
     };
     const handleModClose = () => {
       setModShow(false);
-      window.location.href = "/vista-trabajador/eventos";// Reinicia la página web
+      //window.location.href = "/vista-trabajador/eventos";// Reinicia la página web
     };
 
     const [Modid, setModid] = useState(null);
@@ -81,7 +81,8 @@ const Eventos = (props) => {
     
     const [data, setData] = useState({
       _id: Modid,
-      estado: 'En proceso'
+      estado: 'En proceso',
+      notificacion: true
     });
     
     
