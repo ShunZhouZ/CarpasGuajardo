@@ -158,7 +158,7 @@ const Eventos = (props) => {
                             </Card.Text>
                             <Card.Text>
                               <strong>Estado: </strong>{" "}
-                              {event.notificacion ? "Agendado" : "Sin notificación"}
+                              {event.estado}
                             </Card.Text>
                           </Col>
                           
@@ -202,7 +202,7 @@ const Eventos = (props) => {
                             </Card.Text>
                             <Card.Text>
                               <strong>Detalle: </strong>{" "}
-                              {inventario.estado ? "Agendado" : "Sin notificación"}
+                              {inventario.estado}
                             </Card.Text>
                           </Col>
 
