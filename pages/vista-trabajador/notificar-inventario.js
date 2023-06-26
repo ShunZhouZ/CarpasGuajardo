@@ -20,7 +20,7 @@ const Modificarinventarios = (props) => {
 		_id: id,
 		nombre: inventario.nombre,
 		cantidad: inventario.cantidad,
-		detalle: inventario.detalle,
+		estado: inventario.estado,
 		notificacion: true
 	});
 
@@ -86,10 +86,11 @@ const Modificarinventarios = (props) => {
 					<Form.Control
 						as="textarea" 
 						onChange={handleControl} 
-						required defaultValue={data.descripcion} 
+						required defaultValue={data.estado} 
 						type="text" 
-						placeholder="Detalle" 
-						name="descripcion"
+						placeholder="estado" 
+						id="estado"
+						name="estado"
 					/>
 				</Form.Group>
 
