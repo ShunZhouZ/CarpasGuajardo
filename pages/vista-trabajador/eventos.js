@@ -13,12 +13,18 @@ const Eventos = (props) => {
   const [events, setEvents] = useState(defaultEvents);
   const [description, setDescription] = useState("");
   const [showDescriptionModal, setShowDescriptionModal] = useState(false);
+  const [estado, setEstado] = useState("");
   const [searchTerm, setSearchTerm] = useState("");
   const [sortAsc, setSortAsc] = useState(true);
   const [sortOrder, setSortOrder] = useState("asc"); //esto agregue para el sort
   const [filterToldo, setFilterToldo] = useState(false);
   const [filterCarpa, setFilterCarpa] = useState(false);
   const [filterIluminacion, setFilterIluminacion] = useState(false);
+  const buttonStyle = {
+    width: "38%",
+    marginBottom: "0.5rem",
+  };
+  
 
   const handleShowDescriptionModal = (description) => {
     setDescription(description);
@@ -27,89 +33,86 @@ const Eventos = (props) => {
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
   const handleConfirmationClose = () => setShowConfirmation(false);
-  
 
   //-------------------------------------------------------
 
-    const [ModShow, setModShow] = useState(false);
-    const handleModShow = (id) => {
-      setModid(id);
-      setModShow(true);
-    };
-    const handleModClose = () => {
-      setModShow(false);
-      //window.location.href = "/vista-trabajador/eventos";// Reinicia la página web
-    };
+  const [ModShow, setModShow] = useState(false);
+  const handleModShow = (id, estado) => {
+    setModid(id);
+    setEstado(estado);
+    setModShow(true);
+  };
+  const handleModClose = () => {
+    setModShow(false);
+    //window.location.href = "/vista-trabajador/eventos";// Reinicia la página web
+  };
 
-    const [Modid, setModid] = useState(null);
+  const [Modid, setModid] = useState(null);
 
-    //Actualizar id para data
-    useEffect(() => {
-      setData((prevData) => ({
-        ...prevData,
-        _id: Modid,
-      }));
-    }, [Modid]);
-
-    //Actualizar id para data1
-    useEffect(() => {
-      setData1((prevData) => ({
-        ...prevData,
-        _id: Modid,
-      }));
-    }, [Modid]);
-
-    //Modificar a En proceso
-    const handleProceso = async () => {
-      console.log(Modid);
-      console.log(data);
-      const putResponse = await fetch(
-        `http://localhost:3000/api/eventos?eventid=${Modid}`,
-        {
-          method: "PUT",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(data)
-        }
-      );
-      //reinicio
-      setModShow(false);
-      window.location.href = "/vista-trabajador/eventos";
-    };
-    
-    
-    const [data, setData] = useState({
+  //Actualizar id para data
+  useEffect(() => {
+    setData((prevData) => ({
+      ...prevData,
       _id: Modid,
-      estado: 'En proceso',
-      notificacion: true
-    });
-    
-    
-    
-    //Modificar a Finalizado
-    const handleFinalizado = async () => {
-      console.log(Modid);
-      console.log(data1);
-      const putResponse = await fetch(
-        `http://localhost:3000/api/eventos?eventid=${Modid}`,
-        {
-          method: "PUT",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(data1)
-        }
-      );
-      //reinicio
-      setModShow(false);
-      window.location.href = "/vista-trabajador/eventos";
-    };
+    }));
+  }, [Modid]);
 
-    const [data1, setData1] = useState({
+  //Actualizar id para data1
+  useEffect(() => {
+    setData1((prevData) => ({
+      ...prevData,
       _id: Modid,
-      estado: 'Finalizado'
-    });
+    }));
+  }, [Modid]);
+
+  //Modificar a En proceso
+  const handleProceso = async () => {
+    console.log(Modid);
+    console.log(data);
+    const putResponse = await fetch(
+      `http://localhost:3000/api/eventos?eventid=${Modid}`,
+      {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      }
+    );
+    //reinicio
+    setModShow(false);
+    window.location.href = "/vista-trabajador/eventos";
+  };
+
+  const [data, setData] = useState({
+    _id: Modid,
+    estado: "En proceso",
+    notificacion: true,
+  });
+
+  //Modificar a Finalizado
+  const handleFinalizado = async () => {
+    console.log(Modid);
+    console.log(data1);
+    const putResponse = await fetch(
+      `http://localhost:3000/api/eventos?eventid=${Modid}`,
+      {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data1),
+      }
+    );
+    //reinicio
+    setModShow(false);
+    window.location.href = "/vista-trabajador/eventos";
+  };
+
+  const [data1, setData1] = useState({
+    _id: Modid,
+    estado: "Finalizado",
+  });
 
   //--------------------------------------------------------
 
@@ -121,7 +124,7 @@ const Eventos = (props) => {
       },
     });
     let _events = await res.json();
-    setEvents(_events.data);  
+    setEvents(_events.data);
   }, []);
 
   const [showConfirmation, setShowConfirmation] = useState(false);
@@ -260,10 +263,6 @@ const Eventos = (props) => {
                       <strong>Nombre: </strong> {event.nombre_cliente}
                     </Card.Text>
                     <Card.Text>
-                      <strong>Telefono: </strong>{" "}
-                      {event.numero_contacto_cliente}
-                    </Card.Text>
-                    <Card.Text>
                       <strong>Direccion: </strong> {event.direccion_cliente}
                     </Card.Text>
                     <Card.Text>
@@ -277,13 +276,6 @@ const Eventos = (props) => {
                   </Col>
 
                   <Col>
-                    <Card.Text>
-                      <strong>
-                        m<sup>2</sup>:
-                      </strong>{" "}
-                      {event.metros_cuadrados}
-                    </Card.Text>
-
                     <Card.Text>
                       <strong>Cubrepiso: </strong>
                       {event.cubre_piso ? "Si" : "No"}
@@ -317,16 +309,17 @@ const Eventos = (props) => {
                       {event.calefaccion ? "Sí" : "No"}
                     </Card.Text>
                     <Card.Text>
-                      <strong>Monto total:</strong> {event.monto_total}
-                    </Card.Text>
-                    <Card.Text>
-                      <strong>Abono:</strong> {event.anticipo}
+                      <strong>
+                        m<sup>2</sup>:
+                      </strong>{" "}
+                      {event.metros_cuadrados}
                     </Card.Text>
                   </Col>
 
                   <Col>
                     <Button
                       className="btn btn-warning btn-sm mb-2"
+                      style={buttonStyle}
                       onClick={() =>
                         handleShowDescriptionModal(event.descripcion)
                       }
@@ -338,11 +331,11 @@ const Eventos = (props) => {
                     <br></br>
                     <Button
                       className="btn btn-info btn-sm"
-                      onClick={() => handleModShow(event._id)}
+                      style={buttonStyle}
+                      onClick={() => handleModShow(event._id, event.estado)}
                     >
-                      <FontAwesomeIcon icon={faPencilAlt} /> Modificar estado
+                      <FontAwesomeIcon icon={faPencilAlt} /> Cambiar estado
                     </Button>
-                    
                   </Col>
                 </Row>
               </div>
@@ -352,17 +345,6 @@ const Eventos = (props) => {
           </Card>
         ))}
       </div>
-      <Modal show={show} onHide={handleClose}>
-        <Modal.Header closeButton>
-          <Modal.Title>Evento eliminado</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>El evento ha sido eliminado correctamente.</Modal.Body>
-        <Modal.Footer>
-          <Button variant="secondary" onClick={handleClose}>
-            Cerrar
-          </Button>
-        </Modal.Footer>
-      </Modal>
 
       <Modal
         show={showDescriptionModal}
@@ -377,36 +359,13 @@ const Eventos = (props) => {
       {/* ------------------------------------------------------ */}
 
       <Modal show={ModShow} onHide={handleModClose}>
-				<Modal.Header closeButton>
-					<Modal.Title>Estado del evento</Modal.Title>
-				</Modal.Header>
-				<Modal.Body>Estado actual:</Modal.Body>
-				<Modal.Footer className="d-flex justify-content-center">
-          <Button onClick={handleProceso}>
-						En proceso
-					</Button>
-          <Button onClick={handleFinalizado}>
-						Finalizado
-					</Button>
-				</Modal.Footer>
-			</Modal>
-
-      {/* ------------------------------------------------------ */}
-
-      <Modal show={showConfirmation} onHide={handleConfirmationClose}>
         <Modal.Header closeButton>
-          <Modal.Title>Confirmación de eliminación</Modal.Title>
+          <Modal.Title>Estado del evento</Modal.Title>
         </Modal.Header>
-        <Modal.Body>
-          ¿Estás seguro de que deseas eliminar este evento?
-        </Modal.Body>
-        <Modal.Footer>
-          <Button variant="secondary" onClick={handleConfirmationClose}>
-            Cancelar
-          </Button>
-          <Button variant="danger" onClick={confirmDelete}>
-            Eliminar
-          </Button>
+        <Modal.Body>Estado actual: {estado}</Modal.Body>
+        <Modal.Footer className="d-flex justify-content-center">
+          <Button onClick={handleProceso}>En proceso</Button>
+          <Button onClick={handleFinalizado}>Finalizado</Button>
         </Modal.Footer>
       </Modal>
     </div>
