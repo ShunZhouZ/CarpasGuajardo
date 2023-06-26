@@ -10,11 +10,14 @@ export function Form_(props) {
 	const [nombre_cliente, setnombre_cliente] = useState("");
 	const [tipo_evento, settipo_evento] = useState("inventario");
 	const [cantidad, setcantidad] = useState("");
+	const [notificacion, setNotificacion] = useState(false);
+
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 		try {
 			
 			const res = await axios.post("../api/agregar_inv", {
+				notificacion,
 				tipo_evento,
 				nombre_cliente,
 				cantidad,
