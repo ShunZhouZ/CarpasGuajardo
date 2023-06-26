@@ -1,39 +1,41 @@
 import clientPromise from "../../lib/mongodb";
 import bcrypt from "bcryptjs";
 import nodemailer from "nodemailer";
-import express from "express"
+import express from "express";
 
 // Configuración del transporte de correo
-const transporter = nodemailer.createTransport({
-    host: "smtp.ethereal.email",
-    port: 587,
-    secure: false, // si el servidor de correo admite STARTTLS, establece esta opción en false
+let transporter = nodemailer.createTransport({
+    host: "smtp.gmail.com",
+    port: 465,
+    secure: true, // si el servidor de correo admite STARTTLS, establece esta opción en false
     auth: {
-        user: 'keshawn.hahn@ethereal.email',
-        pass: 'VKxbAKrhWSnVDT8h8j'
+        user: 'mati.lienlaff@gmail.com',
+        pass: 'cviijlnmqozyiebf',
     },
+});
+
+transporter.verify().then(() => {
+    console.log("Listo para enviar correos");
 });
   
 // Función para enviar el correo electrónico
 async function enviarCorreoElectronico(destinatario, asunto, cuerpo) {
-    const mensaje = {
+    let mensaje = {
       from: "cguajardo-bot",
       to: destinatario,
       subject: asunto,
       text: cuerpo,
     };
-  
-    await transporter.sendMail(mensaje, (error, info) => {
-        if(error){
-            res.status(500).send(error.message);
-        } else {
-            console.log("Email enviado");
-            res.status(200).jsonp(req.body);
-        }
-
-    });
     
-}
+
+    try{
+        await transporter.sendMail(mensaje);
+        console.log("Email enviado");
+    }catch (error) {
+        console.log(error);
+    }
+    
+};
 
 function generarContrasena(longitud) {
     const caracteres = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
@@ -78,10 +80,9 @@ export default async function handler(req, res) {
                     password: await bcrypt.hash(nuevaContrasena, 10)
                 },
             };
-
-            const result = await users.updateOne(filter, updatePassword, options);
+            console.log(updatePassword)
+            await users.updateOne(filter, updatePassword, options);
             return res.status(200).json({ message: "Contraseña restablecida correctamente" });
-
         }
         else {
             return res.status(409).json({ error: "No coinciden correo y usuario"});
@@ -90,8 +91,6 @@ export default async function handler(req, res) {
     } catch (error) {
         console.error(error);
         res.status(500).json({ error: "Error al solicitar nueva contraseña" });
-    } finally {
-        client.close();
     }
   } else {
     res.setHeader("Allow", ["POST"]);
