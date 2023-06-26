@@ -31,28 +31,84 @@ const Eventos = (props) => {
 
   //-------------------------------------------------------
 
-  const [ModShow, setModShow] = useState(false);
-    const handleModShow = (id) => setModShow(true);
+    const [ModShow, setModShow] = useState(false);
+    const handleModShow = (id) => {
+      setModid(id);
+      setModShow(true);
+    };
     const handleModClose = () => {
       setModShow(false);
       window.location.href = "/vista-trabajador/eventos";// Reinicia la página web
     };
 
-    const handleModCheck = (e) => {
-      const {checked, name} = e.target
-      setData({
-        ...data,
-        [name]: checked
-      })
-    }
+    const [Modid, setModid] = useState(null);
 
-    const handleProceso = (id) => {
-      
+    //Actualizar id para data
+    useEffect(() => {
+      setData((prevData) => ({
+        ...prevData,
+        _id: Modid,
+      }));
+    }, [Modid]);
+
+    //Actualizar id para data1
+    useEffect(() => {
+      setData1((prevData) => ({
+        ...prevData,
+        _id: Modid,
+      }));
+    }, [Modid]);
+
+    //Modificar a En proceso
+    const handleProceso = async () => {
+      console.log(Modid);
+      console.log(data);
+      const putResponse = await fetch(
+        `http://localhost:3000/api/eventos?eventid=${Modid}`,
+        {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(data)
+        }
+      );
+      //reinicio
+      setModShow(false);
+      window.location.href = "/vista-trabajador/eventos";
+    };
+    
+    
+    const [data, setData] = useState({
+      _id: Modid,
+      estado: 'En proceso'
+    });
+    
+    
+    
+    //Modificar a Finalizado
+    const handleFinalizado = async () => {
+      console.log(Modid);
+      console.log(data1);
+      const putResponse = await fetch(
+        `http://localhost:3000/api/eventos?eventid=${Modid}`,
+        {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(data1)
+        }
+      );
+      //reinicio
+      setModShow(false);
+      window.location.href = "/vista-trabajador/eventos";
     };
 
-    const handleFinalizado = (id) => {
-      //insertar super codigo de modificar el estado [pendiente]
-    };
+    const [data1, setData1] = useState({
+      _id: Modid,
+      estado: 'Finalizado'
+    });
 
   //--------------------------------------------------------
 
@@ -64,7 +120,7 @@ const Eventos = (props) => {
       },
     });
     let _events = await res.json();
-    setEvents(_events.data);
+    setEvents(_events.data);  
   }, []);
 
   const [showConfirmation, setShowConfirmation] = useState(false);

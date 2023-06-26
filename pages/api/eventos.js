@@ -46,5 +46,27 @@ export default async function handler(req, res) {
 				message: "Modificado",
 				response: responseUpdate
 			});
+
+			case "PUT1":
+				const { eventid } = req.query;
+  				const { estado } = req.body;
+
+				if (!eventid) {
+					return res.status(400).json({ message: "El ID del evento es obligatorio" });
+				}
+
+				const updateResponse = await db.collection("evento").updateOne(
+					{ _id: new ObjectId(eventid) },
+					{ $set: { estado: estado } }
+				);
+
+				if (updateResponse.modifiedCount === 1) {
+					return res.status(200).json({ message: "Estado actualizado correctamente" });
+				} else {
+					return res.status(404).json({ message: "Evento no encontrado" });
+				}
+
+			  
+			
 	}
 }
