@@ -304,3 +304,15 @@
   max-height: 600px; /* Ajusta la altura máxima del contenedor según tus necesidades */
   overflow-y: auto;
 }
+.vertical-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top:5%;
+  margin-bottom: 5%;
+}
+.left-align {
+  padding-left: 20%;
+  text-align: left;
+  padding-right: 0%;
+}

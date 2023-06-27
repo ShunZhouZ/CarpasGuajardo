@@ -284,59 +284,64 @@ export default function Home({ token, allEvents, allVisits, eventos_mes, gananci
 				<Container className="text-center mt-4 container-inicio">
 					<h2>Avisos</h2>
 					<Row>
-						<Col>
+						<Col xs={12} lg={6} md={6}>
 							<h4>Eventos</h4>
-							<div className="event-scroll-container mt-4">
+							<div className="event-scroll-container mb-4">
 								{notificacion_eventos.map((event, index) => (
 									<Card key={event._id} className="mb-4">
 										<Card.Body className="text-left">
-											<Card.Title className="mb-3">Notificación {index + 1}</Card.Title>
+											<Card.Title className="mb-4 mt-2">Notificación {index + 1}</Card.Title>
 											<Row>
-												<Col>
-													<Card.Text> Nombre cliente: {event.nombre_cliente}</Card.Text>
-													<Card.Text> Fecha evento: {moment(event.fecha_inicio).format("DD-MM-YYYY")}</Card.Text>
-													<Card.Text>Paso a estado "{event.estado}"</Card.Text>
+												<Col xs={12} lg={6} md={6}>
+													<div className="left-align">
+														<Card.Text> Nombre cliente: {event.nombre_cliente}</Card.Text>
+														<Card.Text> Fecha evento: {moment(event.fecha_inicio).format("DD-MM-YYYY")}</Card.Text>
+														<Card.Text>Paso a estado "{event.estado}"</Card.Text>
+													</div>
 												</Col>
 												<Col>
-													<Button className="btn-info btn-sm" onClick={() => handleModShow(event._id)}>
-														Marcar como leída
-													</Button>
+													<div className="vertical-center">
+														<Button className="btn-info btn-sm" onClick={() => handleModShow(event._id)}>
+															Marcar como leída
+														</Button>
+													</div>
 												</Col>
 											</Row>
 										</Card.Body>
 									</Card>
 								))}
+								{notificacion_eventos.length == 0 && <h6>No hay notificaciones</h6>}
 							</div>
 						</Col>
-						<Col>
+						<Col xs={12} lg={6} md={6}>
 							<h4>Inventario</h4>
-							<div className="card-container inventory-scroll-container">
+							<div className="inventory-scroll-container mb-4">
 								{notificacion_inventario.map((inventario, index) => (
 									<Card key={inventario._id} className="mb-4">
 										<Card.Body>
-											<div className="row">
-												<Row>
-													<Card.Title className="mb-3">Notificación {index + 1}</Card.Title>
-												</Row>
-												<Row>
-													<Col>
-														<Card.Text>Nombre: {inventario.nombre}</Card.Text>
-														<Card.Text>Cantidad:{inventario.cantidad}</Card.Text>
-														<Card.Text>Descripción:{inventario.estado}</Card.Text>
-													</Col>
-
-													<Col>
-														<Button className="btn btn-info btn-sm" onClick={() => handleModShow1(inventario._id)}>
+											<Row>
+												<Card.Title className="mb-4 mt-2">Notificación {index + 1}</Card.Title>
+											</Row>
+											<Row>
+												<Col xs={12} lg={8} md={8}>
+													<div className="left-align">
+														<Card.Text>Ítem: {inventario.nombre}</Card.Text>
+														<Card.Text>Cantidad: {inventario.cantidad}</Card.Text>
+														<Card.Text>Descripción: {inventario.estado}</Card.Text>
+													</div>
+												</Col>
+												<Col xs={12} lg={4} md={4}>
+													<div className="vertical-center">
+														<Button className="btn-info btn-sm" onClick={() => handleModShow1(inventario._id)}>
 															Marcar como leída
 														</Button>
-													</Col>
-												</Row>
-											</div>
-											<br />
-											<div className="button-group"></div>
+													</div>
+												</Col>
+											</Row>
 										</Card.Body>
 									</Card>
 								))}
+								{notificacion_inventario.length == 0 && <h6>No hay notificaciones</h6>}
 							</div>
 						</Col>
 					</Row>
@@ -377,23 +382,31 @@ export default function Home({ token, allEvents, allVisits, eventos_mes, gananci
 				</Container>
 				<Modal show={ModShow} onHide={handleModClose}>
 					<Modal.Header closeButton>
-						<Modal.Title>Estado del evento</Modal.Title>
+						<Modal.Title>¿Estás seguro?</Modal.Title>
 					</Modal.Header>
-					<Modal.Body>Marcar la notificación como leída: </Modal.Body>
+					<Modal.Body>Al marcar como leída la notificación esta no se volverá a mostrar.</Modal.Body>
 					<Modal.Footer className="d-flex justify-content-center">
-						<Button onClick={handleProceso}>Aceptar</Button>
-						<Button onClick={handleModClose}>Cancelar</Button>
+						<Button variant="success" onClick={handleProceso}>
+							Aceptar
+						</Button>
+						<Button variant="danger" onClick={handleModClose}>
+							Cancelar
+						</Button>
 					</Modal.Footer>
 				</Modal>
 
 				<Modal show={ModShow1} onHide={handleModClose1}>
 					<Modal.Header closeButton>
-						<Modal.Title>Cambiar estado</Modal.Title>
+						<Modal.Title>¿Estás seguro?</Modal.Title>
 					</Modal.Header>
-					<Modal.Body>Marcar la notificación como leída </Modal.Body>
+					<Modal.Body>Al marcar como leída la notificación esta no se volverá a mostrar. </Modal.Body>
 					<Modal.Footer className="d-flex justify-content-center">
-						<Button onClick={handleFinalizado}>Aceptar</Button>
-						<Button onClick={handleModClose1}>Cancelar</Button>
+						<Button variant="success" onClick={handleFinalizado}>
+							Aceptar
+						</Button>
+						<Button variant="danger" onClick={handleModClose1}>
+							Cancelar
+						</Button>
 					</Modal.Footer>
 				</Modal>
 			</div>

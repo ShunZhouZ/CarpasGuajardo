@@ -6,10 +6,10 @@ moment.locale("es");
 import Table from "react-bootstrap/Table";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch, faPencilAlt, faTrash } from "@fortawesome/free-solid-svg-icons";
-import Card from 'react-bootstrap/Card';
-import ListGroup from 'react-bootstrap/ListGroup';
-import Col from 'react-bootstrap/Col';
-import Row from 'react-bootstrap/Row';
+import Card from "react-bootstrap/Card";
+import ListGroup from "react-bootstrap/ListGroup";
+import Col from "react-bootstrap/Col";
+import Row from "react-bootstrap/Row";
 
 const Trabajador = (props) => {
 	const [show, setShow] = useState(false);
@@ -27,7 +27,7 @@ const Trabajador = (props) => {
 	const handleConfirmationClose = () => {
 		setShowConfirmation(false);
 		window.location.reload(); // Recargar la página al cerrar el modal de confirmación
-	  };
+	};
 	const modifyElement = (id) => {
 		window.location.href = `/trabajadores/modificar_trabajador?id=${id}`;
 	};
@@ -96,7 +96,7 @@ const Trabajador = (props) => {
 				</Button>
 			</div>
 			{/* <Table responsive striped bordered hover> */}
-				{/* <thead>
+			{/* <thead>
 					<tr key={0}>
 						<th style={{ width: "5%" }}>Nº</th>
 						<th style={{ width: "15%" }}>Nombre de usuario</th>
@@ -106,32 +106,38 @@ const Trabajador = (props) => {
 					</tr>
 				</thead> */}
 
-				{/* <tbody> */}
-				<div className="text-center">
-					<Row xs={1} md={3} className="m-3">
-					
+			{/* <tbody> */}
+			<div className="text-center">
+				<Row xs={1} md={3} className="m-3">
 					{trabajadoresFiltrado?.map((trabajador, index) => (
-						
 						<Card className="m-3 w-20 vista-trabajador" key={trabajador._id}>
 							{/* aca va la imagen de la persona */}
-						<Card.Img variant="top" src="/images/user-square-svgrepo-com.svg" />
-						<Card.Body>
-						<Card.Title>{trabajador.nombre}</Card.Title>
-						{/* <Card.Text>
+							<Card.Img variant="top" src="/images/user-square-svgrepo-com.svg" />
+							<Card.Body>
+								<Card.Title>{trabajador.nombre}</Card.Title>
+								{/* <Card.Text>
 							Some quick example text to build on the card title and make up the
 							bulk of the card's content.
 						</Card.Text> */}
-						</Card.Body>
-						<ListGroup className="list-group-flush">
-						<ListGroup.Item>Rol: {trabajador.rol}</ListGroup.Item>
-						<ListGroup.Item>RUT: {trabajador.username}</ListGroup.Item>
-						<ListGroup.Item>Contacto: {trabajador.contacto}</ListGroup.Item>
-						<ListGroup.Item>Correo: {trabajador.correo}</ListGroup.Item>
-						</ListGroup>
-						<Card.Body>
-						<Button className="btn btn-info m-3" onClick={() => modifyElement(trabajador._id)}> <FontAwesomeIcon icon={faPencilAlt} />Modificar</Button>
-						<Button className="btn btn-danger" onClick={() => deleteElement(trabajador._id, trabajador.nombre, trabajador.rol)}> <FontAwesomeIcon icon={faTrash} />Eliminar</Button>
-						</Card.Body>
+							</Card.Body>
+							<ListGroup className="list-group-flush">
+								<ListGroup.Item>Rol: {trabajador.rol}</ListGroup.Item>
+								<ListGroup.Item>RUT: {trabajador.username}</ListGroup.Item>
+								<ListGroup.Item>Contacto: {trabajador.contacto}</ListGroup.Item>
+								<ListGroup.Item>Correo: {trabajador.correo}</ListGroup.Item>
+							</ListGroup>
+							<Card.Body>
+								<Button className="btn btn-info m-3" onClick={() => modifyElement(trabajador._id)}>
+									{" "}
+									<FontAwesomeIcon icon={faPencilAlt} />
+									Modificar
+								</Button>
+								<Button className="btn btn-danger" onClick={() => deleteElement(trabajador._id, trabajador.nombre, trabajador.rol)}>
+									{" "}
+									<FontAwesomeIcon icon={faTrash} />
+									Eliminar
+								</Button>
+							</Card.Body>
 						</Card>
 						// para dejarlo como tabla, descomentar todo y comentar lo de arriba
 						// <tr key={trabajador._id}>
@@ -151,9 +157,9 @@ const Trabajador = (props) => {
 						// 	</td>
 						// </tr>
 					))}
-					</Row>
-				</div>
-				{/* </tbody> */}
+				</Row>
+			</div>
+			{/* </tbody> */}
 			{/* </Table> */}
 			{trabajadoresFiltrado.length == 0 && <h4>No hay resultados</h4>}
 			<Modal show={show} onHide={handleClose}>
@@ -163,8 +169,7 @@ const Trabajador = (props) => {
 				<Modal.Body>
 					Se ha eliminado a "{elementName}" con el rol de "{elementRole}" correctamente.
 				</Modal.Body>
-				<Modal.Footer>
-				</Modal.Footer>
+				<Modal.Footer></Modal.Footer>
 			</Modal>
 			<Modal show={showConfirmation} onHide={handleConfirmationClose}>
 				<Modal.Header closeButton>
