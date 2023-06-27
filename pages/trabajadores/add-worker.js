@@ -48,9 +48,8 @@ export default function CreateUserForm() {
 	};
 
 	return (
-		<div className="container">
-			<div className="row">
-				<div className="col-md-4 offset-md-4 mt-5">
+		<div className="d-flex justify-content-center">
+			<div className="custom-bg-color  text-center w-sm-75 w-md-50 w-lg-25 p-5">
 					<h1 className=" text-center mb-4">Agregar Trabajador</h1>
 					<Form onSubmit={handleSubmit}>
 						<FormGroup className="mb-3">
@@ -84,7 +83,8 @@ export default function CreateUserForm() {
 						</div>
 					</Form>
 				</div>
-			</div>
+		
+
 		</div>
 	);
 }
