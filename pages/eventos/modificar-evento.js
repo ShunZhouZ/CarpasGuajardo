@@ -33,6 +33,19 @@ const Eventos = ({ eventos, clientes, inventario, contactos }) => {
 
     const submitModificar = async (e) => {
       e.preventDefault();
+
+    //---------------------------------------------
+    for (const field in data) {
+      if (data.hasOwnProperty(field)) {
+        if (data[field] === '') {
+          // Manejar el error, mostrar un mensaje o realizar alguna acción
+          handleShowVacio();
+          return;
+        }
+      }
+    }
+
+    //----------------------------------------------
       
       const response = await fetch('http://localhost:3000/api/eventos', {
         method: 'PUT',
@@ -80,6 +93,12 @@ const Eventos = ({ eventos, clientes, inventario, contactos }) => {
     const handleClose = () => {
       setShow(false);
       window.location.href = "/eventos/eliminar-evento";// Reinicia la página web
+    };
+
+    const [showVacio, setShowVacio] = useState(false);
+    const handleShowVacio = () => setShowVacio(true);
+    const handleCloseVacio = () => {
+      setShowVacio(false);
     };
 
     const handleCheck = (e) => {
@@ -255,6 +274,18 @@ const Eventos = ({ eventos, clientes, inventario, contactos }) => {
 				<Modal.Body>El evento ha sido modificado correctamente.</Modal.Body>
 				<Modal.Footer>
 					<Button onClick={handleClose}>
+						Aceptar
+					</Button>
+				</Modal.Footer>
+			</Modal>
+
+      <Modal show={showVacio} onHide={handleCloseVacio}>
+				<Modal.Header closeButton>
+					<Modal.Title>Error</Modal.Title>
+				</Modal.Header>
+				<Modal.Body>No pueden haber campos vacios</Modal.Body>
+				<Modal.Footer>
+					<Button onClick={handleCloseVacio}>
 						Aceptar
 					</Button>
 				</Modal.Footer>
