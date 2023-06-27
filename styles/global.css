@@ -181,6 +181,7 @@
 .card-container {
   display: grid;
   gap: 30px;
+  padding: 2%;
 }
 /*
 .modal-title {

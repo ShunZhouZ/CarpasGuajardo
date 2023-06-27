@@ -124,7 +124,7 @@ const Eventos = (props) => {
   });
 
   return (
-    <div style={{ marginLeft: "40px", marginRight: "40px" }}>
+    <div style={{ marginLeft: "50px", marginRight: "50px" }}>
       <h1 className="display-3 text-center mb-5">Lista de eventos</h1>
       <div className="search-input">
         <div className="button-container">

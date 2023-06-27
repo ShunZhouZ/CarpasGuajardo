@@ -95,7 +95,7 @@ const Visitas = (props) => {
 	};
 
 	return (
-		<div style={{ marginLeft: "40px", marginRight: "40px" }}>
+		<div style={{ marginLeft: "50px", marginRight: "50px" }}>
 			<h1 className="display-3 text-center mb-5">Lista de visitas</h1>
 			{/* <div className="search-container">
         <h2>Búsqueda de visitas</h2>
@@ -117,7 +117,7 @@ const Visitas = (props) => {
 						<Card.Body>
 							<div className="row">
 								<Row>
-									<Card.Title className="modal-title mb-3">Evento {index + 1}</Card.Title>
+									<Card.Title className="modal-title mb-3">Visita {index + 1}</Card.Title>
 									<Col>
 										<Card.Text>
 											<strong>Nombre:</strong> {visit.nombre_cliente}
@@ -152,16 +152,16 @@ const Visitas = (props) => {
 												Descripción
 											</Button>
 										</Card.Text>
-										<Card.Text>
+										{/* <Card.Text>
 											<Button className="btn btn-info btn-sm" onClick={() => modifyElement(visit._id)}>
 												<FontAwesomeIcon icon={faPencilAlt} /> Modificar
 											</Button>
-										</Card.Text>
-										<Card.Text>
+										</Card.Text> */}
+										{/* <Card.Text>
 											<Button className="btn btn-danger btn-sm" onClick={() => deleteElement(visit._id)}>
 												<FontAwesomeIcon icon={faTrash} /> Eliminar
 											</Button>
-										</Card.Text>
+										</Card.Text> */}
 									</Col>
 								</Row>
 							</div>

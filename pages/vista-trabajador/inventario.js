@@ -85,38 +85,27 @@ const Inventario = (props) => {
 	};
 
 	return (
-		<div style={{ marginLeft: "40px", marginRight: "40px" }}>
+		<div style={{ marginLeft: "50px", marginRight: "50px" }}>
 			<h1 className="display-3 text-center mb-5">Lista de inventario</h1>
 			<div className="card-container">
-				{sortedInventary?.map((inventary, index) => (
-					<Card key={inventary._id} className="mb-3">
-						<Card.Body>
-							<div className="row">
-								<Row>
-									<Card.Title className="modal-title">Elemento {index + 1}</Card.Title>
-
-									<Col>
-										<Card.Text>
-											<strong>Nombre:</strong> {inventary.nombre}
-										</Card.Text>
-										<Card.Text>
-											<strong>Cantidad:</strong> {inventary.cantidad}
-										</Card.Text>
-									</Col>
-									<Col>
-										<Button className="btn btn-info btn-sm" onClick={() => modifyElement(inventary._id)}>
-											<FontAwesomeIcon icon={faPencilAlt} /> Modificar
-										</Button>
-										<br></br>
-										<br></br>
-									</Col>
-								</Row>
-							</div>
-							<br></br>
-							<div className="button-group"></div>
-						</Card.Body>
-					</Card>
-				))}
+				<Row xs={1} sm={2} md={3} lg={4} xl={4} className="g-4">
+					{sortedInventary?.map((inventary, index) => (
+						<Col key={inventary._id}>
+							<Card className="mb-3">
+								<Card.Body>
+									<Card.Title className="modal-title">{inventary.nombre}</Card.Title>
+									<br/>
+									<Card.Text>
+										<strong>Cantidad:</strong> {inventary.cantidad}
+									</Card.Text>
+									<Button className="btn btn-info btn-sm" onClick={() => modifyElement(inventary._id)}>
+										<FontAwesomeIcon icon={faPencilAlt} /> Modificar
+									</Button>
+								</Card.Body>
+							</Card>
+						</Col>
+					))}
+				</Row>
 			</div>
 
 			<Modal show={show} onHide={handleClose}>

@@ -147,7 +147,43 @@ const Eventos = (props) => {
 															<strong>Nombre: </strong> {event.nombre_cliente}
 														</Card.Text>
 														<Card.Text>
-															<strong>Estado: </strong> {event.estado}
+															<strong>Estado cambiado a: </strong> {event.estado}
+														</Card.Text>
+													</Col>
+
+													<Col>
+														<Button className="btn btn-info btn-sm" onClick={() => handleModShow(event._id)}>
+															<FontAwesomeIcon icon={faPencilAlt} /> Marcar como leido
+														</Button>
+													</Col>
+												</Row>
+											</div>
+											<br />
+											<div className="button-group"></div>
+										</Card.Body>
+									</Card>
+								))}
+							</div>
+						</div>
+					</Col>
+					<Col md={6}>
+						<div className="whatsapp-column">
+							<h2 className="mb-4">Inventario</h2>
+							<div className="card-container inventory-scroll-container">
+								{inventarios.map((inventario, index) => (
+									<Card key={inventario._id} className="mb-4">
+										<Card.Body>
+											<div className="row">
+												<Row>
+													<Card.Title className="modal-title mb-3">Inventario {index + 1}</Card.Title>
+												</Row>
+												<Row>
+													<Col>
+														<Card.Text>
+															<strong>Nombre: </strong> {inventario.nombre}
+														</Card.Text>
+														<Card.Text>
+															<strong>Detalle: </strong> {inventario.estado}
 														</Card.Text>
 													</Col>
 
