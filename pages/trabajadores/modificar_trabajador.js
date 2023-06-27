@@ -5,6 +5,11 @@ const { useRouter } = require("next/router");
 import moment from "moment/moment";
 import React, { useState } from "react";
 import { Button, Col, Form, Row, Modal } from "react-bootstrap";
+import { userServiceFactory } from "../../clientServices/userService";
+import useUser from "../../lib/useUser";
+import { router } from "next/router";
+import { FormGroup } from "react-bootstrap";
+
 
 const Modificartrabajadores = (props) => {
 	const { trabajadores } = props;
@@ -63,34 +68,37 @@ const Modificartrabajadores = (props) => {
 	};
 	return (
 		<div className="d-flex justify-content-center">
-			<Form className="mx-5 w-25" onSubmit={submitModificar}>
-				<h1>Modificar datos del trabajador</h1>
-				<Form.Group>
+			<div className="custom-bg-color  text-center w-sm-75 w-md-50 w-lg-25 p-5">
 				
-					<Form.Label className="mt-3">Nombre </Form.Label>
-					<Form.Control
-						onChange={handleControl} required defaultValue={data.nombre} type="text" placeholder="Nombre del trabajador" name="nombre"
-					/>
-				</Form.Group>
-				<Form.Group>
-					<Form.Label className="mt-3">Correo </Form.Label>
-					<Form.Control
-						onChange={handleControl} required defaultValue={data.correo} type="text" placeholder="correo" name="correo"
-					/>
-				</Form.Group>
-				<Form.Group>
-					<Form.Label className="mt-3">contacto </Form.Label>
-					<Form.Control
-						onChange={handleControl} required defaultValue={data.contacto} type="text" placeholder="contacto" name="contacto"
-					/>
-				</Form.Group>
-				
-				<div className="mt-4 text-center">
-				<Button type="submit" className="btn btn-primary">
-						Modificar
-					</Button>
-				</div>
-			</Form>
+				<h1 className=" text-center mb-4">Modificar datos </h1>
+					<Form onSubmit={submitModificar}>
+							<Form.Group className="mb-3">
+							
+								<Form.Label className="mt-3">Nombre </Form.Label>
+								<Form.Control
+									onChange={handleControl} required defaultValue={data.nombre} type="text" placeholder="Nombre del trabajador" name="nombre"
+								/>
+							</Form.Group>
+							<Form.Group className="mb-3">
+								<Form.Label className="mt-3">Correo </Form.Label>
+								<Form.Control
+									onChange={handleControl} required defaultValue={data.correo} type="text" placeholder="correo" name="correo"
+								/>
+							</Form.Group>
+							<Form.Group className="mb-3">
+								<Form.Label className="mt-3">contacto </Form.Label>
+								<Form.Control
+									onChange={handleControl} required defaultValue={data.contacto} type="text" placeholder="contacto" name="contacto"
+								/>
+							</Form.Group>
+						
+						<div className="mt-4 text-center">
+							<Button type="submit" className="btn btn-primary">
+								Modificar
+							</Button>
+						</div>
+					</Form>
+			</div>
 
 			<Modal show={show} onHide={handleClose}>
 				<Modal.Header closeButton>

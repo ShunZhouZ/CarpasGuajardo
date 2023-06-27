@@ -157,7 +157,7 @@ const Eventos = (props) => {
                               <strong>Nombre: </strong> {event.nombre_cliente}
                             </Card.Text>
                             <Card.Text>
-                              <strong>Estado: </strong>{" "}
+                              <strong>Estado cambiado a: </strong>{" "}
                               {event.estado}
                             </Card.Text>
                           </Col>
