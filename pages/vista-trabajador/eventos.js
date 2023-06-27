@@ -188,7 +188,7 @@ const Eventos = (props) => {
 	});
 
 	return (
-		<div style={{ marginLeft: "40px", marginRight: "40px" }}>
+		<div style={{ marginLeft: "50px", marginRight: "50px" }}>
 			<h1 className="display-3 text-center mb-5">Lista de eventos</h1>
 			<div className="search-input">
 				<div className="button-container">
@@ -218,7 +218,9 @@ const Eventos = (props) => {
 						<Card.Body>
 							<div className="row">
 								<Row>
-									<Card.Title className="modal-title mb-3">Evento {index + 1}</Card.Title>
+									<Card.Title className="modal-title mb-3">
+										Evento {index + 1} - <span style={{ fontSize: '20px' }}>{event.estado}</span>
+									</Card.Title>
 
 									<Col>
 										<Card.Text>

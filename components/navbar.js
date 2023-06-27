@@ -90,7 +90,7 @@ const NavBar = (res, req) => {
 									<NavDropdown.Item href="/vista-trabajador/visualizar-eventos-trabajador">Visualizar calendario</NavDropdown.Item>
 								</NavDropdown>
 								<NavDropdown title="Visitas técnicas" id="basic-nav-dropdown" bg="primary" variant="dark">
-									<NavDropdown.Item href="/vista-trabajador/eliminar-visita">Lista de visitas</NavDropdown.Item>
+									<NavDropdown.Item href="/vista-trabajador/visita_tecnica">Lista de visitas</NavDropdown.Item>
 									<NavDropdown.Item href="/vista-trabajador/visualizar-visitas-trabajador">Visualizar calendario</NavDropdown.Item>
 								</NavDropdown>
 								<Nav.Link href="/vista-trabajador/inventario">Inventario</Nav.Link>
