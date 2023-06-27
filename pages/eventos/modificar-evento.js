@@ -94,6 +94,8 @@ const Eventos = ({ eventos, clientes, inventario, contactos }) => {
 
     return (
       <div className="d-flex justify-content-center">
+        			<div className="custom-bg-color  text-center w-sm-75 w-md-50 w-lg-25 p-5">
+				<div className=" m-5"></div>
 			<Form className="mx-5 w-75" onSubmit={submitModificar}>
 				<h1 className=" text-center my-4 ">Modificar evento</h1>
 				<Row xs={2} md={2}>
@@ -256,6 +258,8 @@ const Eventos = ({ eventos, clientes, inventario, contactos }) => {
 			</Modal>
 
 		</div>
+    </div>
+
     );
 };
 

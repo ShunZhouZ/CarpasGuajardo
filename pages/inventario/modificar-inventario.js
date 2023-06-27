@@ -61,7 +61,8 @@ const Modificarinventarios = (props) => {
 	};
 	return (
 		<div className="d-flex justify-content-center">
-			<Form className="mx-5 w-25" onSubmit={submitModificar}>
+			<div className="custom-bg-color  text-center w-sm-75 w-md-50 w-lg-25 p-5">
+			<Form  onSubmit={submitModificar}>
 				<h1>Modificar inventario</h1>
 				<Form.Group>
 					<Form.Label className="mt-3">Nombre </Form.Label>
@@ -99,6 +100,7 @@ const Modificarinventarios = (props) => {
 					<Button onClick={handleClose}>Aceptar</Button>
 				</Modal.Footer>
 			</Modal>
+		</div>
 		</div>
 	);
 };
