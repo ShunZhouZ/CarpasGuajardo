@@ -88,9 +88,12 @@ export default async function handler(req, res) {
             return res.status(409).json({ error: "No coinciden correo y usuario"});
         }
       }
+      else {
+        return res.status(409).json({ error: "No coinciden correo y usuario"});
+    }
     } catch (error) {
         console.error(error);
-        res.status(500).json({ error: "Error al solicitar nueva contraseña" });
+        return res.status(500).json({ error: "Error al solicitar nueva contraseña" });
     }
   } else {
     res.setHeader("Allow", ["POST"]);
