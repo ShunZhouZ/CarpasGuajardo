@@ -1,22 +1,23 @@
 
-@import "bootswatch/dist/minty/bootstrap.min.css";
+@import "bootswatch/dist/lux/bootstrap.min.css";
 @import "react-big-calendar/lib/css/react-big-calendar.css";
+
 
 .rbc-event, .rbc-day-slot .rbc-background-event {
   border: none;
   box-sizing: border-box;
   box-shadow: none;
   margin: 0;
-  padding: 2px 5px;
-  background-color: #89d9c0; 
+  padding: 2px 5px; 
+  background-color: #2f94c6 ;    
   border-radius: 5px;
-  color: #fff;
+  color: white;
   cursor: pointer;
   width: 100%;
   text-align: left;
 }
 .rbc-day-slot .rbc-event, .rbc-day-slot .rbc-background-event {
-  border: 1px solid  #1aab7d;
+  border: 1px solid  #2f94c6;
   display: flex;
   max-height: 100%;
   min-height: 20px;
@@ -26,9 +27,279 @@
   position: absolute;
 }
 .rbc-event.rbc-selected, .rbc-day-slot .rbc-selected.rbc-background-event {
-  background-color: #67b79e;
+  background-color: #1f6284;
 }
 
 .rbc-today {
-  background-color:#daf0e9;
+  background-color: #c6e3f2
+}
+
+.button-group {
+  display: flex;
+  flex-direction: row;
+  gap: 10px; /* opcional - ajusta el espaciado entre botones */
+}
+
+.text-danger {
+  color: red;
+}
+.inputBuscar{
+  width: 35% !important;
+}
+.containerInput{
+  padding-bottom: 15px;
+}
+.containerInput{
+  align-items: flex-end;
+  right: 0;
+  display: flex;
+  justify-content: flex-end;
+  padding-bottom: 25px;
+}
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+.search-container {
+  margin-bottom: 20px;
+  border: 2px solid #e3d1d1;
+  padding: 10px;
+}
+
+.search-input input {
+  width: 30%;
+  padding: 8px;
+  font-size: 16px;
+  border: darkgray 1px solid;
+  border-radius: 5px;
+  margin-bottom: 10px;
+}
+
+.button-group {
+  display: flex;
+  gap: 10px;
+}
+
+.custom-bg-color {
+  background-color: #ffffff; /* Aquí puedes definir tu propio color de fondo */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.search-container {
+  background-color: #8bbbff;
+  padding: 10px;
+  margin-bottom: 20px;
+}
+
+.search-container h2 {
+  margin-top: 0;
+}
+
+.excel {
+  padding: 8px;
+  font-size: 16px;
+  border-radius: 3px;
+  margin-left: 5%;
+}
+
+.vista-trabajador {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 22.5%;
+}
+
+/* tabla */
+
+/*.table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.table th,
+.table td {
+  padding: 10px;
+  text-align: center;
+  border: 1px solid #ddd;
+}
+
+.table th {
+  background-color: #d0e0f6;
+}
+
+.table tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+.table tr:hover {
+  background-color: #f1f1f1;
+}
+
+.table td.actions {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.table .btn {
+  margin-right: 5px;
+}
+*/
+
+.modal-title {
+  font-size: 30px;
+  font-weight: bold;
+}
+
+.button-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.excel {
+  padding: 8px;
+  font-size: 16px;
+  border-radius: 3px;
+  margin-left: -40%;
+}
+
+.check-box {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+  justify-content: flex-start;
+}
+
+.card-container {
+  display: grid;
+  gap: 30px;
+}
+/*
+.modal-title {
+  background-color: rgb(212, 216, 218);
+  padding: 0px;
+  margin-top: -17px;
+  margin-left: -16px;
+  margin-right: -16px;
+}
+*/
+
+/*
+.card-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+}
+
+.card {
+  border: 1px solid #ccc;
+}*/
+
+.tarjeta-inicio{
+
+  padding: 20px;
+  border-radius: 5px;
+  width: 100%;
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+
+}
+
+
+.container-inicio{
+  padding: 30px;
+  margin-top: 20px;
+  margin-bottom: 50px;
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+  background-color: #ffffff;
+  border: 1px solid #e3d1d1;
+  padding: 10px;
+}
+.carrusel{
+    margin-block-end: 50px;
+    padding: 10px;
+ 
+ }
+.cards-inicio{
+  margin-bottom: 50px;
+  margin-top: 50px;
+}
+.card{
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.img-div{ 
+  width: 100%;
+}
+.alert-contraseña {
+  font-size: 10px;
+  padding: 20px;
+  margin : 15px;
+}
+.form-constraseña {
+  padding: 20px;
+  margin : 15px;
+}
+.modal-constraseña {
+  font-size: 15px;
+  padding: 25px;
+  margin : 15px;
+}
+.boton-editar-contraseña {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+/* ------------columnas notificaciones---------------- */
+.whatsapp-column {
+  background-color: #e9e9e9bb;
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.whatsapp-column h2 {
+  color: #032521;
+}
+
+.whatsapp-column .card-container {
+  margin-top: 10px;
+}
+
+.whatsapp-column .card {
+  border-radius: 10px;
+  border: 1px solid #dddfe2;
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin-bottom: 10px;
+}
+
+.whatsapp-column .card-body {
+  padding: 10px;
+}
+
+.whatsapp-column .card-title {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.whatsapp-column .card-text {
+  margin-bottom: 5px;
+}
+
+.whatsapp-column .button-group {
+  text-align: right;
+}
+
+.event-scroll-container,
+.inventory-scroll-container {
+  max-height: 600px; /* Ajusta la altura máxima del contenedor según tus necesidades */
+  overflow-y: auto;
 }

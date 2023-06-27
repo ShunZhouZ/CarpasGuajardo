@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Calendar, momentLocalizer } from "react-big-calendar";
+import { Calendar, momentLocalizer, Views } from "react-big-calendar";
 import moment from "moment";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
@@ -111,6 +111,11 @@ const CalendarPage = ({ allPosts }) => {
 					endAccessor={(event) => {
 						return new Date(event.end);
 					}}
+					defaultView={Views.WEEK}
+					views={{
+						week: true,
+						day: true
+					}}
 					style={{ height: 650 }}
 					messages={{
 						next: ">>",
@@ -217,9 +222,11 @@ const CalendarPage = ({ allPosts }) => {
 					</p>
 				</Modal.Body>
 				<Modal.Footer>
-					<Button variant="primary" onClick={() => goToModificacion(modalData.id)}>
-						Modificar detalles
-					</Button>
+					{
+						<Button variant="primary" onClick={() => goToModificacion(modalData.id)}>
+							Modificar detalles
+						</Button>
+					}
 					<Button variant="secondary" onClick={handleClose}>
 						Cerrar
 					</Button>

@@ -33,3 +33,6 @@ Para subir modificaciones:
 3. `git push origin <nombre de rama>`
 
 \*\*comentario puede ser: actualizacion de login-mati
+
+## Instrucciones instalar Moments.js (es una biblioteca de JavaScript que se utiliza para manejar, analizar y formatear fechas y horas en el navegador y en el servidor)
+1.npm install moment --save   // npm

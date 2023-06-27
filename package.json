@@ -4,19 +4,50 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "next"
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^6.4.0",
+    "@fortawesome/free-solid-svg-icons": "^6.4.0",
+    "@fortawesome/react-fontawesome": "^0.2.0",
+    "@react-aria/ssr": "^3.6.0",
+    "axios": "^1.4.0",
+    "bcrypt": "5.1.0",
+    "bcryptjs": "^2.4.3",
     "bootstrap": "^5.2.3",
     "bootswatch": "^5.2.3",
+    "express": "^4.18.2",
+    "express-session": "^1.17.3",
+    "fs": "^0.0.1-security",
+    "jsonwebtoken": "^9.0.0",
+    "moment": "^2.29.4",
+    "momnet": "^2.29.1",
     "mongodb": "^5.4.0",
     "next": "^13.4.1",
+    "next-iron-session": "^4.2.0",
+    "nodemailer": "^6.9.2",
+    "passport": "^0.6.0",
     "react": "^18.2.0",
     "react-big-calendar": "^1.6.9",
     "react-bootstrap": "^2.7.4",
-    "react-dom": "^18.2.0"
+    "react-datepicker": "^4.11.0",
+    "react-dom": "^18.2.0",
+    "react-minimal-side-navigation": "^1.9.2",
+    "react-native-elements": "^3.4.3",
+    "react-native-vector-icons": "^9.2.0",
+    "react-native-web": "^0.19.4",
+    "react-table": "^7.8.0",
+    "reactstrap": "^9.1.9",
+    "swr": "^2.1.5",
+    "xlsx": "^0.18.5"
+  },
+  "devDependencies": {
+    "eslint": "8.18.0",
+    "eslint-config-next": "12.1.6"
   }
 }
