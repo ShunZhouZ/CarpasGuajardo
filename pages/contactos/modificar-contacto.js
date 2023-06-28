@@ -36,8 +36,8 @@ const Modificarcontactos = (props) => {
 			body: JSON.stringify(data)
 		});
 		handleShow();
-		console.log(await response.json());
-		console.log("Modificar campo");
+		// console.log(await response.json());
+		// console.log("Modificar campo");
 	};
 
 	const [show, setShow] = useState(false);

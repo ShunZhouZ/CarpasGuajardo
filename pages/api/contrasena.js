@@ -8,7 +8,7 @@ export default withSession(async (req, res) => {
 	const user = req.session.get("user");
 	const client = await clientPromise;
 	const db = client.db("carpas-guajardo-db");
-	console.log(user);
+	// console.log(user);
 	const user_const = user.username;
 
 	switch (req.method) {
