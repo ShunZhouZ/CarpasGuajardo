@@ -229,7 +229,7 @@ const Eventos = (props) => {
 										Evento {index + 1} - <span style={{ fontSize: "20px" }}>{event.estado}</span>
 									</Card.Title>
 
-									<Col>
+									<Col xs={12} lg={3} md={3}>
 										<Card.Text>
 											<strong>Nombre: </strong> {event.nombre_cliente}
 										</Card.Text>
@@ -246,7 +246,7 @@ const Eventos = (props) => {
 										</Card.Text>
 									</Col>
 
-									<Col>
+									<Col xs={6} lg={3} md={3}>
 										<Card.Text>
 											<strong>Cubrepiso: </strong>
 											{event.cubre_piso ? "Si" : "No"}
@@ -267,7 +267,7 @@ const Eventos = (props) => {
 										</Card.Text>
 									</Col>
 
-									<Col>
+									<Col xs={6} lg={3} md={3}>
 										<Card.Text>
 											<strong>Toldo:</strong> {event.toldo ? "Sí" : "No"}
 										</Card.Text>
@@ -285,7 +285,7 @@ const Eventos = (props) => {
 										</Card.Text>
 									</Col>
 
-									<Col>
+									<Col xs={12} lg={3} md={3}>
 										<Button className="btn btn-warning btn-sm mb-2" style={buttonStyle} onClick={() => handleShowDescriptionModal(event.descripcion)}>
 											<FontAwesomeIcon icon={faEye} />
 											Descripción

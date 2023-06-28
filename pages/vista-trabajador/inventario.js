@@ -110,9 +110,6 @@ const Inventario = (props) => {
 											<Button className="btn btn-info btn-sm me-2" onClick={() => modifyElement(inventary._id)}>
 												<FontAwesomeIcon icon={faPencilAlt} /> Modificar
 											</Button>
-											<Button className="btn btn-danger btn-sm" onClick={() => deleteElement(inventary._id)}>
-												<FontAwesomeIcon icon={faTrash} /> Eliminar
-											</Button>
 										</div>
 									</Row>
 								</Card.Body>
