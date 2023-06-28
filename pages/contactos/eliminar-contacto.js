@@ -59,7 +59,7 @@ const Contactos = (props) => {
       handleShow();
       handleConfirmationClose();
 
-      console.log(await deleteResponse.json());
+      // console.log(await deleteResponse.json());
       await reloadContacts();
       window.location.reload(); // Refrescar la página después de eliminar un contacto
     } catch (error) {
@@ -85,7 +85,7 @@ const Contactos = (props) => {
   }, [reloadContacts]);
 
   return (
-    <div style={{ marginLeft: "40px", marginRight: "40px" }}>
+    <div style={{ marginLeft: "60px", marginRight: "60px" }}>
       <h1 className="display-3 text-center mb-5">Lista de contactos</h1>
       <div className="containerInput">
         <input className="form-control inputBuscar" value={busqueda} placeholder="Búsqueda por nombre" onChange={handleChange} />

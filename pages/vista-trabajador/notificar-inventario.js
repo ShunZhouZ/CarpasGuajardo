@@ -13,7 +13,7 @@ const Modificarinventarios = (props) => {
 
 	// Filtrar eventos por ID
 	const inventario = inventarios.find((value) => value._id === id);
-	console.log(inventario)
+	// console.log(inventario)
 	//const inventario = {}
 
 	const [data, setData] = useState({
@@ -35,8 +35,8 @@ const Modificarinventarios = (props) => {
 			body: JSON.stringify(data)
 		});
 		handleShow();
-		console.log(await response.json());
-		console.log("Modificar campo");
+		// console.log(await response.json());
+		// console.log("Modificar campo");
 	};
 
 	const [show, setShow] = useState(false);
@@ -44,7 +44,7 @@ const Modificarinventarios = (props) => {
 	const handleClose = () => {
 		setShow(false);
 		window.location.href = "/vista-trabajador/inventario";
-		};
+	};
 
 	const handleControl = (e) => {
 		e.preventDefault();
@@ -63,48 +63,31 @@ const Modificarinventarios = (props) => {
 	};
 	return (
 		<div className="d-flex justify-content-center">
-			<Form className="mx-5 w-25" onSubmit={submitModificar}>
-				<h1>Detalles de inventario</h1>
-				
+			<div className="custom-bg-color text-center w-sm-75 w-md-50 w-lg-35 p-5">
+				<Form onSubmit={submitModificar}>
+					<h1>Detalles de inventario</h1>
 
-				<Form.Group>
-					<Form.Label className="mt-3">Cantidad de {data.nombre}</Form.Label>
-					<Form.Control
-						type="number"
-						onChange={handleControl}
-						required
-						defaultValue={data.cantidad}
-						name="cantidad"
-						id="cantidad"
-						placeholder="cantidad"
-						
-					/>
-				</Form.Group>
+					<Form.Group>
+						<Form.Label className="mt-3">Cantidad de {data.nombre}</Form.Label>
+						<Form.Control type="number" onChange={handleControl} required defaultValue={data.cantidad} name="cantidad" id="cantidad" placeholder="cantidad" />
+					</Form.Group>
 
-				<Form.Group>
-					<Form.Label className="mt-3">Detalles </Form.Label>
-					<Form.Control
-						as="textarea" 
-						onChange={handleControl} 
-						required defaultValue={data.estado} 
-						type="text" 
-						placeholder="estado" 
-						id="estado"
-						name="estado"
-					/>
-				</Form.Group>
+					<Form.Group>
+						<Form.Label className="mt-3">Detalles </Form.Label>
+						<Form.Control as="textarea" onChange={handleControl} required defaultValue={data.estado} type="text" placeholder="estado" id="estado" name="estado" />
+					</Form.Group>
 
-				
-				<div className="mt-4 text-center">
-				<Button type="submit" className="btn btn-primary">
-						Actualizar
-					</Button>
-				</div>
-			</Form>
+					<div className="mt-4 text-center">
+						<Button type="submit" className="btn btn-primary">
+							Actualizar
+						</Button>
+					</div>
+				</Form>
+			</div>
 
 			<Modal show={show} onHide={handleClose}>
 				<Modal.Header closeButton>
-					<Modal.Title>Estado:</Modal.Title>
+					<Modal.Title>Ítem modificado</Modal.Title>
 				</Modal.Header>
 				<Modal.Body>Actualizado y notificado correctamente.</Modal.Body>
 				<Modal.Footer>

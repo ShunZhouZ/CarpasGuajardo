@@ -30,7 +30,7 @@ async function enviarCorreoElectronico(destinatario, asunto, cuerpo) {
 
     try{
         await transporter.sendMail(mensaje);
-        console.log("Email enviado");
+        // console.log("Email enviado");
     }catch (error) {
         console.log(error);
     }
@@ -80,7 +80,7 @@ export default async function handler(req, res) {
                     password: await bcrypt.hash(nuevaContrasena, 10)
                 },
             };
-            console.log(updatePassword)
+            // console.log(updatePassword)
             await users.updateOne(filter, updatePassword, options);
             return res.status(200).json({ message: "Contraseña restablecida correctamente" });
         }
@@ -88,9 +88,12 @@ export default async function handler(req, res) {
             return res.status(409).json({ error: "No coinciden correo y usuario"});
         }
       }
+      else {
+        return res.status(409).json({ error: "No coinciden correo y usuario"});
+    }
     } catch (error) {
         console.error(error);
-        res.status(500).json({ error: "Error al solicitar nueva contraseña" });
+        return res.status(500).json({ error: "Error al solicitar nueva contraseña" });
     }
   } else {
     res.setHeader("Allow", ["POST"]);

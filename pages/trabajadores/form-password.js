@@ -17,6 +17,7 @@ export default function sendEmail() {
     const [username, setUsername] = useState("");
     const [correo, setCorreo] = useState("");
     const [showModal, setShowModal] = useState(false);
+    const [showModalFail, setShowModalFail] = useState(false);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -24,7 +25,7 @@ export default function sendEmail() {
             await userService.forgotPassword(username, correo);
             setShowModal(true);
         } catch (error) {
-            alert(error.response.data.error);
+            setShowModalFail(true);
         }
     };
 
@@ -32,6 +33,10 @@ export default function sendEmail() {
         setShowModal(false);
         // Redirigir a la página principal después de cerrar el modal
         window.location.href = `/`;
+    };
+
+    const handleModalFailClose = () => {
+        setShowModalFail(false);
     };
 
     const usernameHandler =  (e) => {
@@ -85,6 +90,19 @@ export default function sendEmail() {
         <Modal.Body>¡Tu contraseña ha sido cambiada correctamente! <br />(Recuerda revisar tu carpeta de Spam)</Modal.Body>
         <Modal.Footer>
             <Button onClick={handleModalClose}>
+                Aceptar
+            </Button>
+        </Modal.Footer>
+	</Modal>
+
+    {/* Modal de fallo */}
+    <Modal show={showModalFail} onHide={handleModalFailClose}>
+        <Modal.Header closeButton>
+            <Modal.Title>Error</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>Combinacion incorrecta de usuario y correo electronico</Modal.Body>
+        <Modal.Footer>
+            <Button onClick={handleModalFailClose}>
                 Aceptar
             </Button>
         </Modal.Footer>

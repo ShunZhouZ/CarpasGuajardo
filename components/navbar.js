@@ -21,12 +21,8 @@ const NavBar = (res, req) => {
 					<Navbar className="mb-4" bg="primary" variant="dark" expand="lg">
 						<Container>
 							{/* corregir por nombre real de la pagina */}
-							<Navbar.Brand href="#home">
-								<div style={{ textAlign: "center" }}>
-									Carpas Guajardo
-									<br />
-									<span style={{ fontSize: "smaller" }}>MODO ADMIN</span>
-								</div>
+							<Navbar.Brand href="/">
+								<div style={{ textAlign: "left" }}>Carpas Guajardo</div>
 							</Navbar.Brand>
 							<Navbar.Toggle aria-controls="basic-navbar-nav" />
 							<Navbar.Collapse id="basic-navbar-nav">
@@ -37,7 +33,6 @@ const NavBar = (res, req) => {
 										<NavDropdown.Item href="/eventos/eliminar-evento">Lista de eventos</NavDropdown.Item>
 										<NavDropdown.Divider />
 										<NavDropdown.Item href="/eventos/visualizar-admin">Visualizar calendario</NavDropdown.Item>
-										<NavDropdown.Item href="/notificaciones/notificacion">Notificaciones</NavDropdown.Item>
 									</NavDropdown>
 									<NavDropdown title="Visitas técnicas" id="basic-nav-dropdown" bg="primary" variant="dark">
 										<NavDropdown.Item href="/visitas-tecnicas/agendar-visita">Agendar</NavDropdown.Item>
@@ -56,10 +51,7 @@ const NavBar = (res, req) => {
 									<NavDropdown title="Inventario" id="basic-nav-dropdown" bg="primary" variant="dark">
 										<NavDropdown.Item href="/inventario/agregar-inventario">Agregar</NavDropdown.Item>
 										<NavDropdown.Item href="/inventario/eliminar-inventario">Lista de inventario</NavDropdown.Item>
-										<NavDropdown.Divider />
-										<NavDropdown.Item href="/notificaciones/notificacion">Notificaciones</NavDropdown.Item>
 									</NavDropdown>
-									<Nav.Link href="/">Notificaciones</Nav.Link>
 								</Nav>
 							</Navbar.Collapse>
 							<Navbar.Collapse className="justify-content-end" id="basic-navbar-nav">
@@ -90,7 +82,7 @@ const NavBar = (res, req) => {
 									<NavDropdown.Item href="/vista-trabajador/visualizar-eventos-trabajador">Visualizar calendario</NavDropdown.Item>
 								</NavDropdown>
 								<NavDropdown title="Visitas técnicas" id="basic-nav-dropdown" bg="primary" variant="dark">
-									<NavDropdown.Item href="/vista-trabajador/eliminar-visita">Lista de visitas</NavDropdown.Item>
+									<NavDropdown.Item href="/vista-trabajador/visita_tecnica">Lista de visitas</NavDropdown.Item>
 									<NavDropdown.Item href="/vista-trabajador/visualizar-visitas-trabajador">Visualizar calendario</NavDropdown.Item>
 								</NavDropdown>
 								<Nav.Link href="/vista-trabajador/inventario">Inventario</Nav.Link>

@@ -33,6 +33,19 @@ const Eventos = ({ eventos, clientes, inventario, contactos }) => {
 
     const submitModificar = async (e) => {
       e.preventDefault();
+
+    //---------------------------------------------
+    for (const field in data) {
+      if (data.hasOwnProperty(field)) {
+        if (data[field] === '') {
+          // Manejar el error, mostrar un mensaje o realizar alguna acción
+          handleShowVacio();
+          return;
+        }
+      }
+    }
+
+    //----------------------------------------------
       
       const response = await fetch('http://localhost:3000/api/eventos', {
         method: 'PUT',
@@ -43,8 +56,8 @@ const Eventos = ({ eventos, clientes, inventario, contactos }) => {
       })
       handleShow();
 
-      console.log(await response.json());
-      console.log('Modificar campo');
+      // console.log(await response.json());
+      // console.log('Modificar campo');
     };
 
     const TipoElemento = {
@@ -82,6 +95,12 @@ const Eventos = ({ eventos, clientes, inventario, contactos }) => {
       window.location.href = "/eventos/eliminar-evento";// Reinicia la página web
     };
 
+    const [showVacio, setShowVacio] = useState(false);
+    const handleShowVacio = () => setShowVacio(true);
+    const handleCloseVacio = () => {
+      setShowVacio(false);
+    };
+
     const handleCheck = (e) => {
       const {checked, name} = e.target
       setData({
@@ -94,10 +113,13 @@ const Eventos = ({ eventos, clientes, inventario, contactos }) => {
 
     return (
       <div className="d-flex justify-content-center">
-			<Form className="mx-5 w-75" onSubmit={submitModificar}>
+      <div className="custom-bg-color  text-center w-sm-80 w-md-50 w-lg-50 p-5">
+				<div className=" m-5"></div>
+			<Form className="mx-5 w-95" onSubmit={submitModificar}>
 				<h1 className=" text-center my-4 ">Modificar evento</h1>
 				<Row xs={2} md={2}>
 					<Col>
+          
 						<Form.Group>
 							<Form.Label>Nombre Cliente </Form.Label>
 							<Form.Control
@@ -237,11 +259,13 @@ const Eventos = ({ eventos, clientes, inventario, contactos }) => {
               name='descripcion' />
 						</Form.Group>
 					</Col>
+        
 				</Row>
 				<div className="mt-3 text-center ">
         <button onClick={submitModificar} type="submit" className="btn btn-primary w-25 ">Guardar</button>
 				</div>
 			</Form>
+          
 
       <Modal show={show} onHide={handleClose}>
 				<Modal.Header closeButton>
@@ -255,7 +279,21 @@ const Eventos = ({ eventos, clientes, inventario, contactos }) => {
 				</Modal.Footer>
 			</Modal>
 
+      <Modal show={showVacio} onHide={handleCloseVacio}>
+				<Modal.Header closeButton>
+					<Modal.Title>Error</Modal.Title>
+				</Modal.Header>
+				<Modal.Body>No pueden haber campos vacios</Modal.Body>
+				<Modal.Footer>
+					<Button onClick={handleCloseVacio}>
+						Aceptar
+					</Button>
+				</Modal.Footer>
+			</Modal>
+
 		</div>
+    </div>
+
     );
 };
 

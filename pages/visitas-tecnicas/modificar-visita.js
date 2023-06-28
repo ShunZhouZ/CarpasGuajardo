@@ -63,8 +63,10 @@ const ModificarVisitas = (props) => {
 		});
 	};
 	return (
-		<div className="d-flex justify-content-center">
-			<Form className="mx-5 w-25" onSubmit={submitModificar}>
+		<div className="d-flex justify-content-center align-items-center">
+				<div className="custom-bg-color  text-center w-sm-75 w-md-50 w-lg-25 p-5">
+				<div className=" m-5">
+			<Form onSubmit={submitModificar}>
 				<h1>Modificar visita a terreno</h1>
 				<Form.Group>
 					<Form.Label className="mt-3">Nombre Cliente </Form.Label>
@@ -117,6 +119,9 @@ const ModificarVisitas = (props) => {
 				</Modal.Footer>
 			</Modal>
 		</div>
+		</div>
+		</div>
+		
 	);
 };
 
