@@ -59,7 +59,7 @@ const Contactos = (props) => {
       handleShow();
       handleConfirmationClose();
 
-      console.log(await deleteResponse.json());
+      // console.log(await deleteResponse.json());
       await reloadContacts();
       window.location.reload(); // Refrescar la página después de eliminar un contacto
     } catch (error) {

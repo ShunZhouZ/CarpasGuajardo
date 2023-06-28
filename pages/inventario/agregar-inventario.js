@@ -19,7 +19,7 @@ export function Form_(props) {
 				nombre_cliente,
 				cantidad,
 			});
-			console.log(res.data);
+			// console.log(res.data);
 			router.push("./eliminar-inventario")
 		} catch (err) {
 			console.error(err);

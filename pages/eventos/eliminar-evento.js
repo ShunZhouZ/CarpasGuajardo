@@ -64,7 +64,7 @@ const Eventos = (props) => {
 		handleShow();
 		handleConfirmationClose();
 
-		console.log(await deleteResponse.json());
+		// console.log(await deleteResponse.json());
 		await reloadEvents();
 	};
 	//se actualizo filterevents

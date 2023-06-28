@@ -147,8 +147,8 @@ export default function Home({ token, allEvents, allVisits, eventos_mes, gananci
 
 		//Modificar a evneto
 		const handleProceso = async () => {
-			console.log(Modid);
-			console.log(data);
+			// console.log(Modid);
+			// console.log(data);
 			const putResponse = await fetch(`http://localhost:3000/api/eventos?eventid=${Modid}`, {
 				method: "PUT",
 				headers: {
@@ -168,8 +168,8 @@ export default function Home({ token, allEvents, allVisits, eventos_mes, gananci
 
 		//Modificar a Finalizado
 		const handleFinalizado = async () => {
-			console.log(Modid);
-			console.log(data1);
+			// console.log(Modid);
+			// console.log(data1);
 			const putResponse = await fetch(`http://localhost:3000/api/Inventario?inventarioid=${Modid}`, {
 				method: "PUT",
 				headers: {
@@ -457,7 +457,7 @@ export default function Home({ token, allEvents, allVisits, eventos_mes, gananci
 		}
 
 		const filtrarEventosHoy = (fecha_hoy) => {
-			console.log(fecha_hoy);
+			// console.log(fecha_hoy);
 			var resultado = events.filter((elemento) => {
 				if (elemento.start.includes(fecha_hoy)) {
 					return elemento;
@@ -471,7 +471,7 @@ export default function Home({ token, allEvents, allVisits, eventos_mes, gananci
 		};
 
 		const filtrarVisitasHoy = (fecha_hoy) => {
-			console.log(fecha_hoy);
+			// console.log(fecha_hoy);
 			var resultado = visits.filter((elemento) => {
 				if (elemento.start.includes(fecha_hoy)) {
 					return elemento;
@@ -486,7 +486,7 @@ export default function Home({ token, allEvents, allVisits, eventos_mes, gananci
 
 		const eventos_hoy = filtrarEventosHoy(moment().format("YYYY-MM-DD"));
 		const visitas_hoy = filtrarVisitasHoy(moment().format("YYYY-MM-DD"));
-		console.log(visitas_hoy);
+		// console.log(visitas_hoy);
 
 		const titleStyle = {
 			fontSize: "1.5rem"

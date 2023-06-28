@@ -27,7 +27,7 @@ export function Form_(props) {
 				metros_cuadrados,
 				descripcion
 			});
-			console.log(res.data);
+			// console.log(res.data);
 			router.push("./eliminar-contacto")
 		} catch (err) {
 			console.error(err);

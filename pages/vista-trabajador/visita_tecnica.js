@@ -49,7 +49,7 @@ const Visitas = (props) => {
 
 		setShowDeleteModal(false);
 		setShowSuccessModal(true);
-		console.log(await deleteResponse.json());
+		// console.log(await deleteResponse.json());
 		await reloadVisits();
 	};
 

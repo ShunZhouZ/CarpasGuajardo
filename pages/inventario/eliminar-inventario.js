@@ -65,9 +65,15 @@ const Inventario = (props) => {
 		return filtered;
 	};
 
+<<<<<<< HEAD
 	const handleSort = () => {
 		setSortAsc(!sortAsc);
 	};
+=======
+    // console.log(await deleteResponse.json());
+    await reloadInventarios();
+  };
+>>>>>>> 09a153973ab34d85201d71561b3548c21527f3d6
 
 	const filteredInventary = filterInventary();
 

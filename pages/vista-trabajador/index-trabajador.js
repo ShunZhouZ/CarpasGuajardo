@@ -50,7 +50,7 @@ export default function Home({ user, allEvents, allVisits, eventos_mes, ganancia
 	}
 
 	const filtrarEventosHoy = (fecha_hoy) => {
-		console.log(fecha_hoy);
+		// console.log(fecha_hoy);
 		var resultado = events.filter((elemento) => {
 			if (elemento.start.includes(fecha_hoy)) {
 				return elemento;
@@ -64,7 +64,7 @@ export default function Home({ user, allEvents, allVisits, eventos_mes, ganancia
 	};
 
 	const filtrarVisitasHoy = (fecha_hoy) => {
-		console.log(fecha_hoy);
+		// console.log(fecha_hoy);
 		var resultado = visits.filter((elemento) => {
 			if (elemento.start.includes(fecha_hoy)) {
 				return elemento;
@@ -79,7 +79,7 @@ export default function Home({ user, allEvents, allVisits, eventos_mes, ganancia
 
 	const eventos_hoy = filtrarEventosHoy(moment().format("YYYY-MM-DD"));
 	const visitas_hoy = filtrarVisitasHoy(moment().format("YYYY-MM-DD"));
-	console.log(visitas_hoy);
+	// console.log(visitas_hoy);
 
 	const titleStyle = {
 		fontSize: "1.5rem"

@@ -14,7 +14,6 @@ export default async function handler(req, res) {
 				descripcion
 		} = req.body; //Ejemplo de campos del objeto enviado
 				if(tipo_evento === "contacto"){
-					console.log("entre a evento");
 					const miEvento = await db.collection("contacto").insertOne({
                         nombre_cliente: nombre_cliente,
                         numero_contacto_cliente: numero_contacto_cliente,

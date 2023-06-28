@@ -61,17 +61,17 @@ const Trabajador = (props) => {
 		handleShow();
 		handleConfirmationClose();
 
-		console.log(await deleteResponse.json());
+		// console.log(await deleteResponse.json());
 		await reloadTrabajadores();
 	};
 
 	const handleChange = (e) => {
 		setBusqueda(e.target.value);
-		console.log(e.target.value);
+		// console.log(e.target.value);
 		filtrarBusqueda(e.target.value);
 	};
 	const filtrarBusqueda = (terminoBusqueda) => {
-		console.log(terminoBusqueda);
+		// console.log(terminoBusqueda);
 		var resultado = trabajadores.filter((elemento) => {
 			if (elemento.nombre.toLowerCase().includes(terminoBusqueda.toLowerCase())) {
 				return elemento;
