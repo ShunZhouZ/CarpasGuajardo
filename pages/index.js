@@ -92,9 +92,14 @@ export default function Home({ token, allEvents, allVisits, eventos_mes, gananci
 		setNotificacionEventos(filteredEvents);
 	  }, [allEvents]);
 
-	  useEffect(() => {
-		reloadInventario();
-	}, []);
+	  try{
+		useEffect(() => {
+			reloadInventario();
+		}, []);
+	  } catch (error) {
+		console.log(error);
+	  }
+	  
 
 	const [ModShow, setModShow] = useState(false);
 	const handleModShow = (id) => {
