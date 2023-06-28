@@ -12,6 +12,50 @@ export default function Home({ token, allEvents, allVisits, eventos_mes, gananci
 	const [notificacion_eventos, setNotificacionEventos] = useState([]);
 	const [notificacion_inventario, setNotificacionInventario] = useState([]);
 	
+	// traer todos los eventos
+	const events = [];
+	const visits = [];
+	
+	//todos los eventos
+	for (let i = 0; i < allEvents.length; i++) {
+		const fecha_inicio = moment(allEvents[i].fecha_inicio).format("YYYY-MM-DD HH:mm:ss");
+		const fecha_termino = moment(allEvents[i].fecha_termino).format("YYYY-MM-DD HH:mm:ss");
+		events.push({
+			id: allEvents[i]._id,
+			title: allEvents[i].nombre_cliente,
+			start: fecha_inicio,
+			end: fecha_termino,
+			allDay: false,
+			//otras cosas
+			contacto: allEvents[i].numero_contacto_cliente,
+			direccion: allEvents[i].direccion_cliente,
+			monto_total: allEvents[i].monto_total,
+			anticipo: allEvents[i].anticipo,
+			carpa: allEvents[i].carpa, //nueva
+			toldo: allEvents[i].toldo, //nueva
+			calefaccion: allEvents[i].calefaccion, //nueva
+			iluminacion: allEvents[i].Iluminacion, //nueva
+			cubre_piso: allEvents[i].cubre_piso,
+			metros_cuadrados: allEvents[i].metros_cuadrados,
+			descripcion: allEvents[i].descripcion
+		});
+	}
+	//todas las visitas
+	for (let i = 0; i < allVisits.length; i++) {
+		const fecha_inicio = moment(allVisits[i].fecha_hora_visita_terreno).format("YYYY-MM-DD HH:mm:ss");
+		visits.push({
+			id: allVisits[i]._id,
+			title: allVisits[i].nombre_cliente,
+			start: fecha_inicio,
+			end: fecha_inicio,
+			allDay: false,
+			//otras cosas
+			contacto: allVisits[i].numero_contacto_cliente,
+			direccion: allVisits[i].direccion_cliente,
+			descripcion: allVisits[i].descripcion
+		});
+	}
+
 	const filtrarEventosHoy = (fecha_hoy) => {
 		// console.log(fecha_hoy);
 		var resultado = events.filter((elemento) => {
@@ -61,6 +105,9 @@ export default function Home({ token, allEvents, allVisits, eventos_mes, gananci
 		setModShow(false);
 	};
 
+	const [Modid, setModid] = useState(null);
+	const [Modid1, setModid1] = useState(null);
+
 	const [ModShow1, setModShow1] = useState(false);
 	const handleModShow1 = (id) => {
 		setModid1(id);
@@ -69,18 +116,21 @@ export default function Home({ token, allEvents, allVisits, eventos_mes, gananci
 	const handleModClose1 = () => {
 		setModShow1(false);
 	};
-	const [Modid, setModid] = useState(null);
-	const [Modid1, setModid1] = useState(null);
 
+	const [data1, setData1] = useState({
+		_id: Modid,
+		notificacion: false,
+		estado: null
+	});
 	//Actualizar id para data (evento)
 	useEffect(() => {
-		setData((prevData) => ({
+		setData1((prevData) => ({
 			...prevData,
 			_id: Modid
 		}));
 	}, [Modid]);
 
-	const [data1, setData1] = useState({
+	const [data2, setData2] = useState({
 		_id: Modid1,
 		notificacion: false,
 		estado: null
@@ -88,110 +138,58 @@ export default function Home({ token, allEvents, allVisits, eventos_mes, gananci
 
 	//Actualizar id para data1 (inventario)
 	useEffect(() => {
-		setData1((prevData) => ({
+		setData2((prevData) => ({
 			...prevData,
 			_id: Modid1
 		}));
 	}, [Modid1]);
-	
+
+	//filtrar por inventario con notificacion true
+	const reloadInventario = async () => {
+		let res = await fetch("http://localhost:3000/api/Inventario", {
+			method: "GET",
+			headers: {
+				"Content-Type": "application/json"
+			}
+		});
+		let inventario = await res.json();
+		const filteredInventario = inventario.data.filter((item) => item.notificacion === true);
+		setNotificacionInventario(filteredInventario);
+	};
+
+	//Modificar a evneto
+	const handleProceso = async () => {
+		// console.log(Modid);
+		// console.log(data);
+		const putResponse = await fetch(`http://localhost:3000/api/eventos?eventid=${Modid}`, {
+			method: "PUT",
+			headers: {
+				"Content-Type": "application/json"
+			},
+			body: JSON.stringify(data)
+		});
+		//reinicio
+		setModShow(false);
+		window.location.href = "/";
+	};
+
+	//Modificar a Finalizado
+	const handleFinalizado = async () => {
+		// console.log(Modid);
+		// console.log(data1);
+		const putResponse = await fetch(`http://localhost:3000/api/Inventario?inventarioid=${Modid}`, {
+			method: "PUT",
+			headers: {
+				"Content-Type": "application/json"
+			},
+			body: JSON.stringify(data1)
+		});
+		//reinicio
+		setModShow(false);
+		window.location.href = "/";
+	};
+
 	if (rol === "administrador") {
-		// traer todos los eventos
-		const events = [];
-		const visits = [];
-		
-		//todos los eventos
-		for (let i = 0; i < allEvents.length; i++) {
-			const fecha_inicio = moment(allEvents[i].fecha_inicio).format("YYYY-MM-DD HH:mm:ss");
-			const fecha_termino = moment(allEvents[i].fecha_termino).format("YYYY-MM-DD HH:mm:ss");
-			events.push({
-				id: allEvents[i]._id,
-				title: allEvents[i].nombre_cliente,
-				start: fecha_inicio,
-				end: fecha_termino,
-				allDay: false,
-				//otras cosas
-				contacto: allEvents[i].numero_contacto_cliente,
-				direccion: allEvents[i].direccion_cliente,
-				monto_total: allEvents[i].monto_total,
-				anticipo: allEvents[i].anticipo,
-				carpa: allEvents[i].carpa, //nueva
-				toldo: allEvents[i].toldo, //nueva
-				calefaccion: allEvents[i].calefaccion, //nueva
-				iluminacion: allEvents[i].Iluminacion, //nueva
-				cubre_piso: allEvents[i].cubre_piso,
-				metros_cuadrados: allEvents[i].metros_cuadrados,
-				descripcion: allEvents[i].descripcion
-			});
-		}
-		//todas las visitas
-		for (let i = 0; i < allVisits.length; i++) {
-			const fecha_inicio = moment(allVisits[i].fecha_hora_visita_terreno).format("YYYY-MM-DD HH:mm:ss");
-			visits.push({
-				id: allVisits[i]._id,
-				title: allVisits[i].nombre_cliente,
-				start: fecha_inicio,
-				end: fecha_inicio,
-				allDay: false,
-				//otras cosas
-				contacto: allVisits[i].numero_contacto_cliente,
-				direccion: allVisits[i].direccion_cliente,
-				descripcion: allVisits[i].descripcion
-			});
-		}
-
-
-
-		//filtrar por inventario con notificacion true
-		const reloadInventario = async () => {
-			let res = await fetch("http://localhost:3000/api/Inventario", {
-				method: "GET",
-				headers: {
-					"Content-Type": "application/json"
-				}
-			});
-			let inventario = await res.json();
-			const filteredInventario = inventario.data.filter((item) => item.notificacion === true);
-			setNotificacionInventario(filteredInventario);
-		};
-
-		
-
-		//Modificar a evneto
-		const handleProceso = async () => {
-			// console.log(Modid);
-			// console.log(data);
-			const putResponse = await fetch(`http://localhost:3000/api/eventos?eventid=${Modid}`, {
-				method: "PUT",
-				headers: {
-					"Content-Type": "application/json"
-				},
-				body: JSON.stringify(data)
-			});
-			//reinicio
-			setModShow(false);
-			window.location.href = "/";
-		};
-
-		
-
-		//Modificar a Finalizado
-		const handleFinalizado = async () => {
-			// console.log(Modid);
-			// console.log(data1);
-			const putResponse = await fetch(`http://localhost:3000/api/Inventario?inventarioid=${Modid}`, {
-				method: "PUT",
-				headers: {
-					"Content-Type": "application/json"
-				},
-				body: JSON.stringify(data1)
-			});
-			//reinicio
-			setModShow(false);
-			window.location.href = "/";
-		};
-
-		
-
 		const titleStyle = {
 			fontSize: "1.5rem"
 		};
@@ -237,7 +235,7 @@ export default function Home({ token, allEvents, allVisits, eventos_mes, gananci
 						<Col md={6}>
 							<h2>Eventos de hoy</h2>
 							{eventos_hoy.length > 0 && (
-								<Table responsive bordereless variant="light">
+								<Table responsive bordereless="true" variant="light">
 									<thead>
 										<tr key={0}>
 											<th style={{ width: "40%" }}>Nombre</th>
@@ -416,82 +414,6 @@ export default function Home({ token, allEvents, allVisits, eventos_mes, gananci
 			</div>
 		);
 	} else {
-		// traer todos los eventos
-		const events = [];
-		const visits = [];
-
-		//todos los eventos
-		for (let i = 0; i < allEvents.length; i++) {
-			const fecha_inicio = moment(allEvents[i].fecha_inicio).format("YYYY-MM-DD HH:mm:ss");
-			const fecha_termino = moment(allEvents[i].fecha_termino).format("YYYY-MM-DD HH:mm:ss");
-			events.push({
-				id: allEvents[i]._id,
-				title: allEvents[i].nombre_cliente,
-				start: fecha_inicio,
-				end: fecha_termino,
-				allDay: false,
-				//otras cosas
-				contacto: allEvents[i].numero_contacto_cliente,
-				direccion: allEvents[i].direccion_cliente,
-				monto_total: allEvents[i].monto_total,
-				anticipo: allEvents[i].anticipo,
-				carpa: allEvents[i].carpa, //nueva
-				toldo: allEvents[i].toldo, //nueva
-				calefaccion: allEvents[i].calefaccion, //nueva
-				iluminacion: allEvents[i].Iluminacion, //nueva
-				cubre_piso: allEvents[i].cubre_piso,
-				metros_cuadrados: allEvents[i].metros_cuadrados,
-				descripcion: allEvents[i].descripcion
-			});
-		}
-		//todas las visitas
-		for (let i = 0; i < allVisits.length; i++) {
-			const fecha_inicio = moment(allVisits[i].fecha_hora_visita_terreno).format("YYYY-MM-DD HH:mm:ss");
-			visits.push({
-				id: allVisits[i]._id,
-				title: allVisits[i].nombre_cliente,
-				start: fecha_inicio,
-				end: fecha_inicio,
-				allDay: false,
-				//otras cosas
-				contacto: allVisits[i].numero_contacto_cliente,
-				direccion: allVisits[i].direccion_cliente,
-				descripcion: allVisits[i].descripcion
-			});
-		}
-
-		const filtrarEventosHoy = (fecha_hoy) => {
-			// console.log(fecha_hoy);
-			var resultado = events.filter((elemento) => {
-				if (elemento.start.includes(fecha_hoy)) {
-					return elemento;
-				}
-			});
-			if (resultado.length > 0) {
-				return resultado;
-			} else {
-				return [];
-			}
-		};
-
-		const filtrarVisitasHoy = (fecha_hoy) => {
-			// console.log(fecha_hoy);
-			var resultado = visits.filter((elemento) => {
-				if (elemento.start.includes(fecha_hoy)) {
-					return elemento;
-				}
-			});
-			if (resultado.length > 0) {
-				return resultado;
-			} else {
-				return [];
-			}
-		};
-
-		const eventos_hoy = filtrarEventosHoy(moment().format("YYYY-MM-DD"));
-		const visitas_hoy = filtrarVisitasHoy(moment().format("YYYY-MM-DD"));
-		// console.log(visitas_hoy);
-
 		const titleStyle = {
 			fontSize: "1.5rem"
 		};
@@ -528,7 +450,7 @@ export default function Home({ token, allEvents, allVisits, eventos_mes, gananci
 						<Col md={6}>
 							<h2>Eventos de hoy</h2>
 							{eventos_hoy.length > 0 && (
-								<Table responsive bordereless variant="light">
+								<Table responsive bordereless="true" variant="light">
 									<thead>
 										<tr key={0}>
 											<th style={{ width: "40%" }}>Nombre</th>
