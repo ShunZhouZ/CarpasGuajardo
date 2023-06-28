@@ -10,6 +10,7 @@ export function Form_(props) {
 	const [nombre_cliente, setnombre_cliente] = useState("");
 	const [tipo_evento, settipo_evento] = useState("inventario");
 	const [cantidad, setcantidad] = useState("");
+	const [descripcion, setdescripcion] = useState("");
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 		try {
@@ -18,6 +19,7 @@ export function Form_(props) {
 				tipo_evento,
 				nombre_cliente,
 				cantidad,
+				descripcion,
 			});
 			// console.log(res.data);
 			router.push("./eliminar-inventario")
@@ -54,6 +56,18 @@ export function Form_(props) {
 								name="numero_contacto_cliente"
 								id="numero_contacto_cliente"
 								placeholder="Cantidad"
+								required
+							/>
+						</Form.Group>
+						<Form.Group>
+							<Form.Label className="mt-3">Descripcion </Form.Label>
+							<Form.Control
+								as="textarea"
+								name="descripcion"
+								value={descripcion}
+								onChange={(ev) => setdescripcion(ev.target.value)}
+								type="text"
+								placeholder="Descripcion"
 								required
 							/>
 						</Form.Group>

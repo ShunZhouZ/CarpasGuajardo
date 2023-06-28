@@ -10,7 +10,7 @@ export default async function handler(req, res) {
 				nombre_cliente,
 				cantidad,
 				estado,
-				estado_data
+				descripcion,
 		} = req.body; //Ejemplo de campos del objeto enviado
 				if(tipo_evento === "inventario"){
 					const cantidadEntera = parseInt(cantidad);
@@ -18,7 +18,7 @@ export default async function handler(req, res) {
                         nombre: nombre_cliente,
                         cantidad: cantidadEntera,
 						estado: estado,
-						estado_data: estado_data
+						estado: descripcion
 					  });
 					  res.json({ status: 200, data: miEvento });
 				}
