@@ -158,7 +158,6 @@ export default function Home({ token, allEvents, allVisits, eventos_mes, gananci
 			}
 		};
 
-		
 
 		//Modificar a evneto
 		const handleProceso = async () => {
@@ -176,7 +175,6 @@ export default function Home({ token, allEvents, allVisits, eventos_mes, gananci
 			window.location.href = "/";
 		};
 
-		
 
 		//Modificar a Finalizado
 		const handleFinalizado = async () => {
@@ -194,7 +192,6 @@ export default function Home({ token, allEvents, allVisits, eventos_mes, gananci
 			window.location.href = "/";
 		};
 
-		
 
 		const titleStyle = {
 			fontSize: "1.5rem"
