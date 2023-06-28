@@ -66,8 +66,8 @@ const Eventos = (props) => {
 
 	//Modificar a En proceso
 	const handleProceso = async () => {
-		console.log(Modid);
-		console.log(data);
+		// console.log(Modid);
+		// console.log(data);
 		const putResponse = await fetch(`http://localhost:3000/api/eventos?eventid=${Modid}`, {
 			method: "PUT",
 			headers: {
@@ -88,8 +88,8 @@ const Eventos = (props) => {
 
 	//Modificar a Finalizado
 	const handleFinalizado = async () => {
-		console.log(Modid);
-		console.log(data1);
+		// console.log(Modid);
+		// console.log(data1);
 		const putResponse = await fetch(`http://localhost:3000/api/eventos?eventid=${Modid}`, {
 			method: "PUT",
 			headers: {
@@ -139,7 +139,7 @@ const Eventos = (props) => {
 		handleShow();
 		handleConfirmationClose();
 
-		console.log(await deleteResponse.json());
+		// console.log(await deleteResponse.json());
 		await reloadEvents();
 	};
 	//se actualizo filterevents
