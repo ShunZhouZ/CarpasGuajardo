@@ -92,14 +92,9 @@ export default function Home({ token, allEvents, allVisits, eventos_mes, gananci
 		setNotificacionEventos(filteredEvents);
 	  }, [allEvents]);
 
-	  try{
-		useEffect(() => {
-			reloadInventario();
-		}, []);
-	  } catch (error) {
-		console.log(error);
-	  }
-	  
+	  useEffect(() => {
+		reloadInventario();
+	}, []);
 
 	const [ModShow, setModShow] = useState(false);
 	const handleModShow = (id) => {
@@ -150,6 +145,7 @@ export default function Home({ token, allEvents, allVisits, eventos_mes, gananci
 	}, [Modid1]);
 
 	//filtrar por inventario con notificacion true
+	
 	try {
 		const reloadInventario = async () => {
 			let res = await fetch("http://localhost:3000/api/Inventario", {
