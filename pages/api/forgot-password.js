@@ -1,7 +1,6 @@
 import clientPromise from "../../lib/mongodb";
 import bcrypt from "bcryptjs";
 import nodemailer from "nodemailer";
-import express from "express";
 
 // Configuración del transporte de correo
 let transporter = nodemailer.createTransport({

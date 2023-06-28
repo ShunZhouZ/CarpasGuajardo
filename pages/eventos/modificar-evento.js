@@ -171,8 +171,8 @@ const Eventos = ({ eventos, clientes, inventario, contactos }) => {
                 onChange={handleCheckTipo}
                 defaultValue={data.carpa ? "carpa" : (data.toldo ? "toldo" : "")}
               >
-                <option value="carpa" abled={!data.carpa}>Carpa</option>
-                <option value="toldo" abled={!data.toldo}>Toldo</option>
+                <option value="carpa" disabled={data.carpa}>Carpa</option>
+                <option value="toldo" disabled={data.toldo}>Toldo</option>
               </Form.Control>
 
 							<Row xs = "auto">

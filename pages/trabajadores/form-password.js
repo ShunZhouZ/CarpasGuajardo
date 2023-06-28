@@ -8,7 +8,7 @@ import Modal from 'react-bootstrap/Modal';
 
 const userService = userServiceFactory();
 
-export default function sendEmail() {
+export default function SendEmail() {
     const { user, mutateUser } = useUser({
         redirectTo: "/",
         redirectIfFound: true,

@@ -9,13 +9,96 @@ import { redirect } from "next/dist/server/api-utils";
 
 export default function Home({ token, allEvents, allVisits, eventos_mes, ganancias }) {
 	const rol = jwt.decode(token).rol;
+	const [notificacion_eventos, setNotificacionEventos] = useState([]);
+	const [notificacion_inventario, setNotificacionInventario] = useState([]);
+	
+	const filtrarEventosHoy = (fecha_hoy) => {
+		// console.log(fecha_hoy);
+		var resultado = events.filter((elemento) => {
+			if (elemento.start.includes(fecha_hoy)) {
+				return elemento;
+			}
+		});
+		if (resultado.length > 0) {
+			return resultado;
+		} else {
+			return [];
+		}
+	};
 
+	const filtrarVisitasHoy = (fecha_hoy) => {
+		var resultado = visits.filter((elemento) => {
+			if (elemento.start.includes(fecha_hoy)) {
+				return elemento;
+			}
+		});
+		if (resultado.length > 0) {
+			return resultado;
+		} else {
+			return [];
+		}
+	};
+
+	const eventos_hoy = filtrarEventosHoy(moment().format("YYYY-MM-DD"));
+	const visitas_hoy = filtrarVisitasHoy(moment().format("YYYY-MM-DD"));
+
+	useEffect(() => {
+		// filtrar por eventos con notificacion true
+		const filteredEvents = allEvents.filter((event) => event.notificacion === true);
+		setNotificacionEventos(filteredEvents);
+	  }, [allEvents]);
+
+	  useEffect(() => {
+		reloadInventario();
+	}, []);
+
+	const [ModShow, setModShow] = useState(false);
+	const handleModShow = (id) => {
+		setModid(id);
+		setModShow(true);
+	};
+	const handleModClose = () => {
+		setModShow(false);
+	};
+
+	const [ModShow1, setModShow1] = useState(false);
+	const handleModShow1 = (id) => {
+		setModid1(id);
+		setModShow1(true);
+	};
+	const handleModClose1 = () => {
+		setModShow1(false);
+	};
+	const [Modid, setModid] = useState(null);
+	const [Modid1, setModid1] = useState(null);
+
+	//Actualizar id para data (evento)
+	useEffect(() => {
+		setData((prevData) => ({
+			...prevData,
+			_id: Modid
+		}));
+	}, [Modid]);
+
+	const [data1, setData1] = useState({
+		_id: Modid1,
+		notificacion: false,
+		estado: null
+	});
+
+	//Actualizar id para data1 (inventario)
+	useEffect(() => {
+		setData1((prevData) => ({
+			...prevData,
+			_id: Modid1
+		}));
+	}, [Modid1]);
+	
 	if (rol === "administrador") {
 		// traer todos los eventos
 		const events = [];
 		const visits = [];
-		const [notificacion_eventos, setNotificacionEventos] = useState([]);
-		const [notificacion_inventario, setNotificacionInventario] = useState([]);
+		
 		//todos los eventos
 		for (let i = 0; i < allEvents.length; i++) {
 			const fecha_inicio = moment(allEvents[i].fecha_inicio).format("YYYY-MM-DD HH:mm:ss");
@@ -56,41 +139,7 @@ export default function Home({ token, allEvents, allVisits, eventos_mes, gananci
 			});
 		}
 
-		const filtrarEventosHoy = (fecha_hoy) => {
-			// console.log(fecha_hoy);
-			var resultado = events.filter((elemento) => {
-				if (elemento.start.includes(fecha_hoy)) {
-					return elemento;
-				}
-			});
-			if (resultado.length > 0) {
-				return resultado;
-			} else {
-				return [];
-			}
-		};
 
-		const filtrarVisitasHoy = (fecha_hoy) => {
-			var resultado = visits.filter((elemento) => {
-				if (elemento.start.includes(fecha_hoy)) {
-					return elemento;
-				}
-			});
-			if (resultado.length > 0) {
-				return resultado;
-			} else {
-				return [];
-			}
-		};
-
-		const eventos_hoy = filtrarEventosHoy(moment().format("YYYY-MM-DD"));
-		const visitas_hoy = filtrarVisitasHoy(moment().format("YYYY-MM-DD"));
-
-		useEffect(() => {
-			//filtrar por eventos con notificacion true
-			const filteredEvents = allEvents.filter((event) => event.notificacion === true);
-			setNotificacionEventos(filteredEvents);
-		}, []);
 
 		//filtrar por inventario con notificacion true
 		const reloadInventario = async () => {
@@ -109,45 +158,7 @@ export default function Home({ token, allEvents, allVisits, eventos_mes, gananci
 			}
 		};
 
-		useEffect(() => {
-			reloadInventario();
-		}, []);
-
-		const [ModShow, setModShow] = useState(false);
-		const handleModShow = (id) => {
-			setModid(id);
-			setModShow(true);
-		};
-		const handleModClose = () => {
-			setModShow(false);
-		};
-
-		const [ModShow1, setModShow1] = useState(false);
-		const handleModShow1 = (id) => {
-			setModid1(id);
-			setModShow1(true);
-		};
-		const handleModClose1 = () => {
-			setModShow1(false);
-		};
-		const [Modid, setModid] = useState(null);
-		const [Modid1, setModid1] = useState(null);
-
-		//Actualizar id para data (evento)
-		useEffect(() => {
-			setData((prevData) => ({
-				...prevData,
-				_id: Modid
-			}));
-		}, [Modid]);
-
-		//Actualizar id para data1 (inventario)
-		useEffect(() => {
-			setData1((prevData) => ({
-				...prevData,
-				_id: Modid1
-			}));
-		}, [Modid1]);
+		
 
 		//Modificar a evneto
 		const handleProceso = async () => {
@@ -165,10 +176,7 @@ export default function Home({ token, allEvents, allVisits, eventos_mes, gananci
 			window.location.href = "/";
 		};
 
-		const [data, setData] = useState({
-			_id: Modid,
-			notificacion: false
-		});
+		
 
 		//Modificar a Finalizado
 		const handleFinalizado = async () => {
@@ -186,11 +194,7 @@ export default function Home({ token, allEvents, allVisits, eventos_mes, gananci
 			window.location.href = "/";
 		};
 
-		const [data1, setData1] = useState({
-			_id: Modid1,
-			notificacion: false,
-			estado: null
-		});
+		
 
 		const titleStyle = {
 			fontSize: "1.5rem"
@@ -300,7 +304,7 @@ export default function Home({ token, allEvents, allVisits, eventos_mes, gananci
 													<div className="left-align">
 														<Card.Text> Nombre cliente: {event.nombre_cliente}</Card.Text>
 														<Card.Text> Fecha evento: {moment(event.fecha_inicio).format("DD-MM-YYYY")}</Card.Text>
-														<Card.Text>Paso a estado "{event.estado}"</Card.Text>
+														<Card.Text>Paso a estado {event.estado}</Card.Text>
 													</div>
 												</Col>
 												<Col>
