@@ -55,7 +55,6 @@ const FormularioPorPasos = () => {
         metros_cuadrados,
         descripcion,
       });
-      // console.log(res.data);
       router.push("./visualizar-admin");
     } catch (err) {
       console.error(err);
