@@ -56,8 +56,8 @@ const Eventos = ({ eventos, clientes, inventario, contactos }) => {
       })
       handleShow();
 
-      console.log(await response.json());
-      console.log('Modificar campo');
+      // console.log(await response.json());
+      // console.log('Modificar campo');
     };
 
     const TipoElemento = {

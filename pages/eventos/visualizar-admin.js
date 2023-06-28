@@ -71,7 +71,7 @@ const CalendarPage = ({ allPosts }) => {
 		if (toldo === "Sí") {
 			carpa_toldo = "Toldo";
 		}
-		console.log(carpa_toldo);
+		// console.log(carpa_toldo);
 
 		const data = {
 			id: event.id,
@@ -91,8 +91,8 @@ const CalendarPage = ({ allPosts }) => {
 			metros_cuadrados: event.metros_cuadrados,
 			descripcion: event.descripcion
 		};
-		console.log("evento solo");
-		console.log(data);
+		// console.log("evento solo");
+		// console.log(data);
 		setModalData(data);
 		setShow(true);
 	};
