@@ -101,12 +101,12 @@ export default function Home({ token, allEvents, allVisits, eventos_mes, gananci
 						"Content-Type": "application/json"
 					}
 				});
+				let inventario = await res.json();
+				const filteredInventario = inventario.data.filter((item) => item.notificacion === true);
+				setNotificacionInventario(filteredInventario);
 			} catch (error) {
 				console.log(error);
 			}
-			// let inventario = await res.json();
-			// const filteredInventario = inventario.data.filter((item) => item.notificacion === true);
-			// setNotificacionInventario(filteredInventario);
 		};
 
 		useEffect(() => {
