@@ -117,20 +117,20 @@ export default function Home({ token, allEvents, allVisits, eventos_mes, gananci
 		setModShow1(false);
 	};
 
-	const [data1, setData1] = useState({
+	const [data, setData] = useState({
 		_id: Modid,
 		notificacion: false,
 		estado: null
 	});
 	//Actualizar id para data (evento)
 	useEffect(() => {
-		setData1((prevData) => ({
+		setData((prevData) => ({
 			...prevData,
 			_id: Modid
 		}));
 	}, [Modid]);
 
-	const [data2, setData2] = useState({
+	const [data1, setData1] = useState({
 		_id: Modid1,
 		notificacion: false,
 		estado: null
@@ -138,7 +138,7 @@ export default function Home({ token, allEvents, allVisits, eventos_mes, gananci
 
 	//Actualizar id para data1 (inventario)
 	useEffect(() => {
-		setData2((prevData) => ({
+		setData1((prevData) => ({
 			...prevData,
 			_id: Modid1
 		}));
