@@ -94,15 +94,19 @@ export default function Home({ token, allEvents, allVisits, eventos_mes, gananci
 
 		//filtrar por inventario con notificacion true
 		const reloadInventario = async () => {
-			let res = await fetch("http://localhost:3000/api/Inventario", {
-				method: "GET",
-				headers: {
-					"Content-Type": "application/json"
-				}
-			});
-			let inventario = await res.json();
-			const filteredInventario = inventario.data.filter((item) => item.notificacion === true);
-			setNotificacionInventario(filteredInventario);
+			try{
+				let res = await fetch("http://localhost:3000/api/Inventario", {
+					method: "GET",
+					headers: {
+						"Content-Type": "application/json"
+					}
+				});
+			} catch (error) {
+				console.log(error);
+			}
+			// let inventario = await res.json();
+			// const filteredInventario = inventario.data.filter((item) => item.notificacion === true);
+			// setNotificacionInventario(filteredInventario);
 		};
 
 		useEffect(() => {
