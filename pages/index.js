@@ -362,21 +362,21 @@ export default function Home({ token, allEvents, allVisits, eventos_mes, gananci
 										<img className="d-block w-100" src="/images/foto1.jpg" alt="" />
 										<Carousel.Caption>
 											<h3>Matrimonio</h3>
-											<p>En Talagante, 01/23</p>
+											<div>En Talagante, 01/23</div>
 										</Carousel.Caption>
 									</Carousel.Item>
 									<Carousel.Item interval={2000}>
 										<img className="d-block w-100" src="/images/foto2.jpg" alt="" />
 										<Carousel.Caption>
 											<h3>Graduación 4tos medios</h3>
-											<p>En Santiago, 12/22.</p>
+											<div>En Santiago, 12/22.</div>
 										</Carousel.Caption>
 									</Carousel.Item>
 									<Carousel.Item interval={2000}>
 										<img className="d-block w-100" src="/images/foto3.jpg" alt="" />
 										<Carousel.Caption>
 											<h3>Celebración fiestas patrias</h3>
-											<p>En Santiago, 09/22.</p>
+											<div>En Santiago, 09/22.</div>
 										</Carousel.Caption>
 									</Carousel.Item>
 								</Carousel>
@@ -589,21 +589,21 @@ export default function Home({ token, allEvents, allVisits, eventos_mes, gananci
 										<img className="d-block w-100" src="/images/foto1.jpg" alt="" />
 										<Carousel.Caption>
 											<h3>Matrimonio</h3>
-											<p>En Talagante, 01/23</p>
+											<div>En Talagante, 01/23</div>
 										</Carousel.Caption>
 									</Carousel.Item>
 									<Carousel.Item interval={2000}>
 										<img className="d-block w-100" src="/images/foto2.jpg" alt="" />
 										<Carousel.Caption>
 											<h3>Graduación 4tos medios</h3>
-											<p>En Santiago, 12/22.</p>
+											<div>En Santiago, 12/22.</div>
 										</Carousel.Caption>
 									</Carousel.Item>
 									<Carousel.Item interval={2000}>
 										<img className="d-block w-100" src="/images/foto3.jpg" alt="" />
 										<Carousel.Caption>
 											<h3>Celebración fiestas patrias</h3>
-											<p>En Santiago, 09/22.</p>
+											<div>En Santiago, 09/22.</div>
 										</Carousel.Caption>
 									</Carousel.Item>
 								</Carousel>
