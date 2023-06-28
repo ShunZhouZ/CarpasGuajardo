@@ -101,7 +101,6 @@ export default function Home({ token, allEvents, allVisits, eventos_mes, gananci
 				}
 			});
 			let inventario = await res.json();
-			console.log(inventario);
 			const filteredInventario = inventario.data.filter((item) => item.notificacion === true);
 			setNotificacionInventario(filteredInventario);
 		};
