@@ -101,6 +101,7 @@ export default function Home({ token, allEvents, allVisits, eventos_mes, gananci
 				}
 			});
 			let inventario = await res.json();
+			console.log(inventario);
 			const filteredInventario = inventario.data.filter((item) => item.notificacion === true);
 			setNotificacionInventario(filteredInventario);
 		};
@@ -233,7 +234,7 @@ export default function Home({ token, allEvents, allVisits, eventos_mes, gananci
 						<Col md={6}>
 							<h2>Eventos de hoy</h2>
 							{eventos_hoy.length > 0 && (
-								<Table responsive bordereless variant="light">
+								<Table responsive bordereless="true" variant="light">
 									<thead>
 										<tr key={0}>
 											<th style={{ width: "40%" }}>Nombre</th>
@@ -524,7 +525,7 @@ export default function Home({ token, allEvents, allVisits, eventos_mes, gananci
 						<Col md={6}>
 							<h2>Eventos de hoy</h2>
 							{eventos_hoy.length > 0 && (
-								<Table responsive bordereless variant="light">
+								<Table responsive bordereless="true" variant="light">
 									<thead>
 										<tr key={0}>
 											<th style={{ width: "40%" }}>Nombre</th>
