@@ -48,6 +48,7 @@
 }
 .containerInput{
   padding-bottom: 15px;
+  margin-top: 3%;
 }
 .containerInput{
   align-items: flex-end;
@@ -72,14 +73,7 @@
   padding: 10px;
 }
 
-.search-input input {
-  width: 30%;
-  padding: 8px;
-  font-size: 16px;
-  border: darkgray 1px solid;
-  border-radius: 5px;
-  margin-bottom: 10px;
-}
+
 
 .button-group {
   display: flex;
@@ -113,7 +107,8 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  width: 22.5%;
+  margin-bottom: 10%;
+  width: 100%;
 }
 
 /* tabla */
@@ -173,7 +168,7 @@
 
 .check-box {
   display: flex;
-  align-items: center;
+  align-items: left;
   margin-bottom: 10px;
   justify-content: flex-start;
 }
@@ -183,27 +178,6 @@
   gap: 30px;
   padding: 2%;
 }
-/*
-.modal-title {
-  background-color: rgb(212, 216, 218);
-  padding: 0px;
-  margin-top: -17px;
-  margin-left: -16px;
-  margin-right: -16px;
-}
-*/
-
-/*
-.card-container {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 20px;
-}
-
-.card {
-  border: 1px solid #ccc;
-}*/
-
 .tarjeta-inicio{
 
   padding: 10px;
@@ -315,4 +289,41 @@
   padding-left: 20%;
   text-align: left;
   padding-right: 0%;
+}
+
+.filtrosEventos{
+  padding-left: 2%;
+  padding-right: 2%;
+  margin-bottom: 0px;
+  margin-top: 0px;
+}
+.input form-control{
+  padding: 8px;
+  font-size: 16px;
+  border: rgba(120, 120, 120, 0.46) 0.5px solid;
+  border-radius: 5px;
+    
+}
+.input-group{
+  align-items: flex-end;
+  right: 0;
+  display: flex;
+  justify-content: flex-end;
+  width: 45% !important;
+  float: right;
+}
+.foto-trabajador{
+  width: 70%;
+ margin-top: 10%;
+  object-fit: cover;
+}
+
+.input-login{
+  justify-content: center; 
+  align-items: center; 
+  padding: 10%;
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+  background-color: #f9f9f9d6; 
+  border-radius: 5px;
+  
 }

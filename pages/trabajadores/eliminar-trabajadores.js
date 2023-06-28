@@ -88,7 +88,7 @@ const Trabajador = (props) => {
 
 	return (
 		<div style={{ marginLeft: "40px", marginRight: "40px" }}>
-			<h1>Lista de trabajadores</h1>
+			<h1 className="display-3 text-center mb-3">Lista de trabajadores</h1>
 			<div className="containerInput">
 				<input className="form-control inputBuscar" value={busqueda} placeholder="Búsqueda por nombre" onChange={handleChange} />
 				<Button className="btn btn-primary">
@@ -108,37 +108,32 @@ const Trabajador = (props) => {
 
 			{/* <tbody> */}
 			<div className="text-center">
-				<Row xs={1} md={3} className="m-3">
+				<Row>
 					{trabajadoresFiltrado?.map((trabajador, index) => (
-						<Card className="m-3 w-20 vista-trabajador" key={trabajador._id}>
-							{/* aca va la imagen de la persona */}
-							<Card.Img variant="top" src="/images/user-square-svgrepo-com.svg" />
-							<Card.Body>
-								<Card.Title>{trabajador.nombre}</Card.Title>
-								{/* <Card.Text>
-							Some quick example text to build on the card title and make up the
-							bulk of the card's content.
-						</Card.Text> */}
-							</Card.Body>
-							<ListGroup className="list-group-flush">
-								<ListGroup.Item>Rol: {trabajador.rol}</ListGroup.Item>
-								<ListGroup.Item>RUT: {trabajador.username}</ListGroup.Item>
-								<ListGroup.Item>Contacto: {trabajador.contacto}</ListGroup.Item>
-								<ListGroup.Item>Correo: {trabajador.correo}</ListGroup.Item>
-							</ListGroup>
-							<Card.Body>
-								<Button className="btn btn-info m-3" onClick={() => modifyElement(trabajador._id)}>
-									{" "}
-									<FontAwesomeIcon icon={faPencilAlt} />
-									Modificar
-								</Button>
-								<Button className="btn btn-danger" onClick={() => deleteElement(trabajador._id, trabajador.nombre, trabajador.rol)}>
-									{" "}
-									<FontAwesomeIcon icon={faTrash} />
-									Eliminar
-								</Button>
-							</Card.Body>
-						</Card>
+						<Col xs={12} md={6} lg={3}>
+							<Card className="vista-trabajador" key={trabajador._id}>
+								<Card.Img variant="top" className="foto-trabajador" src="/images/user-square-svgrepo-com.svg" />
+								<Card.Body>
+									<Card.Title>{trabajador.nombre}</Card.Title>
+								</Card.Body>
+								<ListGroup className="list-group-flush">
+									<ListGroup.Item>Rol: {trabajador.rol}</ListGroup.Item>
+									<ListGroup.Item>RUT: {trabajador.username}</ListGroup.Item>
+									<ListGroup.Item>Contacto: {trabajador.contacto}</ListGroup.Item>
+									<ListGroup.Item>Correo: {trabajador.correo}</ListGroup.Item>
+								</ListGroup>
+								<Card.Body>
+									<Button className="btn btn-info m-3" onClick={() => modifyElement(trabajador._id)}>
+										<FontAwesomeIcon icon={faPencilAlt} />
+										Modificar
+									</Button>
+									<Button className="btn btn-danger" onClick={() => deleteElement(trabajador._id, trabajador.nombre, trabajador.rol)}>
+										<FontAwesomeIcon icon={faTrash} />
+										Eliminar
+									</Button>
+								</Card.Body>
+							</Card>
+						</Col>
 						// para dejarlo como tabla, descomentar todo y comentar lo de arriba
 						// <tr key={trabajador._id}>
 						// 	<td>{index + 1}</td>

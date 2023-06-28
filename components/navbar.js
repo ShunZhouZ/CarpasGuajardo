@@ -51,7 +51,6 @@ const NavBar = (res, req) => {
 									<NavDropdown title="Inventario" id="basic-nav-dropdown" bg="primary" variant="dark">
 										<NavDropdown.Item href="/inventario/agregar-inventario">Agregar</NavDropdown.Item>
 										<NavDropdown.Item href="/inventario/eliminar-inventario">Lista de inventario</NavDropdown.Item>
-										<NavDropdown.Divider />
 									</NavDropdown>
 								</Nav>
 							</Navbar.Collapse>
