@@ -61,7 +61,7 @@ const Inventario = (props) => {
     handleShow();
     handleConfirmationClose();
 
-    console.log(await deleteResponse.json());
+    // console.log(await deleteResponse.json());
     await reloadInventarios();
   };
 

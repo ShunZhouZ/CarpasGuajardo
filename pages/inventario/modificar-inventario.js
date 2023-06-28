@@ -13,7 +13,7 @@ const Modificarinventarios = (props) => {
 
 	// Filtrar eventos por ID
 	const inventario = inventarios.find((value) => value._id === id);
-	console.log(inventario)
+	// console.log(inventario)
 	//const inventario = {}
 
 	const [data, setData] = useState({
@@ -33,8 +33,8 @@ const Modificarinventarios = (props) => {
 			body: JSON.stringify(data)
 		});
 		handleShow();
-		console.log(await response.json());
-		console.log("Modificar campo");
+		// console.log(await response.json());
+		// console.log("Modificar campo");
 	};
 
 	const [show, setShow] = useState(false);
