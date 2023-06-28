@@ -190,6 +190,100 @@ export default function Home({ token, allEvents, allVisits, eventos_mes, gananci
 	};
 
 	if (rol === "administrador") {
+		// traer todos los eventos
+		const events = [];
+		const visits = [];
+		
+		//todos los eventos
+		for (let i = 0; i < allEvents.length; i++) {
+			const fecha_inicio = moment(allEvents[i].fecha_inicio).format("YYYY-MM-DD HH:mm:ss");
+			const fecha_termino = moment(allEvents[i].fecha_termino).format("YYYY-MM-DD HH:mm:ss");
+			events.push({
+				id: allEvents[i]._id,
+				title: allEvents[i].nombre_cliente,
+				start: fecha_inicio,
+				end: fecha_termino,
+				allDay: false,
+				//otras cosas
+				contacto: allEvents[i].numero_contacto_cliente,
+				direccion: allEvents[i].direccion_cliente,
+				monto_total: allEvents[i].monto_total,
+				anticipo: allEvents[i].anticipo,
+				carpa: allEvents[i].carpa, //nueva
+				toldo: allEvents[i].toldo, //nueva
+				calefaccion: allEvents[i].calefaccion, //nueva
+				iluminacion: allEvents[i].Iluminacion, //nueva
+				cubre_piso: allEvents[i].cubre_piso,
+				metros_cuadrados: allEvents[i].metros_cuadrados,
+				descripcion: allEvents[i].descripcion
+			});
+		}
+		//todas las visitas
+		for (let i = 0; i < allVisits.length; i++) {
+			const fecha_inicio = moment(allVisits[i].fecha_hora_visita_terreno).format("YYYY-MM-DD HH:mm:ss");
+			visits.push({
+				id: allVisits[i]._id,
+				title: allVisits[i].nombre_cliente,
+				start: fecha_inicio,
+				end: fecha_inicio,
+				allDay: false,
+				//otras cosas
+				contacto: allVisits[i].numero_contacto_cliente,
+				direccion: allVisits[i].direccion_cliente,
+				descripcion: allVisits[i].descripcion
+			});
+		}
+
+
+		//filtrar por inventario con notificacion true
+		const reloadInventario = async () => {
+			try{
+				let res = await fetch("http://localhost:3000/api/Inventario", {
+					method: "GET",
+					headers: {
+						"Content-Type": "application/json"
+					}
+				});
+				let inventario = await res.json();
+				const filteredInventario = inventario.data.filter((item) => item.notificacion === true);
+				setNotificacionInventario(filteredInventario);
+			} catch (error) {
+				console.log(error);
+			}
+		};
+
+		//Modificar a evneto
+		const handleProceso = async () => {
+			// console.log(Modid);
+			// console.log(data);
+			const putResponse = await fetch(`http://localhost:3000/api/eventos?eventid=${Modid}`, {
+				method: "PUT",
+				headers: {
+					"Content-Type": "application/json"
+				},
+				body: JSON.stringify(data)
+			});
+			//reinicio
+			setModShow(false);
+			window.location.href = "/";
+		};
+
+		//Modificar a Finalizado
+		const handleFinalizado = async () => {
+			// console.log(Modid);
+			// console.log(data1);
+			const putResponse = await fetch(`http://localhost:3000/api/Inventario?inventarioid=${Modid}`, {
+				method: "PUT",
+				headers: {
+					"Content-Type": "application/json"
+				},
+				body: JSON.stringify(data1)
+			});
+			//reinicio
+			setModShow(false);
+			window.location.href = "/";
+		};
+
 		const titleStyle = {
 			fontSize: "1.5rem"
 		};
@@ -360,21 +454,21 @@ export default function Home({ token, allEvents, allVisits, eventos_mes, gananci
 										<img className="d-block w-100" src="/images/foto1.jpg" alt="" />
 										<Carousel.Caption>
 											<h3>Matrimonio</h3>
-											<p>En Talagante, 01/23</p>
+											<div>En Talagante, 01/23</div>
 										</Carousel.Caption>
 									</Carousel.Item>
 									<Carousel.Item interval={2000}>
 										<img className="d-block w-100" src="/images/foto2.jpg" alt="" />
 										<Carousel.Caption>
 											<h3>Graduación 4tos medios</h3>
-											<p>En Santiago, 12/22.</p>
+											<div>En Santiago, 12/22.</div>
 										</Carousel.Caption>
 									</Carousel.Item>
 									<Carousel.Item interval={2000}>
 										<img className="d-block w-100" src="/images/foto3.jpg" alt="" />
 										<Carousel.Caption>
 											<h3>Celebración fiestas patrias</h3>
-											<p>En Santiago, 09/22.</p>
+											<div>En Santiago, 09/22.</div>
 										</Carousel.Caption>
 									</Carousel.Item>
 								</Carousel>
@@ -511,21 +605,21 @@ export default function Home({ token, allEvents, allVisits, eventos_mes, gananci
 										<img className="d-block w-100" src="/images/foto1.jpg" alt="" />
 										<Carousel.Caption>
 											<h3>Matrimonio</h3>
-											<p>En Talagante, 01/23</p>
+											<div>En Talagante, 01/23</div>
 										</Carousel.Caption>
 									</Carousel.Item>
 									<Carousel.Item interval={2000}>
 										<img className="d-block w-100" src="/images/foto2.jpg" alt="" />
 										<Carousel.Caption>
 											<h3>Graduación 4tos medios</h3>
-											<p>En Santiago, 12/22.</p>
+											<div>En Santiago, 12/22.</div>
 										</Carousel.Caption>
 									</Carousel.Item>
 									<Carousel.Item interval={2000}>
 										<img className="d-block w-100" src="/images/foto3.jpg" alt="" />
 										<Carousel.Caption>
 											<h3>Celebración fiestas patrias</h3>
-											<p>En Santiago, 09/22.</p>
+											<div>En Santiago, 09/22.</div>
 										</Carousel.Caption>
 									</Carousel.Item>
 								</Carousel>
