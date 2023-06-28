@@ -17,7 +17,6 @@ export default async function handler(req, res) {
 					const miEvento = await db.collection("Inventario").insertOne({
                         nombre: nombre_cliente,
                         cantidad: cantidadEntera,
-						estado: estado,
 						estado: descripcion
 					  });
 					  res.json({ status: 200, data: miEvento });
