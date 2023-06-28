@@ -110,8 +110,8 @@ const Trabajador = (props) => {
 			<div className="text-center">
 				<Row>
 					{trabajadoresFiltrado?.map((trabajador, index) => (
-						<Col xs={12} md={6} lg={3}>
-							<Card className="vista-trabajador" key={trabajador._id}>
+						<Col xs={12} md={6} lg={3} key={trabajador._id}>
+							<Card className="vista-trabajador">
 								<Card.Img variant="top" className="foto-trabajador" src="/images/user-square-svgrepo-com.svg" />
 								<Card.Body>
 									<Card.Title>{trabajador.nombre}</Card.Title>
@@ -134,35 +134,16 @@ const Trabajador = (props) => {
 								</Card.Body>
 							</Card>
 						</Col>
-						// para dejarlo como tabla, descomentar todo y comentar lo de arriba
-						// <tr key={trabajador._id}>
-						// 	<td>{index + 1}</td>
-						// 	<td>{trabajador.username}</td>
-						// 	<td>{trabajador.rol}</td>
-						// 	<td>{trabajador.nombre}</td>
-						// 	<td>
-						// 		<div className="button-group">
-						// 			<Button className="btn btn-info " onClick={() => modifyElement(trabajador._id)}>
-						// 				<FontAwesomeIcon icon={faPencilAlt} /> Modificar
-						// 			</Button>
-						// 			<Button className="btn btn-danger" onClick={() => deleteElement(trabajador._id, trabajador.nombre, trabajador.rol)}>
-						// 				<FontAwesomeIcon icon={faTrash} /> Eliminar
-						// 			</Button>
-						// 		</div>
-						// 	</td>
-						// </tr>
 					))}
 				</Row>
 			</div>
-			{/* </tbody> */}
-			{/* </Table> */}
 			{trabajadoresFiltrado.length == 0 && <h4>No hay resultados</h4>}
 			<Modal show={show} onHide={handleClose}>
 				<Modal.Header closeButton>
 					<Modal.Title>Trabajador eliminado</Modal.Title>
 				</Modal.Header>
 				<Modal.Body>
-					Se ha eliminado a "{elementName}" con el rol de "{elementRole}" correctamente.
+					Se ha eliminado a {elementName} con el rol de {elementRole} correctamente.
 				</Modal.Body>
 				<Modal.Footer></Modal.Footer>
 			</Modal>
@@ -170,7 +151,7 @@ const Trabajador = (props) => {
 				<Modal.Header closeButton>
 					<Modal.Title>Confirmación de eliminación</Modal.Title>
 				</Modal.Header>
-				<Modal.Body>¿Estás seguro de que deseas eliminar a "{elementName}"?</Modal.Body>
+				<Modal.Body>¿Estás seguro de que deseas eliminar a {elementName}?</Modal.Body>
 				<Modal.Footer>
 					<Button variant="secondary" onClick={handleConfirmationClose}>
 						Cancelar
