@@ -88,19 +88,33 @@ const Inventario = (props) => {
 		<div style={{ marginLeft: "50px", marginRight: "50px" }}>
 			<h1 className="display-3 text-center mb-5">Lista de inventario</h1>
 			<div className="card-container">
-				<Row xs={1} sm={2} md={3} lg={4} xl={4} className="g-4">
+				<Row className="g-4">
 					{sortedInventary?.map((inventary, index) => (
-						<Col key={inventary._id}>
+						<Col key={inventary._id} lg={4} sm={12} md={6}>
 							<Card className="mb-3">
 								<Card.Body>
-									<Card.Title className="modal-title">{inventary.nombre}</Card.Title>
-									<br/>
-									<Card.Text>
-										<strong>Cantidad:</strong> {inventary.cantidad}
-									</Card.Text>
-									<Button className="btn btn-info btn-sm" onClick={() => modifyElement(inventary._id)}>
-										<FontAwesomeIcon icon={faPencilAlt} /> Modificar
-									</Button>
+									<Card.Title className="mb-3">
+										<h3>Ítem {index + 1}</h3>
+									</Card.Title>
+									<Row>
+										<Col lg={5} sm={5} md={5}>
+											<Card.Text>Nombre: {inventary.nombre}</Card.Text>
+											<Card.Text>Cantidad: {inventary.cantidad}</Card.Text>
+										</Col>
+										<Col lg={7} sm={7} md={7}>
+											<Card.Text>Descripción: {inventary.estado}</Card.Text>
+										</Col>
+									</Row>
+									<Row>
+										<div className="mt-2 text-center">
+											<Button className="btn btn-info btn-sm me-2" onClick={() => modifyElement(inventary._id)}>
+												<FontAwesomeIcon icon={faPencilAlt} /> Modificar
+											</Button>
+											<Button className="btn btn-danger btn-sm" onClick={() => deleteElement(inventary._id)}>
+												<FontAwesomeIcon icon={faTrash} /> Eliminar
+											</Button>
+										</div>
+									</Row>
 								</Card.Body>
 							</Card>
 						</Col>

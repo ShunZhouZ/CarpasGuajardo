@@ -150,7 +150,9 @@ const Eventos = (props) => {
 						<Card.Body>
 							<div className="row">
 								<Row>
-									<Card.Title className="modal-title mb-3">Evento {index + 1}</Card.Title>
+									<Card.Title className="modal-title mb-3">
+										Evento {index + 1} - <span style={{ fontSize: "20px" }}>{event.estado}</span>
+									</Card.Title>
 
 									<Col xs={12} lg={4} md={4}>
 										<Card.Text>Nombre: {event.nombre_cliente}</Card.Text>

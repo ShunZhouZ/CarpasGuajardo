@@ -1,10 +1,10 @@
-import { Card, Button, Modal, Row, Col } from "react-bootstrap";
+import { Card, Button, Modal, Row, Col, Form, InputGroup } from "react-bootstrap";
 import { useCallback, useState, useEffect } from "react";
 import moment from "moment";
 import "moment/locale/es";
 moment.locale("es");
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPencilAlt, faTrash, faEye } from "@fortawesome/free-solid-svg-icons";
+import { faPencilAlt, faTrash, faEye, faSearch } from "@fortawesome/free-solid-svg-icons";
 import * as XLSX from "xlsx";
 
 const Eventos = (props) => {
@@ -191,26 +191,33 @@ const Eventos = (props) => {
 		<div style={{ marginLeft: "50px", marginRight: "50px" }}>
 			<h1 className="display-3 text-center mb-5">Lista de eventos</h1>
 			<div className="search-input">
-				<div className="button-container">
-					<input type="text" placeholder="Buscar por nombre, dirección o teléfono" value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)} />
-					<div className="check-box">
-						<label>
-							<input type="checkbox" checked={filterToldo} onChange={handleToldoFilterChange} />
-							Toldo
-						</label>
-						<label>
-							<input type="checkbox" checked={filterCarpa} onChange={handleCarpaFilterChange} />
-							Carpa
-						</label>
-						<label>
-							<input type="checkbox" checked={filterIluminacion} onChange={handleIluminacionFilterChange} />
-							Iluminación
-						</label>
-					</div>
-					<Button className="sort" variant="primary" onClick={handleSortOrder}>
-						Mas {sortOrder === "desc" ? "recientes" : "antiguos"}
-					</Button>
-				</div>
+				<Row className="filtrosEventos">
+					<Col xs={3} lg={2} md={3}>
+						<div className="check-box">
+							<Form.Group>
+								<Form.Label>Filtrar por:</Form.Label>
+								<Form.Check checked={filterToldo} onChange={handleToldoFilterChange} label="Toldo" />
+								<Form.Check checked={filterCarpa} onChange={handleCarpaFilterChange} label="Carpa" />
+							</Form.Group>
+						</div>
+					</Col>
+					<Col xs={4} lg={2} md={3}>
+						Ordenar por:
+						<div className="button-container mt-2">
+							<Button className="sort" variant="primary" size="sm" onClick={handleSortOrder}>
+								Más {sortOrder === "desc" ? "recientes" : "antiguos"}
+							</Button>
+						</div>
+					</Col>
+					<Col xs={5} lg={8} md={6}>
+						<InputGroup>
+							<Form.Control className="input" placeholder="Búsqueda por nombre o dirección" value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)} />
+							<Button>
+								<FontAwesomeIcon icon={faSearch} />
+							</Button>
+						</InputGroup>
+					</Col>
+				</Row>
 			</div>
 			<div className="card-container">
 				{sortedEvents.map((event, index) => (
@@ -219,7 +226,7 @@ const Eventos = (props) => {
 							<div className="row">
 								<Row>
 									<Card.Title className="modal-title mb-3">
-										Evento {index + 1} - <span style={{ fontSize: '20px' }}>{event.estado}</span>
+										Evento {index + 1} - <span style={{ fontSize: "20px" }}>{event.estado}</span>
 									</Card.Title>
 
 									<Col>

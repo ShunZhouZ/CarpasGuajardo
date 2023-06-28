@@ -77,17 +77,9 @@ const Modificarinventarios = (props) => {
 						<Form.Control type="number" onChange={handleControl} required defaultValue={data.cantidad} name="cantidad" id="cantidad" placeholder="cantidad" />
 					</Form.Group>
 					<Form.Group>
-					<Form.Label className="mt-3">Descripcion </Form.Label>
-					<Form.Control
-						as="textarea" 
-						onChange={handleControl} 
-						required defaultValue={data.estado} 
-						type="text" 
-						placeholder="Descripcion" 
-						id="estado"
-						name="estado"
-					/>
-				</Form.Group>
+						<Form.Label className="mt-3">Descripción </Form.Label>
+						<Form.Control as="textarea" onChange={handleControl} required defaultValue={data.estado} type="text" placeholder="Descripcion" id="estado" name="estado" />
+					</Form.Group>
 
 					<div className="mt-4 text-center">
 						<Button type="submit" className="btn btn-primary">

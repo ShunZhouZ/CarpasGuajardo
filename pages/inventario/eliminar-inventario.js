@@ -69,7 +69,7 @@ const Inventario = (props) => {
 		setSortAsc(!sortAsc);
 	};
 	// console.log(await deleteResponse.json());
-	reloadInventarios();
+	//reloadInventarios();
 
 	const filteredInventary = filterInventary();
 
