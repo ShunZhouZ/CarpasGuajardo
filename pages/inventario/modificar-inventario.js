@@ -20,9 +20,8 @@ const Modificarinventarios = (props) => {
 		_id: id,
 		nombre: inventario.nombre,
 		cantidad: inventario.cantidad,
-		estado_data: inventario.estado
+		estado: inventario.estado
 	});
-	console.log(data);
 	const submitModificar = async (e) => {
 		e.preventDefault();
 
