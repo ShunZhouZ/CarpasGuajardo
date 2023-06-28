@@ -12,8 +12,7 @@ export default async function handler(req, res) {
             break;
         case "GET":
             const allEventos = await db.collection("Inventario").find({}).toArray();
-            res.json({ status: 200, data: allEventos });
-            break;
+            return res.json({ status: 200, data: allEventos });
         case "DELETE":
             const { id } = req.query
 
